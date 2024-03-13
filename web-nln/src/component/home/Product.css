@@ -1,0 +1,12 @@
+.product{
+    display: grid;
+}
+.container-content{
+    
+}
+.container-img{
+    max-width: 100%;
+}
+img{
+    max-width: 100%;
+}
