@@ -1,0 +1,79 @@
+.Footer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: #e7e3de;
+  margin-top: 200px;
+}
+
+.Footer a {
+  transition: color 0.3s ease-in-out;
+}
+
+.Footer a:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  font-weight: 550;
+}
+
+.Footer .footer-contact {
+  margin: 0 0 20px 0;
+  position: relative;
+}
+.img-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.contact-button {
+  position: absolute;
+  bottom: 35%;
+  left: 72.5%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 361px;
+  height: 75px;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  background-color: white;
+}
+
+.footer-contact a {
+  padding: 2px;
+  margin: 0 48px;
+}
+
+.footer-navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.footer-navigation .navigation-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.navigation-col a {
+  padding: 2px;
+  margin: 12px 0;
+}
+
+.footer-services {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 12px 124px;
+}
+
+.footer-services p {
+  color: #535353;
+  font-size: 20px;
+  font-size: 20px;
+}
