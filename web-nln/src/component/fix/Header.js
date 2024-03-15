@@ -13,10 +13,10 @@ export default function Header() {
           />
         </div>
         <nav>
-          <a id="about-me">Về chúng tớ</a>
-          <a id="join-with-us">Tham gia bán hàng</a>
-          <a id="news">Tin tức</a>
-          <a id="poligy">Chính sách</a>
+        <Link to={"/"}><a id="about-me">Trang chủ</a></Link>
+          <a id="join-with-us">Giới thiệu</a>
+          <Link to={"/product"}><a id="news">Sản phẩm</a> </Link>
+          <a id="poligy">Tư vấn</a>
         </nav>
         <div className="main-tools-container">
           <Link to={"/search"}>

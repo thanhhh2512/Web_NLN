@@ -42,6 +42,10 @@
   line-height: normal;
   background-color: white;
 }
+.contact-button:focus{
+  background-color: #897358;
+  color: white;
+}
 
 .footer-contact a {
   padding: 2px;

@@ -42,8 +42,8 @@ export default function Slide(){
         </Swiper>
       </div>
       <div className="word-container">
-        <h1 className="article">Hạt Giống</h1>
-        <p>Hạt giống thủy canh</p>
+        <h1 className="article">HẠT GIỐNG</h1>
+        <p>Hạt giống rau quả thủy canh</p>
         <button>Xem ngay</button>
       </div>
     </div>

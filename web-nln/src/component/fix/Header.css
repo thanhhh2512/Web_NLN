@@ -48,8 +48,11 @@
 
 .Header #about-us {
   grid-area: about-us;
+  
 }
-
+.Header a{
+  text-decoration: none;
+}
 .Header #join-with-us {
   grid-area: join-with-us;
 }

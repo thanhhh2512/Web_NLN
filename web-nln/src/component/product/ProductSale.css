@@ -3,13 +3,14 @@
   display: flex;
   flex-direction: row;
   background-color: #f4f4f4;
-  height: 1000px;
+  height: 800px;
   
 }
 /* IMAGE */
 .image-layout {
   display: flex;
   flex-direction: row;
+  padding: 40px;
 }
 .left-img1{
     width: 359px;
