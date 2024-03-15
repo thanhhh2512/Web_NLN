@@ -4,12 +4,13 @@
 }
 
 .swiper-container img {
-  max-width: 100%;
+    max-width: 100%;
 }
 .word-container {
   position: absolute;
   top: 0;
   left: 0;
+  margin-bottom: 50px;
   width: 100%; /* Đảm bảo word-container chiếm toàn bộ chiều rộng của swiper-container */
   height: 100%; /* Đảm bảo word-container chiếm toàn bộ chiều cao của swiper-container */
   display: flex;
@@ -20,16 +21,16 @@
   z-index: 2; /* Đảm bảo word-container hiển thị trên swiper-container */
 }
 .article {
-  margin-bottom: 5px;
+  margin-bottom: 50px;
   color: #fff;
   font-family: Roboto;
-  font-size: 250px;
+  font-size: 150px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 .word-container p {
-  margin-top: 5px;
+  margin-bottom: 53px;
   color: #fff;
   font-family: Roboto;
   font-size: 48px;
