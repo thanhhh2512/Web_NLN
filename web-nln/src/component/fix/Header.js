@@ -13,9 +13,9 @@ export default function Header() {
           />
         </div>
         <nav>
-          <a id="about-me">Trang chủ</a>
+        <Link to={"/"}><a id="about-me">Trang chủ</a></Link>
           <a id="join-with-us">Giới thiệu</a>
-          <a id="news">Sản phẩm</a>
+          <Link to={"/product"}><a id="news">Sản phẩm</a> </Link>
           <a id="poligy">Tư vấn</a>
         </nav>
         <div className="main-tools-container">
