@@ -1,0 +1,15 @@
+.ProductTitle{
+    display: flex;
+    flex-direction: row;
+     margin-top: 30px;
+}
+.img-left{
+    width: 760px;
+    height: 520px;
+    margin-left: 50px;
+}
+.ProductTitle .img-left img {
+    max-width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của phần tử cha */
+    max-height: 100%; /* Đảm bảo hình ảnh không vượt quá chiều cao của phần tử cha */
+    object-fit: contain; /* Giữ tỷ lệ khung và hiển thị toàn bộ hình ảnh */
+}

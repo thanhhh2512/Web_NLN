@@ -1,4 +1,6 @@
 import './Article.css'
+import { ArticleData } from '../../common/json/ArticleData';
+import { Link } from 'react-router-dom';
 
 export default function Article(){
     return (
@@ -7,10 +9,11 @@ export default function Article(){
             <h1>Bài viết</h1>
           </div>
           <div className="container-img">
-            <img
-              src={process.env.PUBLIC_URL + "/images/home/Group 487.png"}
-              className="article-img"
-            ></img>
+       {ArticleData.map(article => (
+        <Link key={article.id} to={`/article/${article.id}`}>
+          <img src={article.imagePath[0]} alt={`Article ${article.id}`} />
+        </Link>
+       ))}
           </div>
         </div>
       );

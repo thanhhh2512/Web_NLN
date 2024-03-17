@@ -13,9 +13,9 @@ export default function Header() {
           />
         </div>
         <nav>
-        <Link to={"/"}><a id="about-me">Trang chủ</a></Link>
+        <Link to={"/"}id="about-me"> Trang chủ</Link>
           <a id="join-with-us">Giới thiệu</a>
-          <Link to={"/product"}><a id="news">Sản phẩm</a> </Link>
+          <Link to={"/product"}id="news"> Sản phẩm </Link>
           <a id="poligy">Tư vấn</a>
         </nav>
         <div className="main-tools-container">
@@ -23,7 +23,7 @@ export default function Header() {
             <i className="fa-solid fa-magnifying-glass tools-icon"></i>
           </Link>
           <i className="fa-solid fa-cart-shopping tools-icon"></i>
-          <Link to={"/login"}>
+          <Link to={"/loginpage"}>
             <i className="fa-solid fa-user tools-icon"></i>
           </Link>
         </div>

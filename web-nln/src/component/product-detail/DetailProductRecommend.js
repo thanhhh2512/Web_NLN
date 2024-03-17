@@ -1,16 +1,16 @@
 import { ProductData } from "../../common/json/ProductData";
 import BestSellerItem from "./BestSellerItem";
 import { useState } from "react";
-import './ProductRecomment.css'
+import './DetailProductRecomment.css'
 
-export default function ProductRecommend() {
+export default function DetailProductRecommend() {
     const [active, setActive] = useState(false);
     const handleClick = () => {
         
         setActive(!active);
       };
     return (
-        <div className='ProductRecommend'>
+        <div className='DetailProductRecommend'>
             <div className='recommend-title'>
                 <div className="title1">
                 <button className={`will-like ${active ? "active" : ""}`} onClick={handleClick}>
