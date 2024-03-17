@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./ProductDescription.css";
+import "./DetailProductDescription.css";
 
-export default function ProductDescription() {
+export default function DetailProductDescription() {
   const [expanded, setExpanded] = useState(false);
 
   const toggleDescription = () => {
@@ -13,7 +13,7 @@ export default function ProductDescription() {
   };
 
   return (
-    <div className="product-description">
+    <div className="detail-product-description">
       <div className="description">
         <div className={`description-left ${expanded ? "expanded" : ""}`}>
           <h1>Mô tả sản phẩm</h1>

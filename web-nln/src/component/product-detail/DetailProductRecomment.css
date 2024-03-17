@@ -1,8 +1,8 @@
-.ProductRecommend {
+.DetailProductRecommend {
   margin: 96px 36px 0;
 }
 
-.ProductRecommend .recommend-title {
+.DetailProductRecommend .recommend-title {
   font-size: 48px;
   color: #535353;
   display: flex;
@@ -10,7 +10,7 @@
   justify-content: space-evenly;
 }
 
-.ProductRecommend .recommend-detail {
+.DetailProductRecommend .recommend-detail {
   display: flex;
   flex-direction: row;
   justify-content: space-around;

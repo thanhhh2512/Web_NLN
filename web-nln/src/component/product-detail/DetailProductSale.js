@@ -1,8 +1,8 @@
-import "./ProductSale.css";
+import "./DetailProductSale.css";
 
-export default function ProductSale() {
+export default function DetailProductSale() {
   return (
-    <div className="productsale-container">
+    <div className="detail-productsale-container">
       <div className="image-layout">
         <div className="left-images">
           <div className="top-left-image">

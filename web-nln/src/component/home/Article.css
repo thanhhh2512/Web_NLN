@@ -12,9 +12,17 @@
     margin-left: 16px;
     margin-bottom: 112px;
 }
-.container-img{
-    max-width: 100%;
-}
-.article-img{
-    max-width: 100%;
-}
+.container-img {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Tạo 4 cột với độ rộng bằng nhau */
+    gap: 20px; /* Khoảng cách giữa các hình ảnh */
+  }
+  
+  .container-img a {
+    width: 100%;
+  }
+  
+  .container-img img {
+    width: 100%;
+    height: auto;
+  }

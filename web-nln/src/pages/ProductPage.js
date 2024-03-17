@@ -1,6 +1,6 @@
-import Header from "../component/fix/Header";
-import ProductBody from "../component/product/ProductBody";
-import Footer from "../component/fix/Footer";
+import Header from '../../src/component/fix/Header'
+import Footer from '../component/fix/Footer'
+import ProductBody from '../component/product/ProductBody'
 
 export default function ProductPage(){
     return(
@@ -8,7 +8,6 @@ export default function ProductPage(){
             <Header/>
             <ProductBody/>
             <Footer/>
-
         </div>
-    );
+    )
 }

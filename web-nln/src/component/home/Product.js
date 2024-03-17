@@ -1,4 +1,6 @@
 import './Product.css'
+import { TypeofProductData } from '../../common/json/TypeofProductData';
+import { Link } from 'react-router-dom';
 export default function Product() {
   return (
     <div className="product">
@@ -6,10 +8,12 @@ export default function Product() {
         <h1>Sản phẩm</h1>
       </div>
       <div className="container-img">
-        <img
-          src={process.env.PUBLIC_URL + "/images/home/product-img.png"}
-          className="product-img"
-        ></img>
+      {TypeofProductData.map(product => (
+        <Link key={product.id} to={`/product/${product.id}`}>
+          <img src={product.imagePath[0]} alt={`Product ${product.id}`} />
+        </Link>
+      ))}
+          
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
-import './ProductPolicy.css'
+import './DetailProductPolicy.css'
 
-export default function ProductPolicy(){
+export default function DetailProductPolicy(){
     return(
-        <div className="product-policy-container">
+        <div className="detail-product-policy-container">
             <div className="title">
                 <h1>CHÍNH SÁCH ĐẶC BIỆT CỦA HUONG SEN FARM</h1>
             </div>
