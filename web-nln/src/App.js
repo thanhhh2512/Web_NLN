@@ -5,6 +5,7 @@ import LoginContainer from "./pages/LoginContainer";
 import RegisterOage from './pages/Resgi';
 import LoginPage from './pages/LoginPage';
 import ProductPage from "./pages/ProductPage";
+import CartPage from "./pages/CartPage";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     <Route path="/register" element={<RegisterOage/>}/>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/product/:id" element={<ProductPage/>}/>
+                    <Route path="/cart" element={<CartPage/>}/>
                 </Routes>
             </Router>
         </div>
