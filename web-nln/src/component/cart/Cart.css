@@ -59,14 +59,32 @@
 .des-item{
     width: 290px;
     text-align: justify;
-    
+    padding-top: 28px;
 }
 .quantity-item{
-    
+    width: 100px;
+    padding: 20px 3px 53px 3px;
+}
+.quantity-item input{
+    width: 79px;
 }
 .price-item{
-   
+   display: flex;
+   justify-content: space-between;
+   margin-top: 91px;
 }
+.type-product, 
+.characteristic{
+    display: flex;
+    justify-content: space-between;
+}
+.label{
+    margin-right: 20px;
+    }
+.pref-item{
+    right: 5px;
+    margin-left: 20px;
+    }
 .container-review{
     display: block;
     border: #000 solid 0.5px;
@@ -116,6 +134,7 @@
     color: #FFFFFF;
     background-color: #000;
     padding: 12px 30px;
+    margin-left: 40px;
     margin-bottom: 1rem;
     width: 260px;
     height: 44px;
@@ -125,6 +144,7 @@
 .btn-continue{
     display: block;
     padding: 12px 30px;
+    margin-left: 40px;
     margin-bottom: 1rem;
     width: 260px;
     height: 44px;

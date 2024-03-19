@@ -22,7 +22,9 @@ export default function Header() {
           <Link to={"/search"}>
             <i className="fa-solid fa-magnifying-glass tools-icon"></i>
           </Link>
-          <i className="fa-solid fa-cart-shopping tools-icon"></i>
+          <Link to="/cart">
+            <i className="fa-solid fa-cart-shopping tools-icon"></i>
+          </Link>
           <Link to={"/loginpage"}>
             <i className="fa-solid fa-user tools-icon"></i>
           </Link>

@@ -17,12 +17,15 @@ function CartBody() {
                             <input min="1" type="number"></input>
                         </td>
                         <td className='price-item'>
-                            Giá
+                            <span className="label">Giá</span>
                             <span>{product.ProductPrice}</span>
                         </td>
                     </tr>
                     <tr>
-                        <td>Loại sản phẩm   Hạt giống</td>
+                        <td>
+                            <p className="type-product"><span className="label">Loại sản phẩm</span>   <span className="pref-item">Hạt giống</span></p>
+                            <p className="characteristic"><span className="label">Đặc tính</span> <span className="pref-item">Hạt</span></p>
+                        </td>
                         <td>Xoá</td>
                     </tr>
                     <tr className='item'>
@@ -32,12 +35,15 @@ function CartBody() {
                             <input min="1" type="number"></input>
                         </td>
                         <td className='price-item'>
-                            Giá
+                        <span className="label">Giá</span>
                             <span>{product.ProductPrice}</span>
                         </td>
                     </tr>
                     <tr>
-                        <td>Loại sản phẩm   Hạt giống</td>
+                        <td>
+                            <p className="type-product"><span className="label">Loại sản phẩm</span>   <span className="pref-item">Hạt giống</span></p>
+                            <p className="characteristic"><span className="label">Đặc tính</span> <span className="pref-item">Hạt</span></p>
+                        </td>
                         <td>Xoá</td>
                     </tr>
                 </table>
