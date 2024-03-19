@@ -5,11 +5,26 @@
 }
 .img-left{
     width: 760px;
-    height: 520px;
-    margin-left: 50px;
+    height: 420px;
 }
 .ProductTitle .img-left img {
     max-width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của phần tử cha */
     max-height: 100%; /* Đảm bảo hình ảnh không vượt quá chiều cao của phần tử cha */
-    object-fit: contain; /* Giữ tỷ lệ khung và hiển thị toàn bộ hình ảnh */
+    width: 760px;
+    height: 420px;
+}
+.title-right{
+    width: 760px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+.title{
+    padding-left: 125px;
+}
+.content{
+    padding-left: 125px;
+    width: 300px;
 }
