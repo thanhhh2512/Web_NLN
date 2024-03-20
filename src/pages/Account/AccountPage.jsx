@@ -3,10 +3,10 @@ import './AccountPage.css'
 import Header from '../../component/fix/Header'
 import Footer from '../../component/fix/Footer'
 import AccountHeader from '../../component/account/AccountHeader'
-import AccountOverview from '../../component/account/AccountOverview'
+import AccountOverview from './AccountOverview'
 import AccountInfor from './AccountInfor'
 import AccountChangePassword from './AccountChangePassword'
-import AccountOrder from '../../component/account/AccountOrder'
+import AccountOrder from './AccountOrder'
 function AccountPage() {
     const [activeTab, setActiveTab] = useState(1);
     const handleTabClick = (index) => {

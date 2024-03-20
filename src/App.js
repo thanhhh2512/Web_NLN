@@ -26,8 +26,7 @@ function App() {
                     <Route path="/detail" element={<DetailProductPage />} />
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/account" element={<AccountPage />} />
-                    <Route path="/order" element={<OrderPage />} />
-                    <Route path="/order/:id" element={<OrderPage />} />
+                  
                 </Routes>
             </Router>
         </div>
