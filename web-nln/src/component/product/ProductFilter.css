@@ -2,7 +2,7 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  padding-left: 90px;
+  padding-left: 19px;
 }
 .filter-by {
   color: var(--Sort, #7f6e59);
@@ -20,6 +20,7 @@
   flex-direction: row;
   border-bottom: 1px solid #7f6e59;
   position: relative;
+  margin-right: 20px;
 }
 .dropdown-menu,
 .dropdown-menu1,
@@ -175,7 +176,8 @@
 }
 
 .ProductItems {
-  margin-right: 5px; /* Khoảng cách bên phải giữa các hình */
+  margin-right: 20px;
+  text-align: center; /* Khoảng cách bên phải giữa các hình */
 }
 .ProductReview .title-review {
   color: var(--Sort, #7f6e59);

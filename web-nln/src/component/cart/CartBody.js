@@ -90,6 +90,4 @@ function CartBody() {
             </div>
         </form>);
 }
-
-
 export default CartBody;

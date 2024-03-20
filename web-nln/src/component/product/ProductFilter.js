@@ -147,7 +147,6 @@ export default function ProductFilter() {
           <div className="selected-product-container">
             <p>{selectedProduct.ProductCharacteristic}</p>
             <button className="clear-button" onClick={clearSelectedProduct}>X</button>
-
           </div>
         )}
         {selectedPrice && (
@@ -159,7 +158,7 @@ export default function ProductFilter() {
       </div>
       <div className={`ProductReview ${expanded ? 'expanded' : ''}`}>
             <div className='title-review'>
-                <h2>{filteredProducts.length} SẢN PHẨM</h2>
+                <p>{filteredProducts.length} SẢN PHẨM</p>
             </div>
             <div className='product-container'>
                 {/* Chia danh sách sản phẩm thành các phần, mỗi phần chứa productsPerRow sản phẩm */}
