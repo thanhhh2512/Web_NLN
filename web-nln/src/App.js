@@ -6,7 +6,7 @@ import RegisterOage from './pages/Resgi';
 import LoginPage from './pages/LoginPage';
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
-
+import OrderPage from "./pages/OrderPage";
 function App() {
     return (
         <div className="App">
@@ -18,6 +18,7 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/product/:id" element={<ProductPage/>}/>
                     <Route path="/cart" element={<CartPage/>}/>
+                    <Route path="/order" element={<OrderPage/>}/>                    
                 </Routes>
             </Router>
         </div>

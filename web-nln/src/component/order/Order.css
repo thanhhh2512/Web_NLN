@@ -1,0 +1,30 @@
+h1,
+h2, th{
+    text-transform:uppercase ;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    margin: 25px 25px 10px 15px;
+}
+.title-page{
+    text-align: center;
+}
+.order-detail{
+    margin: 48px;
+    padding: 20px;
+    border: #ccc 1px solid;
+    border-radius: 5px;
+}
+.inf-custom{
+    display: flex;
+    justify-content: space-around;
+}
+.address-form{
+    display: flex;
+    flex-direction: column;
+}
+.footbill{
+    display: flex;
+    justify-content: space-around;
+}

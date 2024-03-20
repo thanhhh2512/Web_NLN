@@ -1,8 +1,65 @@
-import { ProductData } from "../../common/json/ProductData";
+import {useState} from 'react';
+import {Link} from 'react-router-dom'
+import { CartData } from "../../common/json/CartData";
 import './Cart.css'
-function CartBody() {
 
-  const product = ProductData.find((item) => item.ProductNo === '001');
+const priceItemInCart = (item) => {
+        var total =(Number.parseInt(item.Quantity) * Number.parseInt(item.ProductPrice))
+        return total
+    }
+function CartBody() {
+    // fake Data
+    var Cart = CartData
+    var [sumCart, setSumCart] = useState(()=>{
+       var tmp =0;
+        Cart.forEach((item) =>{
+            tmp = tmp + priceItemInCart(item);
+        })
+        return tmp;
+    })
+    
+    
+    // Hàm dùng xử lí thay đổi giá trị tổng
+    function sumCartValue(){
+        var tmp =0;
+        Cart.forEach((item) =>{
+            tmp = tmp + priceItemInCart(item);
+        })
+        setSumCart(tmp);
+    }
+    // render danh sách sản phẩm
+    const listItem = Cart.map((item) => {
+        return(
+            <>
+                <tr className='item' key={item.ProductNo}>
+                    <td className='img-item' rowSpan="2">
+                        <img src={item.ProductImage} alt={item.ProductName}></img>
+                    </td>
+                    <td className='des-item' >{item.ProductName}</td>
+                    <td className='quantity-item' rowSpan="2">
+                        <input min="1" type="number" value={item.Quantity} onChange={e =>{item.Quantity = e.target.value }}></input>
+                    </td>
+                    <td className='price-item'>
+                        <span className="label">Giá</span>
+                        <span>{priceItemInCart(item) +" vnđ"}</span>
+                    </td>
+                </tr>
+                <tr className="more-infor">
+                    <td >
+                        <p className="type-product">
+                            <span className="label">Loại sản phẩm</span>
+                            <span className="pref-item">{item.TypeOfProduct}</span>
+                        </p>
+                        <p className="characteristic">
+                            <span className="label">Đặc tính</span>
+                            <span className="pref-item">{item.Characteristic}</span>
+                        </p>
+                    </td>
+                    <td className="remove-item">Xoá </td>
+                </tr>
+            </>)
+        
+        })
     return ( 
         <form className="cart-form warraper">
             <div className="warraper-title">
@@ -10,42 +67,10 @@ function CartBody() {
             </div>
             <div className="detail-cart">
                 <table className="list-items">
-                    <tr className='item'>
-                        <td className='img-item' rowspan="2"><img src={product.ProductImage} alt={product.ProductName}></img></td>
-                        <td className='des-item' >{product.ProductName}</td>
-                        <td className='quantity-item' rowspan="2">
-                            <input min="1" type="number"></input>
-                        </td>
-                        <td className='price-item'>
-                            <span className="label">Giá</span>
-                            <span>{product.ProductPrice}</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p className="type-product"><span className="label">Loại sản phẩm</span>   <span className="pref-item">Hạt giống</span></p>
-                            <p className="characteristic"><span className="label">Đặc tính</span> <span className="pref-item">Hạt</span></p>
-                        </td>
-                        <td>Xoá</td>
-                    </tr>
-                    <tr className='item'>
-                        <td className='img-item' rowspan="2"><img src={product.ProductImage} alt={product.ProductName}></img></td>
-                        <td className='des-item' >{product.ProductName}</td>
-                        <td className='quantity-item' rowspan="2">
-                            <input min="1" type="number"></input>
-                        </td>
-                        <td className='price-item'>
-                        <span className="label">Giá</span>
-                            <span>{product.ProductPrice}</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p className="type-product"><span className="label">Loại sản phẩm</span>   <span className="pref-item">Hạt giống</span></p>
-                            <p className="characteristic"><span className="label">Đặc tính</span> <span className="pref-item">Hạt</span></p>
-                        </td>
-                        <td>Xoá</td>
-                    </tr>
+                    <tbody>
+                        {/* Khúc này có thể chia ra component */}
+                        {listItem}
+                    </tbody>
                 </table>
                 <div className="container-review">
                     <div className='review'>
@@ -53,11 +78,11 @@ function CartBody() {
                         <div className="line"></div>
                         <div className="sum-wrapper">
                             <p className='lable-summary'>TỔNG GIÁ</p>
-                            <p className='summary'>300.000vnd</p>
+                            <p className='summary'>{sumCart} vnđ</p>
                         </div>
                         <div className="line"></div>
                         <div className="check-out">
-                            <button className="btn-submit">THANH TOÁN</button>
+                            <button className="btn-submit"> <Link to={"/order"}>THANH TOÁN</Link></button>
                             <button className="btn-continue">TIẾP TỤC MUA HÀNG</button>
                         </div>
                     </div>

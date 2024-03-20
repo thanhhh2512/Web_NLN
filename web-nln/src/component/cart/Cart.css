@@ -1,15 +1,10 @@
+/* Phần css cho toàn thân trang */
 .warraper{
-    /* 
-    box-sizing: border-box;
-    border-radius: 0.625rem;
-    border: 1px solid #D0D0D0;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset; */
     display: flex;
     flex-flow: row wrap;
     width: 100%;
     min-height: 700px;
     position: relative;
-    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset; */
     border-radius: 10px;
     overflow: hidden;
     border: 1px #D0D0D0 solid;
@@ -24,7 +19,6 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    /* display: flex; */
 }
 .cart-title {
     width: 100%;
@@ -37,19 +31,25 @@
     word-wrap: break-word;
 }
 .detail-cart{
+    display: inline-flex; 
     position: absolute;
     top: 120px;
     left: 120px;
     right: 120px;
-    display: inline-flex; 
 }
 .list-items{
+    border: 1px solid #000;
+    border-top: 0px;
+    border-bottom: 0px ;
     margin: 0 20px;
+    padding: 3px;
     width: 700px;
     height: fit-content;
 }
-.item{
-  height: 150px;
+.more-infor{
+    /* Cái này k ăn */
+    border-top: 0.5px solid var(--Thanh-k, #6C6C6C);
+    border-bottom: 0.5px solid var(--Thanh-k, #6C6C6C);
 }
 .img-item img{
     background: cover no-repeat, #D9D9D9;
@@ -72,19 +72,29 @@
    display: flex;
    justify-content: space-between;
    margin-top: 91px;
+   padding: 5px;
 }
 .type-product, 
 .characteristic{
     display: flex;
     justify-content: space-between;
+    margin-top: 5px;
 }
 .label{
     margin-right: 20px;
-    }
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
 .pref-item{
     right: 5px;
     margin-left: 20px;
-    }
+    
+}
+.remove-item{
+    text-align: right;
+    padding: 5px;
+}
 .container-review{
     display: block;
     border: #000 solid 0.5px;
@@ -131,7 +141,6 @@
 }
 .btn-submit{
     display: block;
-    color: #FFFFFF;
     background-color: #000;
     padding: 12px 30px;
     margin-left: 40px;
@@ -139,7 +148,15 @@
     width: 260px;
     height: 44px;
     flex-shrink: 0;
-
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-submit:hover{
+    opacity: 0.8;
+}
+.btn-submit a{
+    text-decoration: none;
+    color: #fff;
 }
 .btn-continue{
     display: block;
