@@ -43,16 +43,10 @@ function CartBody() {
           <div className="itemList-detail">
             <div className="des-item">{item.ProductName}</div>
             <div className="more-infor">
-              <div>
                 <p className="type-product">
                   <span className="label">Loại sản phẩm</span>
                   <span className="pref-item">{item.TypeOfProduct}</span>
                 </p>
-                <p className="characteristic">
-                  <span className="label">Đặc tính</span>
-                  <span className="pref-item">{item.Characteristic}</span>
-                </p>
-              </div>
             </div>
           </div>
           <div className="quantity-item">
@@ -101,9 +95,11 @@ function CartBody() {
           </div>
           <div className="line"></div>
           <div className="check-out">
-            <button className="btn-submit">
-              <Link to={"/order"}>THANH TOÁN</Link>
-            </button>
+            <Link to={"/order"}>
+              <button className="btn-submit">THANH TOÁN
+              </button>
+            </Link>
+            
             <button className="btn-continue">TIẾP TỤC MUA HÀNG</button>
           </div>
         </div>
