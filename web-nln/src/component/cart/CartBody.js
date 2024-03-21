@@ -27,47 +27,55 @@ function CartBody() {
     });
     setSumCart(tmp);
   }
+  // Hàm xử lý thay đổi số lượng
+  function reduceValue(){
+    // Cái xử lý này có hiệu lực khi call API,
+    // Vì giờ làm nó thay đổi trong file khác cách thay đổi trong dữ liệu gửi đi
+    sumCartValue()
+  }
   // render danh sách sản phẩm
   const listItem = Cart.map((item) => {
     return (
-      <>
         <div className="itemList" key={item.ProductNo}>
-          <div className="img-item" rowSpan="2">
+          <div className="img-item">
             <img src={item.ProductImage} alt={item.ProductName}></img>
           </div>
-          <div className="itemList-detal">
+          <div className="itemList-detail">
             <div className="des-item">{item.ProductName}</div>
+            <div className="more-infor">
+              <div>
+                <p className="type-product">
+                  <span className="label">Loại sản phẩm</span>
+                  <span className="pref-item">{item.TypeOfProduct}</span>
+                </p>
+                <p className="characteristic">
+                  <span className="label">Đặc tính</span>
+                  <span className="pref-item">{item.Characteristic}</span>
+                </p>
+              </div>
+            </div>
           </div>
-          
-          <div className="quantity-item" rowSpan="2">
+          <div className="quantity-item">
+            <button className="btn-pre" onClick={(e) => console.log(e.target)}>-</button>
             <input
               min="1"
+              max="99"
               type="number"
+              width="30px"
               value={item.Quantity}
-              onChange={(e) => {
-                item.Quantity = e.target.value;
-              }}
-            ></input>
+              readOnly
+            />
+            <button className="btn-add" onClick={(e) => console.log(e.target)}>+</button>
           </div>
           <div className="price-item">
-            <span className="label">Giá</span>
-            <span>{priceItemInCart(item) + " vnđ"}</span>
+            <p>
+              <span className="label">Giá</span>
+              <span>{priceItemInCart(item) + " vnđ"}</span>
+            </p>
+            <div className="remove-item">Xoá </div>
           </div>
         </div>
-        <tr className="more-infor">
-          <td>
-            <p className="type-product">
-              <span className="label">Loại sản phẩm</span>
-              <span className="pref-item">{item.TypeOfProduct}</span>
-            </p>
-            <p className="characteristic">
-              <span className="label">Đặc tính</span>
-              <span className="pref-item">{item.Characteristic}</span>
-            </p>
-          </td>
-          <td className="remove-item">Xoá </td>
-        </tr>
-      </>
+      
     );
   });
   return (
@@ -77,12 +85,10 @@ function CartBody() {
       </div>
       <div className="detail-cart">
         <div className="salelist">
-          <table className="list-items">
-            <tbody>
+          <section className="list-items">
               {/* Khúc này có thể chia ra component */}
               {listItem}
-            </tbody>
-          </table>
+          </section>
         </div>
         <div className="container-review">
           <div className="review">
@@ -96,7 +102,7 @@ function CartBody() {
           <div className="line"></div>
           <div className="check-out">
             <button className="btn-submit">
-              {" "}
+              {/* {" "} */}
               <Link to={"/order"}>THANH TOÁN</Link>
             </button>
             <button className="btn-continue">TIẾP TỤC MUA HÀNG</button>

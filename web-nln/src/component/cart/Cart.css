@@ -17,13 +17,12 @@
 }
 .warraper-title{
     color: var(--Text, #000);
-
-text-align: center;
-font-family: Roboto;
-font-size: 64px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 .cart-title {
     width: 100%;
@@ -44,19 +43,19 @@ line-height: normal;
 .itemList{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border-top: 0.5px solid var(--Thanh-k, #6C6C6C);
+    border-bottom: 0.5px solid var(--Thanh-k, #6C6C6C);
 }
 .list-items{
-
-    border-bottom: 1px solid #000;
     margin: 0 20px;
     padding: 3px;
     width: 700px;
     height: fit-content;
 }
-.more-infor{
-    /* Cái này k ăn */
-    border-top: 0.5px solid var(--Thanh-k, #6C6C6C);
-    border-bottom: 0.5px solid var(--Thanh-k, #6C6C6C);
+.itemList-detail{
+   
 }
 .img-item img{
     background: cover no-repeat, #D9D9D9;
@@ -69,16 +68,17 @@ line-height: normal;
     padding-top: 28px;
 }
 .quantity-item{
+    display: flex;
     width: 100px;
     padding: 20px 3px 53px 3px;
 }
 .quantity-item input{
-    width: 79px;
+    width: 50px;
 }
 .price-item{
    display: flex;
    justify-content: space-between;
-   margin-top: 91px;
+   flex-direction: column;
    padding: 5px;
 }
 .type-product, 
@@ -90,7 +90,7 @@ line-height: normal;
 .label{
     margin-right: 20px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     line-height: normal;
 }
 .pref-item{
