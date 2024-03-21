@@ -82,7 +82,10 @@ function AccountOrder() {
                                     <div class="flex-item">
                                         <b>Tình trạng đơn hàng</b>
                                     </div>
-                                    <div class="flex-item flex-grow-2">
+                                    <div class="flex-item">
+                                        <b>{item.orderDate}</b>
+                                    </div>
+                                    <div class="flex-item">
                                         {item.status === 1 ? "Đã xác nhận" : item.status === 2 ? "Đang giao hàng" : item.status === 3 ? "Đã nhận hàng" : item.status === 4 ? "Đã huỷ đơn hàng" : "Chưa được xác nhận"}
                                     </div>
                                 </div>
