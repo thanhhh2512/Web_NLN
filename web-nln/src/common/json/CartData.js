@@ -3,7 +3,7 @@ export const CartData = [
       ProductNo: "001",
       ProductName: "Hạt giống cải xanh 1",
       ProductImage: [
-        process.env.PUBLIC_URL + "images/product/Rectangle 9.png",
+        process.env.PUBLIC_URL + "images/product/Rectangle9.png",
       ],
       ProductDescription:
         "Rau ngắn ngày",
@@ -17,7 +17,7 @@ export const CartData = [
         ProductNo: "002",
         ProductName: "Hạt giống cải xanh 2",
         ProductImage: [
-          process.env.PUBLIC_URL + "images/product/Rectangle 9.png",
+          process.env.PUBLIC_URL + "images/product/Rectangle9.png",
         ],
         ProductDescription:
           "Rau ngắn ngày",
