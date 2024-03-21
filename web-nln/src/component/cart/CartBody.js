@@ -28,54 +28,57 @@ function CartBody() {
     setSumCart(tmp);
   }
   // Hàm xử lý thay đổi số lượng
-  function reduceValue(){
+  function reduceValue() {
     // Cái xử lý này có hiệu lực khi call API,
     // Vì giờ làm nó thay đổi trong file khác cách thay đổi trong dữ liệu gửi đi
-    sumCartValue()
+    sumCartValue();
   }
   // render danh sách sản phẩm
   const listItem = Cart.map((item) => {
     return (
-        <div className="item" key={item.ProductNo}>
-          <div className="img-item">
-            <img src={item.ProductImage} alt={item.ProductName}></img>
-          </div>
-          <div className="itemList-detail">
-            <div className="des-item">{item.ProductName}</div>
-            <div className="more-infor">
-              <div>
-                <p className="type-product">
-                  <span className="label">Loại sản phẩm</span>
-                  <span className="pref-item">{item.TypeOfProduct}</span>
-                </p>
-                <p className="characteristic">
-                  <span className="label">Đặc tính</span>
-                  <span className="pref-item">{item.Characteristic}</span>
-                </p>
-              </div>
+      <div className="item" key={item.ProductNo}>
+        <div className="img-item">
+          <img src={item.ProductImage} alt={item.ProductName}></img>
+        </div>
+        <div className="itemList-detail">
+          <div className="des-item">{item.ProductName}</div>
+          <div className="more-infor">
+            <div>
+              <p className="type-product">
+                <span className="label">Loại sản phẩm</span>
+                <span className="pref-item">{item.TypeOfProduct}</span>
+              </p>
+              <p className="characteristic">
+                <span className="label">Đặc tính</span>
+                <span className="pref-item">{item.Characteristic}</span>
+              </p>
             </div>
           </div>
-          <div className="quantity-item">
-            <button className="btn-pre" onClick={(e) => console.log(e.target)}>-</button>
-            <input
-              min="1"
-              max="99"
-              type="number"
-              width="30px"
-              value={item.Quantity}
-              readOnly
-            />
-            <button className="btn-add" onClick={(e) => console.log(e.target)}>+</button>
-          </div>
-          <div className="price-item">
-            <p>
-              <span className="label">Giá</span>
-              <span>{priceItemInCart(item) + " vnđ"}</span>
-            </p>
-            <div className="remove-item">Xoá </div>
-          </div>
         </div>
-      
+        <div className="quantity-item">
+          <button className="btn-pre" onClick={(e) => console.log(e.target)}>
+            -
+          </button>
+          <input
+            min="1"
+            max="99"
+            type="number"
+            width="30px"
+            value={item.Quantity}
+            readOnly
+          />
+          <button className="btn-add" onClick={(e) => console.log(e.target)}>
+            +
+          </button>
+        </div>
+        <div className="price-item">
+          <p>
+            <span className="label">Giá</span>
+            <span>{priceItemInCart(item) + " vnđ"}</span>
+          </p>
+          <div className="remove-item">Xoá </div>
+        </div>
+      </div>
     );
   });
   return (
@@ -86,8 +89,8 @@ function CartBody() {
       <div className="detail-cart">
         <div className="salelist">
           <section className="list-items">
-              {/* Khúc này có thể chia ra component */}
-              {listItem}
+            {/* Khúc này có thể chia ra component */}
+            {listItem}
           </section>
         </div>
         <div className="container-review">
@@ -101,9 +104,9 @@ function CartBody() {
           </div>
           <div className="line"></div>
           <div className="check-out">
-            <button className="btn-submit">
-              <Link to={"/order"}>THANH TOÁN</Link>
-            </button>
+            <Link to={"/order"}>
+              <button className="btn-submit">THANH TOÁN</button>
+            </Link>
             <button className="btn-continue">TIẾP TỤC MUA HÀNG</button>
           </div>
         </div>
