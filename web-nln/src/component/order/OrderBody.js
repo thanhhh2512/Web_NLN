@@ -1,14 +1,25 @@
+import { useEffect, useState } from "react";
 import { CartData } from "../../common/json/CartData";
 import '../cart/Cart.css'
 import './Order.css'
 function OrderBody() {
+    const [transport, setStransport] = useState("15.000")
+    const [summary, setSummary] = useState()
+    // Tính tổng giá trị hàng
     const totalBill = ()=>{
         var tmp = 0;
         CartData.forEach((item) => {
             tmp = tmp + Number.parseInt(item.ProductPrice) * Number.parseFloat(item.Quantity);
         });
-        return tmp;
+        return (tmp/1000) + ".000";
     } 
+    useEffect(() =>{
+        var total = (Number.parseInt(totalBill()) + Number.parseInt(transport)) + ".000";
+        setSummary(total)
+    },[transport])
+    // Xử lí sự kiện thay đổi đơn vị vận chuyển
+
+    // render danh sách đơn hàng
     var listOrder = CartData.map(item =>{
                    return (
                     <div className="item" key={item.ProductNo}>
@@ -20,10 +31,10 @@ function OrderBody() {
                             <input value={item.Quantity} type="number" readOnly ></input>
                         </div>
                         <div className='price-item' >
-                            {item.ProductPrice + " vnd"}
+                            {Number.parseInt(item.ProductPrice)/1000 + ".000 vnd"}
                         </div>
                         <div className='total'>
-                            { (Number.parseInt(item.ProductPrice) * Number.parseFloat(item.Quantity))} vnd
+                            { (Number.parseInt(item.ProductPrice) * Number.parseInt(item.Quantity))/1000 +".000"} vnd
                         </div>
                     </div>)
                 })
@@ -81,14 +92,14 @@ function OrderBody() {
             <h2>Loại vận chuyển</h2>
             <div className="select-radio">
                     <div className="option-gh">
-                        <div><input type="radio" id="gttk" name="transport" value="gttk"></input><label htmlFor="gttk">Giao hàng tiết kiệm</label></div>
+                        <div><input type="radio" id="gttk" name="transport" value="15.000" checked={transport === "15.000"} onChange={(e) => setStransport(e.target.value)}></input><label htmlFor="gttk">Giao hàng tiết kiệm</label></div>
                         <p>Giao hàng sau 3-5 ngày</p>
-                        <p>15000 vnd</p>
+                        <p>15.000 vnd</p>
                     </div>
                     <div className="option-gh">
-                        <div><input type="radio" id="ghn" name="transport" value="ghn"></input><label htmlFor="ghn">Giao hàng nhanh</label></div>
+                        <div><input type="radio" id="ghn" name="transport" value="30.000" checked={transport === "30.000"} onChange={(e) => setStransport(e.target.value)}></input><label htmlFor="ghn">Giao hàng nhanh</label></div>
                         <p>Giao hàng sau 1-2 ngày</p>
-                        <p>35000 vnd</p>
+                        <p>35.000 vnd</p>
                     </div>
             </div>
         </div>
@@ -101,9 +112,9 @@ function OrderBody() {
             <div>
                 <h2>Tóm tắt thanh toán</h2>
                 <div className="summary">
-                    <p><span>Tổng giá sản phẩm</span><span>300.000 vnd</span></p>
-                    <p><span>Phí vận chuyển</span><span>15.000 vnd</span></p>
-                    <p><span>Tổng đơn hàng</span><span>315.000 vnd</span></p>
+                    <p><span>Tổng giá sản phẩm</span><span>{ totalBill()} vnd</span></p>
+                    <p><span>Phí vận chuyển</span><span>{transport} vnd</span></p>
+                    <p><span>Tổng đơn hàng</span><span>{summary} vnd</span></p>
                 </div>
             </div> 
         </div>
