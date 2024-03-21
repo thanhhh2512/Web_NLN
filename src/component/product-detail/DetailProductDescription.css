@@ -1,0 +1,103 @@
+.description {
+  display: grid;
+  grid-template-areas: "image content";
+  grid-template-columns: 50% 50%;
+  margin: 80px 16px 0;
+  margin-top: 93px;
+}
+.description-left {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  padding-left: 60px;
+}
+.description-left h1 {
+  font-family: Roboto;
+  text-align: left;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+.p p {
+  justify-content: center;
+  text-align: left;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.description-right {
+  display: flex;
+  flex-direction: column;
+}
+.description-right h1 {
+  padding: 20px 20px 20px 40px;
+  margin-bottom: 30px;
+  font-family: Roboto;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.description-right p {
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  
+}
+.attribute-product {
+  display: flex;
+  flex-direction: row;
+  
+}
+.info-attribute {
+  display: flex;
+  flex-direction: column;
+  margin-left: 120px;
+  padding: 20px;
+}
+.attribute {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 20px 40px ;
+  border-left:1px solid #8e7033 ;
+}
+.expand-btn {
+  position: absolute;
+  left: 46%;
+  padding: 10px 20px;
+  background-color: white;
+  color: #8e7033;
+  text-decoration: underline;
+  border: none;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  cursor: pointer;
+}
+.collapse-btn {
+  position: absolute;
+  left: 46%;
+  padding: 10px 20px;
+  background-color: white;
+  color: #8e7033;
+  text-decoration: underline;
+  border: none;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  cursor: pointer;
+}

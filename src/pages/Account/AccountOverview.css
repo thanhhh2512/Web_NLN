@@ -1,0 +1,11 @@
+
+
+.infor-list li {
+    margin-block: 15px;
+}
+
+@media (max-width: 500px) {
+    .column {
+        flex-basis: 100%;
+    }
+}
