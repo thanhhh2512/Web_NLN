@@ -10,6 +10,7 @@ import DetailProductPage from "./pages/product/DetailProductPage"
 
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
+import AccountPage from "./pages/Account/AccountPage";
 
 
 function App() {

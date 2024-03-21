@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
  *  contain right -> if login -> image else -> form
  * @returns
  */
-function LoginContainer({}) {
+function LoginContainer({ }) {
   const [isUsernameFocused, setUsernameFocused] = useState(true);
   const [isPasswordFocused, setPasswordFocused] = useState(true);
 
@@ -25,16 +25,16 @@ function LoginContainer({}) {
             ></img>
           </div>
           <div className="Title">
-                <label>
-                  TẠO MỚI TÀI KHOẢN
-                </label>
+            <label>
+              TẠO MỚI TÀI KHOẢN
+            </label>
 
-                </div>
+          </div>
           <div className="login-form">
             <form>
-                
-                 <div className="username input-item">
-                 <label
+
+              <div className="username input-item">
+                <label
                   htmlFor="username"
                   className="username-placeholder input-label"
                 >
@@ -50,20 +50,20 @@ function LoginContainer({}) {
                 //   onFocus={() => setUsernameFocused(true)}
                 //   onBlur={() => setUsernameFocused(false)}
                 ></input>
-                
+
               </div>
 
               <div className="password input-item">
                 <label
                   htmlFor="password"
                   className="password-placeholder input-label"
-                  
+
                 >
                   MẬT KHẨU
                 </label>
                 <input
                   type="password"
-                  
+
                   className="login-input-field"
                   name="password"
                   id="password"
@@ -72,7 +72,7 @@ function LoginContainer({}) {
                 //   onFocus={() => setPasswordFocused(true)}
                 //   onBlur={() => setPasswordFocused(false)}
                 />
-                
+
               </div>
             </form>
           </div>
@@ -80,7 +80,7 @@ function LoginContainer({}) {
             <a href="#l">Quên mật khẩu?</a>
           </div>
           <div className="login-button">
-            <Link to={`/`}>
+            <Link to={`/account`}>
               <button>Đăng nhập</button>
             </Link>
           </div>
