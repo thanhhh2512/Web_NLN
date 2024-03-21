@@ -5,6 +5,11 @@ import { Link } from 'react-router-dom'
 function AccountOrder() {
     //https://fakestoreapi.com/products/
     const [ordersData, setOrderData] = useState(OrderData)
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleCollapsible = () => {
+        setIsOpen(!isOpen);
+    };
     console.log(ordersData)
     return (
         <>
@@ -25,39 +30,64 @@ function AccountOrder() {
                     {ordersData && ordersData.map((item, id) => {
                         return (
                             <div class="flex-column order-list-item" key={id}>
-                                <div className="row align-items-center">
+                                <div className="d-flex sm-flex-column">
                                     <div class="flex-item">
                                         #{item.id}
                                     </div>
                                     <div class="flex-item flex-grow-2">{item.orderDate}</div>
+
                                 </div>
-
-                                <br />
-
-                                <div class="flex-full-width">{item.products.map((__, idx) => {
-                                    return <li>{__.ProductName}</li>
-                                })}</div>
-
                                 <hr className='hr' />
+                                {isOpen ? (
+                                    <div className='list-product-container'>
+                                        {item.products.map((data, idx) => (
+                                            <div className={`foot-list-product`} key={idx}>
+                                                <div className='flex-item'>
+                                                    {data.ProductName}
+                                                </div>
+                                                <div className='flex-item'>SL{" : "}{data.Quantity}</div>
+                                                <div className='flex-item'>
+                                                    <u>{data.ProductPrice}</u>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className='d-flex sm-flex-column'>
+                                        {item.products.map((data, idx) => {
+                                            return <span className=''>{data.ProductName} {idx === item.products.length - 1 ? "..." : ","}</span>
+                                        })}
+                                    </div>
+                                )}
 
-                                <div className="d-flex align-items-center mv-15">
+                                <div className="d-flex sm-flex-column mv-15">
                                     <div class="flex-item">
-                                        Tổng đơn hàng
+                                        <b>Phí giao hàng</b>
                                     </div>
                                     <div class="flex-item flex-grow-2">
-                                        {item.total + " " + "VND"}
+                                        <u>  {item.total + " " + "VND"}</u>
                                     </div>
                                 </div>
-                                <div className="d-flex align-items-center mv-15">
+
+                                <div className="d-flex sm-flex-column mb-15">
                                     <div class="flex-item">
-                                        Tình trạng đơn hàng
+                                        <b>Tổng đơn hàng</b>
+                                    </div>
+                                    <div class="flex-item flex-grow-2">
+                                        <u> {item.total + " " + "VND"}</u>
+                                    </div>
+                                </div>
+                                <hr className='hr' />
+                                <div className="d-flex sm-flex-column mb-15">
+                                    <div class="flex-item">
+                                        <b>Tình trạng đơn hàng</b>
                                     </div>
                                     <div class="flex-item flex-grow-2">
                                         {item.status === 1 ? "Đã xác nhận" : item.status === 2 ? "Đang giao hàng" : item.status === 3 ? "Đã nhận hàng" : item.status === 4 ? "Đã huỷ đơn hàng" : "Chưa được xác nhận"}
                                     </div>
                                 </div>
 
-                                <Link to={`/order/${item.id}`} className="btn">Xem chi tiết</Link>
+                                <Link onClick={toggleCollapsible} className="btn">{isOpen === true ? "Thu gọn" : "Xem chi tiết"}</Link>
                             </div>
 
                         )

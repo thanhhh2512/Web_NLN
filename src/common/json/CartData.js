@@ -9,7 +9,7 @@ export const CartData = [
         "Rau ngắn ngày",
       TypeOfProduct:"Hạt giống cây trồng",
       Characteristic:"Hạt",
-      ProductPrice: "50.000vnd",
+      ProductPrice: "50.000 VND",
       Quantity: "1"
   
     },
@@ -23,7 +23,7 @@ export const CartData = [
           "Rau ngắn ngày",
         TypeOfProduct:"Hạt giống cây trồng",
         Characteristic:"Hạt",
-        ProductPrice: "50.000vnd",
+        ProductPrice: "50.000 VND",
         Quantity: "1"
     
       },

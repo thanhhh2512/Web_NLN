@@ -9,6 +9,7 @@
 
 .flex-column {
     display: flex;
+
     flex-direction: column !important;
 
 }
@@ -33,8 +34,21 @@
     margin-bottom: 15px;
 }
 
+.foot-list-product {
+    display: flex;
+    margin: 10px 0;
+}
+
 @media (max-width: 500px) {
-    .flex-item {
-        flex: 100%;
+    .foot-list-product {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 25px;
+        line-height: 25px;
+    }
+
+    .d-flex.sm-flex-column {
+        flex-direction: column;
+        margin-block: 15px;
     }
 }
