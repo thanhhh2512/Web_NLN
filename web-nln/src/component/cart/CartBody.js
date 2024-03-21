@@ -36,7 +36,7 @@ function CartBody() {
   // render danh sách sản phẩm
   const listItem = Cart.map((item) => {
     return (
-        <div className="itemList" key={item.ProductNo}>
+        <div className="item" key={item.ProductNo}>
           <div className="img-item">
             <img src={item.ProductImage} alt={item.ProductName}></img>
           </div>
@@ -102,7 +102,6 @@ function CartBody() {
           <div className="line"></div>
           <div className="check-out">
             <button className="btn-submit">
-              {/* {" "} */}
               <Link to={"/order"}>THANH TOÁN</Link>
             </button>
             <button className="btn-continue">TIẾP TỤC MUA HÀNG</button>

@@ -40,7 +40,7 @@
     justify-content: space-around;
     margin-top: 47px;
 }
-.itemList{
+.item{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -89,9 +89,7 @@
 }
 .label{
     margin-right: 20px;
-    font-style: normal;
     font-weight: 300;
-    line-height: normal;
 }
 .pref-item{
     right: 5px;
@@ -142,7 +140,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-shrink: 0;
 }
 .check-out{
     display: flex;
@@ -153,7 +150,6 @@
     display: block;
     background-color: #000;
     padding: 12px 30px;
-    
     margin-bottom: 1rem;
     width: 260px;
     height: 44px;
