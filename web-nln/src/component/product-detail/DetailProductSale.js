@@ -1,30 +1,21 @@
 import "./DetailProductSale.css";
+import {ProductData} from '../../common/json/ProductData'
+import { useParams } from "react-router-dom";
 
 export default function DetailProductSale() {
+  const { id } = useParams();
+
+  // Tìm kiếm sản phẩm trong ProductData bằng id
+  const product = ProductData.find(item => item.ProductNo === id);
+
+  if (!product) {
+    return <div>Sản phẩm không tồn tại</div>;
+  }
+
   return (
     <div className="detail-productsale-container">
       <div className="image-layout">
-        <div className="left-images">
-          <div className="top-left-image">
-            <img
-              src={process.env.PUBLIC_URL + "images/product/Rectangle 1167.png"} className="left-img1"
-              alt="Broccoli"
-            />
-          </div>
-          <div className="bottom-left-image">
-            <img
-              src={process.env.PUBLIC_URL + "images/product/Rectangle 1169.png"} className="left-img2"
-              alt="Cabbage"
-            />
-          </div>
-        </div>
-        <div className="right-image">
-          <img
-            src={process.env.PUBLIC_URL + "images/product/Rectangle 1162.png"}
-            className="right-img"
-            alt="Asparagus"
-          />
-        </div>
+          <img src= {product.ProductImage} alt=""></img>
       </div>
       <div className="detail-layout">
         <div className="detail-container">
