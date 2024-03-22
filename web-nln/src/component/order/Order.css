@@ -1,6 +1,4 @@
-h1,
-h2,
-.head-table{
+h1,h2,.head-table{
     text-transform:uppercase ;
 }
 .wrapper{
@@ -9,9 +7,11 @@ h2,
     margin: 25px 25px 10px 15px;
     font-size: 22px;
 }
+/* Phần tiêu đề trang */
 .title-page{
     text-align: center;
 }
+/* Phần danh sách sản phẩm */
 .order-detail{
     margin: 48px;
     padding: 20px;
@@ -68,6 +68,8 @@ h2,
     margin-left: 110px;
     margin-right: 10px;
 }
+
+/* Phần địa chỉ giao hàng */
 .address-form,
 .choose-receiver{
     width: 520px;
@@ -76,17 +78,17 @@ h2,
 .choose-receiver label{
     font-size: 18px;
 }
-.form-custom{
-    font-weight: 400;
-    text-transform: uppercase;
-}
 .inf-custom{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 .inf-custom h2{
     border-bottom: 1px solid#000;
     padding: 27px;
+}
+.form-custom{
+    font-weight: 400;
+    text-transform: uppercase;
 }
 .address-form label{
     font-weight: 300;
@@ -105,11 +107,16 @@ h2,
     display: flex;
     flex-direction: column;
 }
+
+/* Phần phương thức giao hàng */
 .transport{
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    margin: 48px;
+    margin: 30px;
+    width: 1390px;
+    padding: 10px 143px 10px 145px;
+
 }
 .transport h2,
 .footbill h2{
@@ -129,13 +136,19 @@ h2,
     background: var(--footer, #E7E3DE);
 }
 .option-gh div{
-    width: 230px;
+    width: 250px;
+}
+#ghtk + label, #ghn + label, #payment + label{
+    display: inline;
+    margin-left: 2px;
 }
 .footbill{
     display: flex;
     justify-content: space-around;
     margin: 20px;
 }
+
+/* Nút đặt hàng */
 .summary p{
     display: flex;
     justify-content: space-between;

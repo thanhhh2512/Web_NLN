@@ -92,7 +92,7 @@ function OrderBody() {
             <h2>Loại vận chuyển</h2>
             <div className="select-radio">
                     <div className="option-gh">
-                        <div><input type="radio" id="gttk" name="transport" value="15.000" checked={transport === "15.000"} onChange={(e) => setStransport(e.target.value)}></input><label htmlFor="gttk">Giao hàng tiết kiệm</label></div>
+                        <div><input type="radio" id="ghtk" name="transport" value="15.000" checked={transport === "15.000"} onChange={(e) => setStransport(e.target.value)}></input><label htmlFor="ghtk">Giao hàng tiết kiệm</label></div>
                         <p>Giao hàng sau 3-5 ngày</p>
                         <p>15.000 vnd</p>
                     </div>
@@ -106,7 +106,7 @@ function OrderBody() {
         <div className="footbill">
             <div>
                 <h2>Hình thức thanh toán</h2>
-                <input type="radio" name="payment" value="cash" checked></input>
+                <input type="radio" name="payment" id="payment" value="cash" checked></input>
                 <label htmlFor="payment">Thanh toán khi nhận hàng</label>
             </div>
             <div>
