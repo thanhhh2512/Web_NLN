@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './ProductFilter.css';
 import { ProductData } from '../../common/json/ProductData';
 import ProductItems from './ProductItems';
+import { Link } from 'react-router-dom';
 
 export default function ProductFilter() {
   const [isOpenCharacteristic, setIsOpenCharacteristic] = useState(false);
@@ -166,12 +167,13 @@ export default function ProductFilter() {
                     <div key={index} className='product-row'>
                         {/* Render mỗi phần như một hàng */}
                         {chunk.map((product, idx) => (
+                            <Link key={idx} to = {`detail/${idx}`}>
                             <ProductItems
-                                key={idx}
                                 product={product}
                                 expanded={expanded}
                                 toggleDescription={toggleDescription}
                             />
+                            </Link>
                         ))}
                     </div>
                 ))}
