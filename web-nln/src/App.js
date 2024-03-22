@@ -10,6 +10,7 @@ import DetailProductPage from "./pages/product/DetailProductPage"
 
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
+import AccountPage from "./pages/Account/AccountPage";
 
 
 function App() {
@@ -17,14 +18,17 @@ function App() {
         <div className="App">
             <Router>
                 <Routes>
-                    <Route path="/loginpage" element={<LoginPage/>}/>  
-                    <Route path="/login" element={<LoginContainer/>}/>
-                    <Route path="/register" element={<RegisterOage/>}/>
+                    <Route path="/loginpage" element={<LoginPage />} />
+                    <Route path="/login" element={<LoginContainer />} />
+                    <Route path="/register" element={<RegisterOage />} />
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/product/:id" element={<ProductPage/>}/>
-                    <Route path="/detail/:id" element= {<DetailProductPage/>}/>
-                    <Route path="/cart" element={<CartPage/>}/>
-                    <Route path="/order" element={<OrderPage/>}/>                    
+
+                    <Route path="/product/:id" element={<ProductPage />} />
+                    <Route path="/detail" element={<DetailProductPage />} />
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/order" element={<OrderPage />} />
+                    <Route path="/account" element={<AccountPage />} />
+
 
                 </Routes>
             </Router>

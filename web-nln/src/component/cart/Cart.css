@@ -63,9 +63,11 @@
     height: 60px;
 }
 .des-item{
-    width: 290px;
-    text-align: justify;
     padding-top: 28px;
+    margin-bottom: 7px;
+    width: 290px;
+    font-weight: 500;
+    text-align: justify;
 }
 .quantity-item{
     display: flex;
@@ -73,7 +75,9 @@
     padding: 20px 3px 53px 3px;
 }
 .quantity-item input{
-    width: 50px;
+    text-align: center;
+    width: 30px;
+    padding-inline: 15px 1px;
 }
 .price-item{
    display: flex;
@@ -99,6 +103,7 @@
 .remove-item{
     text-align: right;
     padding: 5px;
+    cursor: pointer;
 }
 .container-review{
     display: flex;
@@ -149,7 +154,7 @@
 .btn-submit{
     display: inline-block;
     background-color: #000;
-    padding: 12px 30px;
+    color: #fff;
     margin-bottom: 1rem;
     width: 260px;
     height: 44px;
@@ -162,9 +167,13 @@
 .btn-submit:hover{
     opacity: 0.8;
 }
-.btn-submit a{
+.check-out a{
+    width: 260px;
+    height: 43px;
     text-decoration: none;
-    color: #fff;
+    
+    background-color: #000;
+    margin-bottom: 1rem;
 }
 .btn-continue{
     display: block;

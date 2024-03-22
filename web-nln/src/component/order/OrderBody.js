@@ -22,13 +22,13 @@ function OrderBody() {
     // render danh sách đơn hàng
     var listOrder = CartData.map(item =>{
                    return (
-                    <div className="item" key={item.ProductNo}>
+                    <div className="item in-order" key={item.ProductNo}>
                         <div className='item-detail'>
                             <img src={item.ProductImage[0]} alt={item.ProductName} />
                             {item.ProductName}
                         </div>
                         <div className='quantity-item' >
-                            <input value={item.Quantity} type="number" readOnly ></input>
+                            <input className="q-order"value={item.Quantity} type="number" readOnly ></input>
                         </div>
                         <div className='price-item' >
                             {Number.parseInt(item.ProductPrice)/1000 + ".000 vnd"}
@@ -48,13 +48,13 @@ function OrderBody() {
                 <p>Tóm tắt đơn hàng</p>
                 <p>Số lượng</p>
                 <p>Giá</p>
-                <p>Tổng cộng</p>
+                <p className="head-total">Tổng cộng</p>
             </div>
             <div className='itemList'>
                 {listOrder}
             </div>
             <div className="total-bill">
-                <div className="label"> Tổng giá sản phẩm</div>
+                <div className="form-custom"> Tổng giá sản phẩm</div>
                 <div>{ totalBill()} vnd
                 </div>
             </div>
@@ -75,7 +75,7 @@ function OrderBody() {
                 <label className="label form-custom" htmlFor="detail-custom">Chi tiết</label>
                 <input type="text" name="detail-custom" className=" input-form"></input>
             </form>
-            <div>
+            <div className="choose-receiver">
                 <h2>Địa chỉ nhận hàng</h2>
                 <p>Vui lòng chọn địa chỉ mặc định hoặc thêm mới địa chỉ nhận hàng</p>
                 <div className="form-group">
@@ -119,7 +119,7 @@ function OrderBody() {
             </div> 
         </div>
         <div className="check-out">
-            <button className="btn-submit"> <a href="/order" >Đặt hàng</a></button>
+            <a href="/order" ><button className="btn-submit"> Đặt hàng</button></a>
         </div>
     </main>
     );
