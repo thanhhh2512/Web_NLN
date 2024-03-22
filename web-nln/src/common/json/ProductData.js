@@ -2,10 +2,11 @@ export const ProductData = [
   {
     ProductNo: "001",
     ProductName: "Hạt giống cải xanh",
-    ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle31.png"],
+    ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle31.png",],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "150000vnd",
-    ProductCharacteristic: "Bột"
+    ProductCharacteristic: "Bột",
+    ProductType: "00001"
   },
   {
     ProductNo: "002",
@@ -13,7 +14,8 @@ export const ProductData = [
     ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle30.png"],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "75000vnd",
-    ProductCharacteristic: "Nước"
+    ProductCharacteristic: "Nước",
+    ProductType: "00001"
   },
   {
     ProductNo: "003",
@@ -21,7 +23,8 @@ export const ProductData = [
     ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle9.png"],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "45000vnd",
-    ProductCharacteristic: "Viên"
+    ProductCharacteristic: "Viên",
+    ProductType: "00001"
   },
   {
     ProductNo: "004",
@@ -29,7 +32,8 @@ export const ProductData = [
     ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle31.png"],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "100000vnd",
-    ProductCharacteristic: "Bột"
+    ProductCharacteristic: "Bột",
+    ProductType: "00001"
   },
   {
     ProductNo: "005",
@@ -37,7 +41,8 @@ export const ProductData = [
     ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle31.png"],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "300000vnd",
-    ProductCharacteristic: "Bột"
+    ProductCharacteristic: "Bột",
+    ProductType: "00001"
   },
   {
     ProductNo: "006",
@@ -45,7 +50,8 @@ export const ProductData = [
     ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle9.png"],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "125000vnd",
-    ProductCharacteristic: "Viên"
+    ProductCharacteristic: "Viên",
+    ProductType: "00001"
   },
   {
     ProductNo: "007",
@@ -53,7 +59,8 @@ export const ProductData = [
     ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle30.png"],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "12000vnd",
-    ProductCharacteristic: "Nước"
+    ProductCharacteristic: "Nước",
+    ProductType: "00001"
   },
   {
     ProductNo: "008",
@@ -61,7 +68,8 @@ export const ProductData = [
     ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle31.png"],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "50000vnd",
-    ProductCharacteristic: "Bột"
+    ProductCharacteristic: "Bột",
+    ProductType: "00004"
   },
     {
     ProductNo: "009",
@@ -69,7 +77,8 @@ export const ProductData = [
     ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle9.png"],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "50000vnd",
-    ProductCharacteristic: "Viên"
+    ProductCharacteristic: "Viên",
+    ProductType: "00004"
   },
   {
     ProductNo: "010",
@@ -77,7 +86,8 @@ export const ProductData = [
     ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle30.png"],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "76000vnd",
-    ProductCharacteristic: "Nước"
+    ProductCharacteristic: "Nước",
+    ProductType: "00004"
   },
   {
     ProductNo: "011",
@@ -85,6 +95,7 @@ export const ProductData = [
     ProductImage: [process.env.PUBLIC_URL + "images/product/Rectangle30.png"],
     ProductDescription: "Rau ngắn ngày",
     ProductPrice: "99000vnd",
-    ProductCharacteristic: "Nước"
+    ProductCharacteristic: "Nước",
+    ProductType: "00004"
   },
 ];
