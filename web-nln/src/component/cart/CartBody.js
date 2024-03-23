@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartData } from "../../common/json/CartData";
 import "./Cart.css";
@@ -33,6 +33,18 @@ function CartBody() {
     // Vì giờ làm nó thay đổi trong file khác cách thay đổi trong dữ liệu gửi đi
     sumCartValue();
   }
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "GET",
+    headers: {},
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+  },[])
+
   // render danh sách sản phẩm
   const listItem = Cart.map((item) => {
     return (

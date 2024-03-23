@@ -13,7 +13,7 @@ export default function Header() {
           />
         </div>
         <nav>
-        <Link to={"/"}id="about-me"> Trang chủ</Link>
+        <Link to={"/"} id="about-me"> Trang chủ</Link>
           <a id="join-with-us">Giới thiệu</a>
           <Link to={"/product"}id="news"> Sản phẩm </Link>
           <a id="poligy">Tư vấn</a>
