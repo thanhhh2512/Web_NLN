@@ -1,6 +1,6 @@
-import Header from "../../component/fix/Header";
+import Header from "../../component/fixed/Header";
 import DetailProductBody from "../../component/product-detail/DetailProductBody";
-import Footer from "../../component/fix/Footer";
+import Footer from "../../component/fixed/Footer";
 
 export default function DetailProductPage(){
     return(
