@@ -8,7 +8,7 @@ export default function DetailProductPolicy(){
             </div>
             <div className="container-image">
             <img
-              src={process.env.PUBLIC_URL + "images/product/Group 2163.png"} className="policy-img"
+              src={process.env.PUBLIC_URL + "/images/product/Group 2163.png"} className="policy-img"
               alt=""
             />
             </div>

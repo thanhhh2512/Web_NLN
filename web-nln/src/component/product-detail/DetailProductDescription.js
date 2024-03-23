@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "./DetailProductDescription.css";
+import { ProductData } from "../../common/json/ProductData";
+import { useParams } from "react-router-dom";
 
 export default function DetailProductDescription() {
+  const { ProductNo } = useParams();
+
+  // Tìm kiếm sản phẩm trong ProductData bằng id
+  const product = ProductData.find((item) => item.ProductNo === ProductNo);
   const [expanded, setExpanded] = useState(false);
 
   const toggleDescription = () => {
@@ -18,25 +24,10 @@ export default function DetailProductDescription() {
         <div className={`description-left ${expanded ? "expanded" : ""}`}>
           <h1>Mô tả sản phẩm</h1>
           <div className="p">
-            <p>
-              Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ
-              giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to,
-              có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây
-              được ưa chuộng trong phương pháp canh tác thủy canh, một phương
-              pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ
-              vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống
-              thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời
-              mang lại năng suất cao và chất lượng tốt..
-            </p>
+            <p>{product.ProductDetail}</p>
             {expanded && (
               <>
-                <p>
-                  Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng
-                  trong phương pháp canh tác thủy canh, một phương pháp trồng
-                  cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào
-                  việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống
-                  thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thờ
-                </p>
+                <p>{product.ProductSummary}</p>
               </>
             )}
           </div>
@@ -45,38 +36,35 @@ export default function DetailProductDescription() {
           <h1>Chi tiết sản phẩm</h1>
           <div className="attribute-product">
             <div className="attribute">
-              <p>Giống cây:</p>
               <p>Đặc tính:</p>
               <p>Số lượng:</p>
+              <p>Khối lượng</p>
               {expanded && (
-                <>
-                  <p>Tỉ lệ thành công</p>
-                  <p>Khối lượng</p>
-                </>
-              )}
+              <>
+                
+              </>
+            )}
             </div>
 
             <div className="info-attribute">
-              <p>FD012</p>
-              <p>Hạt</p>
-              <p>50 hạt/gói</p>
-              {expanded && (
-                <>
-                  <p>90%</p>
-                  <p>100g</p>
-                </>
-              )}
+              <p>{product.ProductCharacteristic}</p>
+              <p>{product.ProductQuantity}</p>
+              <p>{product.ProductWeight}</p>
             </div>
           </div>
         </div>
+        {expanded && (
+          <button className="collapse-btn" onClick={resetDescription}>
+            Thu gọn
+          </button>
+        )}
+        {!expanded && (
+          <a className="expand-btn" onClick={toggleDescription}>
+            Xem thêm
+          </a>
+        )}
+        
       </div>
-
-      {expanded && (
-        <button className="collapse-btn" onClick={resetDescription}>
-          Thu gọn
-        </button>
-      )}
-      {!expanded && <a className="expand-btn"onClick={toggleDescription}>Xem thêm</a>}
     </div>
   );
 }

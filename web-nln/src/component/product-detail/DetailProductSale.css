@@ -8,12 +8,15 @@
 }
 /* IMAGE */
 .image-layout {
+  margin-top: 30px;
   display: flex;
+  width: 100%;
   
 }
 
 img {
-  width: 100%;
+  width: 98%;
+  height: 80%;
 }
 /* DETAIL */
 .detail-layout {
@@ -21,7 +24,7 @@ img {
   flex-direction: column;
   margin-left: 75px;
   margin-top: 34px;
-  flex: 50%;
+  flex: 80%;
 }
 .detail-layout h2 {
   color: var(--Sort, #7f6e59);
@@ -30,6 +33,7 @@ img {
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+  text-transform: uppercase;
 }
 .h1 {
   color: var(--Text, #000);
