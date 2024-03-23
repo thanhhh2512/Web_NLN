@@ -9,7 +9,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    amount: {
+    quantity: {
         type: Number,
         required: true,
     },
@@ -30,12 +30,12 @@ const productSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    typeProduct: {
+    type: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'TypeProduct',
         required: true,
     },
-    featureProduct : [
+    feature: [
         {
             type: String,
             required: true
