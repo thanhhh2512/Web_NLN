@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 // const adminRouter = require('./routes/admin');
 // const userRouter = require('./routes/user');
 const testRouter = require('./Routes/index');
-const userRouter = require('./Routes/userRouter');
+const userRouter = require('./routes/user.router');
 
 const app = express();
 
