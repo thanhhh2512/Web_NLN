@@ -188,29 +188,35 @@
   line-height: normal;
 }
 .product-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+   grid-template-columns: 25% 25% 25% 25%;
+   width: 100%;
+   gap: 10px;
+   margin-bottom: 20px;
+   
+}
+.product-container a{
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.product-container a:hover{
+  color: #00DC4B;
+  
+}
+.product-image:hover{
+  box-shadow: 0 0 10px rgb(185, 203, 203);
 }
 
-.product-row {
-  margin: 36px 0;
-  display: flex;
-  width: 100%;
-  margin-bottom: 20px; /* Khoảng cách giữa các hàng */
-}
-
-/* Cài đặt kích thước cho mỗi sản phẩm trong hàng */
-.product-row > * {
-  width: calc(100% / 4); /* Mỗi sản phẩm chiếm 25% của hàng */
-}
 /* Thiết lập khoảng cách giữa các sản phẩm */
 .product-item:not(:nth-child(4n)) {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 /* Đảm bảo rằng không có khoảng cách bên phải ở sản phẩm cuối cùng của mỗi hàng */
 .product-item:nth-child(4n) {
   margin-right: 0;
+  
 }
 .ProductReview .expand-btn {
   position: absolute;

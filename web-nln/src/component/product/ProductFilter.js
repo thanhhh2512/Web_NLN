@@ -30,10 +30,6 @@ export default function ProductFilter() {
       setVisibleProducts(ProductData.length); // Hiển thị tất cả sản phẩm
       setExpanded(true)
   };
-
-  // Số sản phẩm muốn hiển thị trên mỗi hàng
-  const productsPerRow = 4;
-
   const toggleDropdownCharacteristic = () => {
     setIsOpenCharacteristic(!isOpenCharacteristic);
     setIsOpenPrice(false);
@@ -160,18 +156,16 @@ export default function ProductFilter() {
             </div>
             <div className='product-container'>
                 {/* Chia danh sách sản phẩm thành các phần, mỗi phần chứa productsPerRow sản phẩm */}
-                {chunkArray(filteredProducts.slice(0, visibleProducts), productsPerRow).map((chunk, index) => (
-                    <div key={index} className='product-row'>
+                {filteredProducts.slice(0, visibleProducts).map((product) => (
+                    <div key={product.ProductNo} className='product-row'>
                         {/* Render mỗi phần như một hàng */}
-                        {chunk.map((product, idx) => (
-                            <Link key={idx} to = {`detail/${idx}`}>
+                            <Link key={product.ProductNo} to = {`/detail/${product.ProductNo}`}>
                             <ProductItems
                                 product={product}
                                 expanded={expanded}
                                 toggleDescription={toggleDescription}
                             />
                             </Link>
-                        ))}
                     </div>
                 ))}
             </div>
@@ -189,12 +183,4 @@ export default function ProductFilter() {
     </div>
   
   );
-  // Hàm để chia mảng thành các phần có độ dài cho trước
-function chunkArray(array, chunkSize) {
-  const chunks = [];
-  for (let i = 0; i < array.length; i += chunkSize) {
-      chunks.push(array.slice(i, i + chunkSize));
-  }
-  return chunks;
-}
 }
