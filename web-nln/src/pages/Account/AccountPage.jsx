@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './AccountPage.css'
-import Header from '../../component/fix/Header'
-import Footer from '../../component/fix/Footer'
+import Header from '../../component/fixed/Header'
+import Footer from '../../component/fixed/Footer'
 import AccountHeader from '../../component/account/AccountHeader'
 import AccountOverview from './AccountOverview'
 import AccountInfor from './AccountInfor'
@@ -64,6 +64,7 @@ function AccountPage() {
                 </div>
 
             </div>
+            <Footer/>
         </>
     )
 }

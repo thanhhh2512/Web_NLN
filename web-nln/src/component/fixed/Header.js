@@ -9,7 +9,7 @@ export default function Header() {
         <div className="name">
           <img
             style={{ width: "100%", height: "100%" }}
-            src={process.env.PUBLIC_URL + "/images/fixed/image 29.png"}
+            src={process.env.PUBLIC_URL + "/images/fixed/image 29.png"} alt=""
           />
         </div>
         <nav>
