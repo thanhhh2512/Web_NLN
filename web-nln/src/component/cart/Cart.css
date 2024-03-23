@@ -149,7 +149,7 @@
 .check-out{
     display: flex;
     flex-direction: column;
-    margin-left: 60px;
+   
 }
 .btn-submit{
     display: inline-block;
