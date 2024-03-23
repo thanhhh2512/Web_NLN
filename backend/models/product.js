@@ -35,11 +35,12 @@ const productSchema = new mongoose.Schema({
         ref: 'TypeProduct',
         required: true,
     },
-    featureProduct : {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'FeatureProduct',
-        required: true,
-    }
+    featureProduct : [
+        {
+            type: String,
+            required: true
+        }
+    ]
 });
 
 const Product = mongoose.model('Product', productSchema);
