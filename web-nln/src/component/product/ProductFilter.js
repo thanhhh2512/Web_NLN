@@ -43,10 +43,6 @@ export default function ProductFilter() {
     setIsOpenPrice(!isOpenPrice);
     setIsOpenCharacteristic(false);
   };
-  const filterbyProductCharacteristic = (characteristic) =>{
-    const filtered = ProductData.filter(product => product.ProductCharacteristic === characteristic);
-    setFilteredProducts(filtered) 
-  };
   const filterByCharacteristicAndPrice = (characteristic, priceRange) => {
     const filtered = ProductData.filter(product => {
       const meetsCharacteristicCondition = !characteristic || product.ProductCharacteristic === characteristic;
@@ -88,6 +84,17 @@ export default function ProductFilter() {
     setSelectedProduct(product);
   };
 
+
+  
+  const clearSelectedPrice = () => {
+    setSelectedPrice(null);
+    if (!selectedCharacteristic && !selectedPrice) {
+      setFilteredProducts(ProductData);
+    } else {
+      filterByCharacteristicAndPrice(selectedCharacteristic, null);
+    }
+    
+  };
   const clearSelectedProduct = () => {
     setSelectedProduct(null);
     if (!selectedPrice) {
@@ -96,17 +103,7 @@ export default function ProductFilter() {
       filterByCharacteristicAndPrice(null, selectedPrice);
     }
   };
-  
-  const clearSelectedPrice = () => {
-    setSelectedPrice(null);
-    if (!selectedCharacteristic) {
-      setFilteredProducts(ProductData);
-    } else {
-      filterByCharacteristicAndPrice(selectedCharacteristic, null);
-    }
-  };
-  
-  
+  console.log(filteredProducts)
   return (
     <div className="ProductFilter">
       <div className='filter-container'>

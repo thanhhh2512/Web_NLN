@@ -60,10 +60,6 @@ function CartBody() {
                 <span className="label">Loại sản phẩm</span>
                 <span className="pref-item">{item.TypeOfProduct}</span>
               </p>
-              <p className="characteristic">
-                <span className="label">Đặc tính</span>
-                <span className="pref-item">{item.Characteristic}</span>
-              </p>
             </div>
           </div>
         </div>

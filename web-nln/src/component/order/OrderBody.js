@@ -81,70 +81,67 @@ function OrderBody() {
           <p>Giá</p>
           <p className="head-total">Tổng cộng</p>
         </div>
-        <div className="itemList">{listOrder}</div>
-        <div className="total-bill">
-          <div className="form-custom"> Tổng giá sản phẩm</div>
-          <div>{totalBill()} vnd</div>
-        </div>
-      </section>
-      <div className="inf-custom">
-        <form className="address-form">
-          <h2>Chi tiết địa chỉ</h2>
-          <label className="label form-custom" htmlFor="name-custom">
-            Tên người nhận
-          </label>
-          <input type="text" name="name-custom" className=" input-form"></input>
-          <label className="label form-custom" htmlFor="phone-number">
-            Số điện thoại
-          </label>
-          <input
-            type="text"
-            name="phone-number"
-            className=" input-form"
-          ></input>
-          <label className="label form-custom" htmlFor="city">
-            Tỉnh/thành phố
-          </label>
-          <input type="text" name="city" className=" input-form"></input>
-          <label className="label form-custom" htmlFor="distric">
-            Quận/ huyện
-          </label>
-          <input type="text" name="distric" className=" input-form"></input>
-          <label className="label form-custom" htmlFor="ward">
-            Phường/ xã
-          </label>
-          <input type="text" name="ward" className=" input-form"></input>
-          <label className="label form-custom" htmlFor="detail-custom">
-            Chi tiết
-          </label>
-          <input
-            type="text"
-            name="detail-custom"
-            className=" input-form"
-          ></input>
-        </form>
-        <div className="choose-receiver">
-          <h2>Địa chỉ nhận hàng</h2>
-          <p>Vui lòng chọn địa chỉ mặc định hoặc thêm mới địa chỉ nhận hàng</p>
-          <div className="form-group">
-            <input
-              type="radio"
-              id="default"
-              name="address"
-              value="Default"
-              checked={true}
-            />
-            <label htmlFor="default">Mặc định</label>
-          </div>
-          <div className="form-group">
-            <input
-              type="radio"
-              id="add"
-              name="address"
-              value="Add new address"
-            ></input>
-            <label htmlFor="add">Thêm địa chỉ mới</label>
-          </div>
+
+        <section className="order-detail">
+            <div className="head-table">
+                <p>Tóm tắt đơn hàng</p>
+                <p>Số lượng</p>
+                <p>Giá</p>
+                <p className="head-total">Tổng cộng</p>
+            </div>
+            <div className='itemList'>
+                {listOrder}
+            </div>
+            <div className="total-bill">
+                <div className="form-custom"> Tổng giá sản phẩm</div>
+                <div>{ totalBill()} vnd
+                </div>
+            </div>
+        </section>
+        <div className="inf-custom">
+            <form className="address-form">
+                <h2>Chi tiết địa chỉ</h2>
+                <label className="label form-custom" htmlFor="name-custom">Tên người nhận</label>
+                <input type="text" name="name-custom" className=" input-form"></input>
+                <label className="label form-custom" htmlFor="phone-number">Số điện thoại</label>
+                <input type="text" name="phone-number" className=" input-form"></input>
+                <label className="label form-custom" htmlFor="city">Tỉnh/thành phố</label>
+                <input type="text" name="city" className=" input-form"></input>
+                <label className="label form-custom" htmlFor="distric">Quận/ huyện</label>
+                <input type="text" name="distric" className=" input-form"></input>
+                <label className="label form-custom" htmlFor="ward">Phường/ xã</label>
+                <input type="text" name="ward" className=" input-form"></input>
+                <label className="label form-custom" htmlFor="detail-custom">Chi tiết</label>
+                <input type="text" name="detail-custom" className=" input-form"></input>
+            </form>
+            <div className="choose-receiver">
+                <h2>Địa chỉ nhận hàng</h2>
+                <p>Vui lòng chọn địa chỉ mặc định hoặc thêm mới địa chỉ nhận hàng</p>
+                <div className="form-group">
+                <input type="radio" id="default" name="address" value="Default" checked={true}/>
+                <label htmlFor="default">Mặc định</label>
+                </div>
+                <div className="form-group">
+                    <input type="radio" id="add" name="address" value="Add new address"></input>
+                    <label htmlFor="add">Thêm địa chỉ mới</label>
+                </div>
+            </div>
+        </div>    
+        <div className="transport">
+            <h2>Loại vận chuyển</h2>
+            <div className="select-radio">
+                    <div className="option-gh">
+                        <div><input type="radio" id="ghtk" name="transport" value="15.000" checked={transport === "15.000"} onChange={(e) => setStransport(e.target.value)}></input><label htmlFor="ghtk">Giao hàng tiết kiệm</label></div>
+                        <p>Giao hàng sau 3-5 ngày</p>
+                        <p>15.000 vnd</p>
+                    </div>
+                    <div className="option-gh">
+                        <div><input type="radio" id="ghn" name="transport" value="30.000" checked={transport === "30.000"} onChange={(e) => setStransport(e.target.value)}></input><label htmlFor="ghn">Giao hàng nhanh</label></div>
+                        <p>Giao hàng sau 1-2 ngày</p>
+                        <p>35.000 vnd</p>
+                    </div>
+            </div>
+
         </div>
       </div>
       <div className="transport">
@@ -152,15 +149,11 @@ function OrderBody() {
         <div className="select-radio">
           <div className="option-gh">
             <div>
-              <input
-                type="radio"
-                id="gttk"
-                name="transport"
-                value="15.000"
-                checked={transport === "15.000"}
-                onChange={(e) => setStransport(e.target.value)}
-              ></input>
-              <label htmlFor="gttk">Giao hàng tiết kiệm</label>
+
+                <h2>Hình thức thanh toán</h2>
+                <input type="radio" name="payment" id="payment" value="cash" checked></input>
+                <label htmlFor="payment">Thanh toán khi nhận hàng</label>
+
             </div>
             <p>Giao hàng sau 3-5 ngày</p>
             <p>15.000 vnd</p>

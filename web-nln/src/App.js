@@ -8,9 +8,10 @@ import RegisterOage from "./pages/login/Resgi"
 import ProductPage from "./pages/product/ProductPage";
 import DetailProductPage from "./pages/product/DetailProductPage"
 
+import AccountPage from "./pages/Account/AccountPage";
+import ManageProductPage from "./pages/ManageProduct";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
-import AccountPage from "./pages/Account/AccountPage";
 
 
 function App() {
@@ -26,11 +27,11 @@ function App() {
                     <Route path="/product/:id" element={<ProductPage />} />
                     <Route path="/product" element={<ProductPage />} />
                     <Route path="/detail" element={<DetailProductPage />} />
-                    <Route path="/cart" element={<CartPage />} />
-                    <Route path="/order" element={<OrderPage />} />
                     <Route path="/account" element={<AccountPage />} />
 
-
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/order" element={<OrderPage />} />
+                    <Route path="/manage/products" element={<ManageProductPage />} />
                 </Routes>
             </Router>
         </div>
