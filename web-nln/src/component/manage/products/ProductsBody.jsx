@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import './Products.css'
 import { TypeofProductData } from '../../../common/json/TypeofProductData';
-import { ProductData } from '../../../common//json/ProductData';
+import { ProductData } from '../../../common/json/ProductData';
 function ProductsBody() {
     const [lengthList, setLengthList] = useState(ProductData.length)
     const [fillter, setFillter] = useState('')

@@ -7,8 +7,7 @@ export default function OrderManage() {
   const [filter, setFilter] = useState({ status: "", searchText: "" });
   const [prevFilter, setPrevFilter] = useState({ status: "", searchText: "" });
   var order = useRef(OrderData);
-
-  const filterOrders = useCallback(() => {
+const filterOrders = useCallback(() => {
     let filteredData = OrderData;
 
     if (filter.status !== "") {
@@ -101,7 +100,7 @@ export default function OrderManage() {
                     ? "Đã gửi hàng"
                     : "Chưa được xác nhận"}
                 </td>
-                <td>{item.total}</td>
+                <td>{Number.parseInt(item.total)/1000 + ".000 vnd"}</td>
               </tr>
             ))}
           </tbody>
