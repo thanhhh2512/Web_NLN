@@ -47,7 +47,7 @@ function RegisterContainer() {
                         alt='register'
                         src={
                             process.env.PUBLIC_URL +
-                            "/images/register/img register.png"
+                            "/images/login/img login.png"
                         }
                     />
                 </div>
