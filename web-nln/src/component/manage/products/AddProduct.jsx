@@ -1,6 +1,6 @@
 import "./AddProduct.css";
 import ImageUpload from "../../fixed/ImageUpload";
-import aixos from "axios";
+import axios from "axios";
 import { useState } from "react";
 
 export default function AddProduct() {
@@ -15,7 +15,7 @@ export default function AddProduct() {
   const [fastdescriptionValue, setfastdescriptionValue] = useState("");
   const [featureValue, setfeatureValue] = useState("");
   const handlecreateproduct = () => {
-    aixos
+    axios
       .post("http://localhost:8080/api/", {
         name: nameValue,
         description: descriptionValue,
