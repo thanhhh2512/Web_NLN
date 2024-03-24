@@ -4,23 +4,13 @@
   display: grid;
   grid-template-columns: 20% 60% 20%;
   grid-template-areas: 'name navbar';
+  border-bottom: 0.5px solid black;
 }
-
-.Header::after {
-  content: "";
-  width: 485%;
-  padding: 2px;
-  border-top: 3px solid #000;
-  border-bottom: 1px solid #000;
-  transform: translate(1%, 10px);
-}
-
 .Header .name {
   width: 100%;
   height: 100%;
   grid-area: name;
 }
-
 .Header nav {
   display: grid;
   grid-area: navbar;
