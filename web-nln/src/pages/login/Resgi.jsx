@@ -1,4 +1,4 @@
-import "./LoginContainer.css";
+import "./Ressgi.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import aixos from "axios";
@@ -8,16 +8,23 @@ import aixos from "axios";
  *  contain right -> if login -> image else -> form
  * @returns
  */
-function LoginContainer({}) {
-    const [isUsernameFocused, setUsernameFocused] = useState(true);
-    const [isPasswordFocused, setPasswordFocused] = useState(true);
-    const [isEmail, setEmailFocused] = useState(true);
-    const [isRePasswordFocused, setRePasswordFocused] = useState(true);
+function RegisterContainer() {
+    // const [isUsernameFocused, setUsernameFocused] = useState(true);
+    // const [isPasswordFocused, setPasswordFocused] = useState(true);
+    // const [isEmail, setEmailFocused] = useState(true);
+    // const [isRePasswordFocused, setRePasswordFocused] = useState(true);
+    
 
     const [usernameValue, setUsernameValue] = useState("");
     const [passwordValue, setPasswordValue] = useState("");
     const [emailValue, setEmailValue] = useState("");
     const [repasswordValue, setRePasswordValue] = useState("");
+    const [phoneValue, setPhoneValue] = useState("");
+    const [fullnameValue, setFullnameValue] = useState("");
+    const [genderValue, setGenderValue] = useState("");
+    const [addressValue, setAddressValue] = useState("");
+    const [birthdayValue, setBirthdayValue] = useState("");
+
 
     const handleRegister = () => {
         aixos
@@ -33,19 +40,19 @@ function LoginContainer({}) {
     };
 
     return (
-        <div className='LoginContainer'>
-            <div className='InnerLoginContainer'>
+        <div className='RegisterContainer'>
+            <div className='InnerRegisterContainer'>
                 <div className='fixed-img'>
                     <img
-                        alt='login'
+                        alt='register'
                         src={
                             process.env.PUBLIC_URL +
-                            "/images/login/img login.png"
+                            "/images/register/img register.png"
                         }
                     />
                 </div>
-                <div className='login-content'>
-                    <div className='login-image'>
+                <div className='register-content'>
+                    <div className='register-image'>
                         <img
                             alt='home'
                             src={
@@ -54,7 +61,7 @@ function LoginContainer({}) {
                             }></img>
                     </div>
 
-                    <div className='login-form'>
+                    <div className='register-form'>
                         <form>
                             <div className='username input-item'>
                                 <label
@@ -65,34 +72,135 @@ function LoginContainer({}) {
                                 <input
                                     type='text'
                                     name='username'
-                                    className='login-input-field'
+                                    className='register-input-field'
                                     value={usernameValue}
                                     onChange={(e) =>
                                         setUsernameValue(e.target.value)
                                     }
-                                    onFocus={() => setUsernameFocused(true)}
-                                    onBlur={() =>
-                                        setUsernameFocused(false)
-                                    }></input>
+                                    // onFocus={() => setUsernameFocused(true)}
+                                    // onBlur={() =>
+                                    //     setUsernameFocused(false)}
+                                        >
+
+                                        </input>
                             </div>
                             <div className='email input-item'>
                                 <label
                                     htmlFor='email'
                                     className='email-placeholder input-label'>
-                                    EMAIL HOẶC SỐ ĐIỆN THOẠI
+                                    EMAIL
                                 </label>
                                 <input
                                     type='email'
                                     name='email'
-                                    className='login-input-field'
+                                    className='register-input-field'
                                     onChange={(e) =>
                                         setEmailValue(e.target.value)
                                     }
-                                    onFocus={() => setEmailFocused(true)}
-                                    onBlur={() =>
-                                        setEmailFocused(false)
-                                    }></input>
+                                    // onFocus={() => setEmailFocused(true)}
+                                    // onBlur={() =>
+                                    //     setEmailFocused(false)
+                                    // }
+                                    ></input>
                             </div>
+                            <div className='phone input-item'>
+                                <label
+                                    htmlFor='phone'
+                                    className='phone-placeholder input-label'>
+                                   SỐ ĐIỆN THOẠI
+                                </label>
+                                <input
+                                    type='phone'
+                                    name='phone'
+                                    className='register-input-field'
+                                    value = {phoneValue}
+                                    onChange={(e) =>
+                                        setPhoneValue(e.target.value)
+                                    }
+                                    // onFocus={() => setPhoneFocus(true)}
+                                    // onBlur={() =>
+                                    //     setPhoneFocus(false)
+                                    // }
+                                    ></input>
+                            </div>
+                            <div className='fullname input-item'>
+                                <label
+                                    htmlFor='fullname'
+                                    className='fullname-placeholder input-label'>
+                                    HỌ VÀ TÊN CỦA BẠN
+                                </label>
+                                <input
+                                    type='fullname'
+                                    name='fullname'
+                                    className='register-input-field'
+                                    value = {fullnameValue}
+                                    onChange={(e) =>
+                                        setFullnameValue(e.target.value)
+                                    }
+                                    
+                                    >
+
+                                    </input>
+                            </div>
+                           <div className='gender input-item'>
+                                <label
+                                    htmlFor='gender'
+                                    className='gender-placeholder input-label'>
+                                    GIỚI TÍNH
+                                </label>
+                                <input
+                                    type='gender'
+                                    name='gender'
+                                    className='register-input-field'
+                                    value = {genderValue}
+                                    onChange={(e) =>
+                                        setGenderValue(e.target.value)
+                                    }
+                                    
+                                    >
+
+                                    </input>
+                            </div> 
+                            <div className='address input-item'>
+                                <label
+                                    htmlFor='address'
+                                    className='address-placeholder input-label'>
+                                    ĐỊA CHỈ 
+                                </label>
+                                <input
+                                    type='address'
+                                    name='address'
+                                    className='register-input-field'
+                                    value = {addressValue}
+                                    onChange={(e) =>
+                                        setAddressValue(e.target.value)
+                                    }
+                                    
+                                    >
+
+                                    </input>
+                            </div>
+                            <div className='birthday input-item'>
+                                <label
+                                    htmlFor='birthday'
+                                    className='birthday-placeholder input-label'>
+                                    NGÀY SINH
+                                </label>
+                                <input
+                                    type='birthday'
+                                    name='birthday'
+                                    className='register-input-field'
+                                    value = {birthdayValue}
+                                    onChange={(e) =>
+                                        setBirthdayValue(e.target.value)
+                                    }
+                                    
+                                    >
+
+                                    </input>
+                            </div>
+
+
 
                             <div className='password input-item'>
                                 <label
@@ -103,14 +211,14 @@ function LoginContainer({}) {
                                 <input
                                     type='password'
                                     // placeholder='MẬT KHẨU'
-                                    className='login-input-field'
+                                    className='register-input-field'
                                     name='password'
                                     value={passwordValue}
                                     onChange={(e) =>
                                         setPasswordValue(e.target.value)
                                     }
-                                    onFocus={() => setPasswordFocused(true)}
-                                    onBlur={() => setPasswordFocused(false)}
+                                    // onFocus={() => setPasswordFocused(true)}
+                                    // onBlur={() => setPasswordFocused(false)}
                                 />
                             </div>
                             <div className='repassword input-item'>
@@ -122,20 +230,20 @@ function LoginContainer({}) {
                                 <input
                                     type='repassword'
                                     // placeholder='MẬT KHẨU'
-                                    className='login-input-field'
+                                    className='register-input-field'
                                     name='repassword'
                                     value={repasswordValue}
                                     onChange={(e) =>
                                         setRePasswordValue(e.target.value)
                                     }
-                                    onFocus={() => setRePasswordFocused(true)}
-                                    onBlur={() => setRePasswordFocused(false)}
+                                    // onFocus={() => setRePasswordFocused(true)}
+                                    // onBlur={() => setRePasswordFocused(false)}
                                 />
                             </div>
                         </form>
                     </div>
 
-                    <div className='login-button'>
+                    <div className='register-button'>
                         <button onClick={handleRegister}>ĐĂNG KÝ</button>
                     </div>
                 </div>
@@ -144,4 +252,4 @@ function LoginContainer({}) {
     );
 }
 
-export default LoginContainer;
+export default RegisterContainer;
