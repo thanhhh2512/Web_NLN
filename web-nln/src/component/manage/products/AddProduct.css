@@ -71,7 +71,7 @@
   flex-direction: row;
   justify-content: space-around;
 }
-.cancel-btn,
+.AddProduct .cancel-btn,
 .add-btn {
   color: var(--Text, #000);
   text-transform: uppercase;
@@ -82,11 +82,11 @@
   font-weight: 400;
   line-height: normal;
   width: 375px;
-  height: 80px;
+  height: 60px;
   background-color: rgba(254, 254, 254, 0.995);
   border: 1px solid rgb(240, 235, 235);
 }
-.cancel-btn:hover{
+.AddProduct .cancel-btn:hover{
     box-shadow: 0 0 5px rgb(205, 191, 191);
     background-color: white;
 }

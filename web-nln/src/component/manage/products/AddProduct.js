@@ -98,7 +98,7 @@ export default function AddProduct() {
             )}
           </div>
           <div className="control-btn">
-            <button className="cancel-btn">Huỷ bỏ</button>
+            <button className="-btn">Huỷ bỏ</button>
             <button className="add-btn">Thêm sản phẩm</button>
           </div>
         </div>

@@ -24,11 +24,11 @@ function App() {
                     <Route path="/login" element={<LoginContainer />} />
                     <Route path="/register" element={<RegisterOage />} />
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/add" element={<AddProduct/>}/>
+                    <Route path="/manage/add" element={<AddProduct/>}/>
                     <Route path="/product/:id" element={<ProductPage />} />
-                    <Route path="/edit" element={<EditProduct/>}/>
+                    <Route path="/manage/edit" element={<EditProduct/>}/>
                     <Route path="/detail/:ProductNo" element={<DetailProductPage />} />
-                    <Route path="/ordermanage" element={<OrderManage/>}/>
+                    <Route path="/manage/ordermanage" element={<OrderManage/>}/>
                     <Route path="/account" element={<AccountPage />} />
 
                     <Route path="/cart" element={<CartPage />} />
