@@ -49,11 +49,13 @@ module.exports = {
         name,
         description,
         quantity,
+        quantityp,
         weight,
         price,
-        mfg,
+
         exp,
         type,
+        fastdescription,
         feature,
       } = req.body;
 
@@ -61,11 +63,13 @@ module.exports = {
         name,
         description,
         quantity,
+        quantityp,
         weight,
         price,
-        mfg,
+
         exp,
         type,
+        fastdescription,
         feature,
       });
 
@@ -78,13 +82,14 @@ module.exports = {
         name,
         description,
         quantity,
+        quantityp,
         weight,
         price,
-        mfg,
+
         exp,
         type,
+        fastdescription,
         feature,
-        images,
       });
 
       await createdProduct.save();
@@ -102,11 +107,13 @@ module.exports = {
         name,
         description,
         quantity,
+        quantityp,
         weight,
         price,
-        mfg,
+
         exp,
         type,
+        fastdescription,
         feature,
       } = req.body;
 
@@ -117,10 +124,13 @@ module.exports = {
 
       existProduct.name = name || existProduct.name;
       existProduct.description = description || existProduct.description;
+      existProduct.fastdescription =
+        fastdescription || existProduct.fastdescription;
       existProduct.quantity = quantity || existProduct.quantity;
+      existProduct.quantityp = quantityp || existProduct.quantityp;
       existProduct.weight = weight || existProduct.weight;
       existProduct.price = price || existProduct.price;
-      existProduct.mfg = mfg || existProduct.mfg;
+
       existProduct.exp = exp || existProduct.exp;
       existProduct.type = type || existProduct.type;
       existProduct.feature = feature || existProduct.feature;

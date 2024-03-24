@@ -1,10 +1,12 @@
 const User = require("../models/user");
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 function generateAccessToken(username) {
   return jwt.sign({ username: username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_LIFE });
 }
+
 
 exports.createUser = async (req, res) => {
   try {
@@ -23,11 +25,22 @@ exports.createUser = async (req, res) => {
       return res.status(409).json({ error: "User already exists" });
     }
 
+
     // Create a new user
+
     const new_user = new User({
       username,
       password,
       email,
+
+      fullname,
+      phone,
+      gender,
+      address,
+      birthday,
+    });
+
+
     });
 
     // const new_user = new User(
@@ -39,6 +52,7 @@ exports.createUser = async (req, res) => {
     //   gender,
     //   address,
     //   birthday
+
 
     await new_user.save();
 
@@ -103,4 +117,5 @@ exports.updateUser = async (req, res) => {
       return res.status(500).json({ error: error.message });
   }
 }
+
 
