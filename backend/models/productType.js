@@ -8,4 +8,5 @@ const productTypeSchema = new mongoose.Schema({
 });
 
 const ProductType = mongoose.model('ProductType', productTypeSchema);
+
 module.exports = { ProductType };

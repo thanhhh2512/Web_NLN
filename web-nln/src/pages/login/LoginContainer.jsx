@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
  *  contain right -> if login -> image else -> form
  * @returns
  */
-function LoginContainer({ }) {
+function LoginContainer({}) {
   const [isUsernameFocused, setUsernameFocused] = useState(true);
   const [isPasswordFocused, setPasswordFocused] = useState(true);
 
@@ -25,14 +25,10 @@ function LoginContainer({ }) {
             ></img>
           </div>
           <div className="Title">
-            <label>
-              TẠO MỚI TÀI KHOẢN
-            </label>
-
+            <h1>TẠO MỚI TÀI KHOẢN</h1>
           </div>
           <div className="login-form">
             <form>
-
               <div className="username input-item">
                 <label
                   htmlFor="username"
@@ -47,32 +43,24 @@ function LoginContainer({ }) {
                   className="login-input-field"
                   value={usernameValue}
                   onChange={(e) => setUsernameValue(e.target.value)}
-                //   onFocus={() => setUsernameFocused(true)}
-                //   onBlur={() => setUsernameFocused(false)}
                 ></input>
-
               </div>
 
               <div className="password input-item">
                 <label
                   htmlFor="password"
                   className="password-placeholder input-label"
-
                 >
                   MẬT KHẨU
                 </label>
                 <input
                   type="password"
-
                   className="login-input-field"
                   name="password"
                   id="password"
                   value={passwordValue}
                   onChange={(e) => setPasswordValue(e.target.value)}
-                //   onFocus={() => setPasswordFocused(true)}
-                //   onBlur={() => setPasswordFocused(false)}
                 />
-
               </div>
             </form>
           </div>
