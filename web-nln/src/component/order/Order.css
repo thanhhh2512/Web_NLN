@@ -1,4 +1,5 @@
-h1,h2,.head-table{
+.head-table h1,
+.head-table h2{
     text-transform:uppercase ;
 }
 .wrapper{
