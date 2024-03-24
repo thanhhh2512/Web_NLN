@@ -1,0 +1,96 @@
+.add-form {
+  margin-left: 100px;
+}
+.AddProduct label {
+  color: var(--Text, #000);
+
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-top: 40px;
+}
+.add-label h2 {
+  color: var(--Text, #000);
+  font-family: Roboto;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.AddProduct .title {
+  color: var(--Text, #000);
+
+  text-align: center;
+  font-family: Roboto;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+#summary.input-form,
+#description.input-form,
+#detail-product.input-form,
+#image.input-form {
+  height: 100px;
+}
+#image.input-form {
+  border-style: dashed;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+}
+.AddProduct .image-button {
+  position: absolute;
+
+  transform: translate(-50%, -220%);
+  z-index: 2;
+  width: 102px;
+  height: 40px;
+  color: #1e5eff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  background-color: white;
+  border: 1px solid #d7dbec;
+}
+.AddProduct .image-button:hover {
+  box-shadow: 0 0 4px #babdca;
+}
+
+.upload-input {
+  position: absolute;
+  left: 50%;
+}
+.control-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.cancel-btn,
+.add-btn {
+  color: var(--Text, #000);
+  text-transform: uppercase;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 375px;
+  height: 80px;
+  background-color: rgba(254, 254, 254, 0.995);
+  border: 1px solid rgb(240, 235, 235);
+}
+.cancel-btn:hover{
+    box-shadow: 0 0 5px rgb(205, 191, 191);
+    background-color: white;
+}
+.add-btn:hover{
+    box-shadow: 0 0 5px rgb(205, 191, 191);
+    background-color: white;
+}

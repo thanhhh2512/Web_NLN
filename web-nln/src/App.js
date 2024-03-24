@@ -12,8 +12,9 @@ import AccountPage from "./pages/Account/AccountPage";
 import ManageProductPage from "./pages/ManageProduct";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
-
-
+import AddProduct from "./component/manage/products/AddProduct";
+import EditProduct from "./component/manage/products/EditProduct";
+import OrderManage from "./component/manage/order/OrderManage";
 function App() {
     return (
         <div className="App">
@@ -23,11 +24,11 @@ function App() {
                     <Route path="/login" element={<LoginContainer />} />
                     <Route path="/register" element={<RegisterOage />} />
                     <Route path="/" element={<HomePage />} />
-
+                    <Route path="/add" element={<AddProduct/>}/>
                     <Route path="/product/:id" element={<ProductPage />} />
-
+                    <Route path="/edit" element={<EditProduct/>}/>
                     <Route path="/detail/:ProductNo" element={<DetailProductPage />} />
-
+                    <Route path="/ordermanage" element={<OrderManage/>}/>
                     <Route path="/account" element={<AccountPage />} />
 
                     <Route path="/cart" element={<CartPage />} />

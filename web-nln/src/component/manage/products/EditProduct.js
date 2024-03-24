@@ -1,14 +1,14 @@
-import "./AddProduct.css";
-import ImageUpload  from "../../fixed/ImageUpload";
+import './EditProduct.css'
+import ImageUpload from '../../fixed/ImageUpload';
 
-export default function AddProduct() {
-  return (
-    <div className="AddProduct">
-      <form className="add-form">
+export default function EditProduct(){
+    return(
+        <div className='EditProduct'>
+            <form className="edit-form">
         <div className="title">
-          <p>THÊM MỚI SẢN PHẨM</p>
+          <p>  CHỈNH SỬA SẢN PHẨM</p>
         </div>
-        <div className="add-label">
+        <div className="edit-label">
           <h2>THÔNG TIN SẢN PHẨM</h2>
           <label className="label form-product" htmlFor="name">
             Tên sản phẩm
@@ -97,12 +97,14 @@ export default function AddProduct() {
               />
             )}
           </div>
-          <div className="control-btn">
+         
+        </div> 
+        <div className="control-btn">
             <button className="cancel-btn">Huỷ bỏ</button>
-            <button className="add-btn">Thêm sản phẩm</button>
+            <button className="delete-btn">Xoá sản phẩm</button>
+            <button className='save-btn'>Lưu thay đổi</button>
           </div>
-        </div>
       </form>
-    </div>
-  );
+        </div>
+    );
 }
