@@ -1,5 +1,5 @@
 import { useState } from "react";
-function ImageUpload() {
+export default  function ImageUpload() {
     const [selectedImage, setSelectedImage] = useState(null);
   
     // Xử lý sự kiện khi người dùng chọn ảnh
@@ -9,4 +9,3 @@ function ImageUpload() {
       // Xử lý ảnh được chọn ở đây (ví dụ: tải lên máy chủ, xem trước, vv.)
     };
 }
-export default ImageUpload();
