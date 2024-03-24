@@ -1,30 +1,28 @@
-const Product = require('../models/product');
-const productValidate = require('../validations/product.validation');
-const e = require('express');
+const Product = require("../models/product");
+const productValidate = require("../validations/product.validation");
+const e = require("express");
 
 module.exports = {
   getProduct: async (req, res) => {
     try {
       const id = req.params.id;
       const data = await Product.findById(id);
-      if(!data)
-        return res.status(404).json({error: 'Không tìm thấy sản phẩm'});
+      if (!data)
+        return res.status(404).json({ error: "Không tìm thấy sản phẩm" });
 
-      return res.status(200).json({data: data});
-    }
-    catch (error) {
+      return res.status(200).json({ data: data });
+    } catch (error) {
       console.error(error); // Log lỗi ra console để debug
-      return res.status(500).json({ error: 'Internal server error' }); // Trả về lỗi
+      return res.status(500).json({ error: "Internal server error" }); // Trả về lỗi
     }
-
   },
 
   getProducts: async (req, res) => {
     try {
-      const limit = parseInt(req.query.limit,  10);
-      const page = parseInt(req.query.page,  1);
+      const limit = parseInt(req.query.limit, 10);
+      const page = parseInt(req.query.page, 1);
 
-      const query = Product.find().sort({_id: -1});
+      const query = Product.find().sort({ _id: -1 });
       const data = await query.skip((page - 1) * limit).limit(limit);
 
       const totalDoc = await Product.countDocuments(); // Sửa lỗi ở đây
@@ -37,53 +35,85 @@ module.exports = {
           limit,
           totalDoc,
           totalPage,
-        }
+        },
       });
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error); // Log lỗi ra console để debug
-      return res.status(500).json({ error: 'Internal server error' }); // Trả về lỗi 500 nếu có lỗi xảy ra
+      return res.status(500).json({ error: "Internal server error" }); // Trả về lỗi 500 nếu có lỗi xảy ra
     }
   },
 
   createProduct: async (req, res) => {
-    try{
-      const {name, description, quantity, weight, price, mfg, exp,
-        type, feature} = req.body;
+    try {
+      const {
+        name,
+        description,
+        quantity,
+        weight,
+        price,
+        mfg,
+        exp,
+        type,
+        feature,
+      } = req.body;
 
-      const {error} = productValidate({name, description, quantity, weight, price, mfg, exp,
-        type, feature});
+      const { error } = productValidate({
+        name,
+        description,
+        quantity,
+        weight,
+        price,
+        mfg,
+        exp,
+        type,
+        feature,
+      });
 
-      if(error)
-        return res.status(400).json({error: error.details[0].message});
+      if (error)
+        return res.status(400).json({ error: error.details[0].message });
 
-      const images = req?.files?.map(image => image.path);
+      const images = req?.files?.map((image) => image.path);
 
-      const createdProduct = new Product(
-        {
-          name, description, quantity, weight, price, mfg, exp,
-          type, feature, images
-        }
-      );
+      const createdProduct = new Product({
+        name,
+        description,
+        quantity,
+        weight,
+        price,
+        mfg,
+        exp,
+        type,
+        feature,
+        images,
+      });
 
       await createdProduct.save();
 
-      return res.status(201).json({data: createdProduct});
-    }catch (error) {
+      return res.status(201).json({ data: createdProduct });
+    } catch (error) {
       console.error(error); // Log lỗi ra console để debug
-      return res.status(500).json({ error: 'Internal server error' }); // Trả về lỗi 500 nếu có lỗi xảy ra
+      return res.status(500).json({ error: "Internal server error" }); // Trả về lỗi 500 nếu có lỗi xảy ra
     }
   },
 
   updateProduct: async (req, res) => {
-    try{
-      const {name, description, quantity, weight, price, mfg, exp,
-        type, feature} = req.body;
+    try {
+      const {
+        name,
+        description,
+        quantity,
+        weight,
+        price,
+        mfg,
+        exp,
+        type,
+        feature,
+      } = req.body;
 
       const existProduct = Product.findById(req.params.id);
 
-      if(!existProduct)
-        return res.status(404).json({error: 'Không tìm thấy sản phẩm'});
+      if (!existProduct)
+        return res.status(404).json({ error: "Không tìm thấy sản phẩm" });
 
       existProduct.name = name || existProduct.name;
       existProduct.description = description || existProduct.description;
@@ -97,21 +127,21 @@ module.exports = {
 
       await existProduct.save();
 
-      return res.status(201).json({data: existProduct});
-    }catch (error) {
+      return res.status(201).json({ data: existProduct });
+    } catch (error) {
       console.error(error); // Log lỗi ra console để debug
-      return res.status(500).json({ error: 'Internal server error' }); // Trả về lỗi 500 nếu có lỗi xảy ra
+      return res.status(500).json({ error: "Internal server error" }); // Trả về lỗi 500 nếu có lỗi xảy ra
     }
   },
 
   deleteProduct: async (req, res) => {
-    try{
+    try {
       await Product.findByIdAndDelete(req.params.id);
 
       return res.sendStatus(204);
-
-    }catch (error) {
+    } catch (error) {
       console.error(error); // Log lỗi ra console để debug
-      return res.status(500).json({ error: 'Internal server error' }); // Trả về lỗi 500 nếu có lỗi xảy ra
+      return res.status(500).json({ error: "Internal server error" }); // Trả về lỗi 500 nếu có lỗi xảy ra
     }
-}
+  },
+};

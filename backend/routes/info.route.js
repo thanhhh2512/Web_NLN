@@ -4,7 +4,7 @@ const info = require("../controllers/info.controller");
 
 const router = express.Router();
 
-router.use(express.json());
+
 
 router.route('/info')
     .get(info.getUser)

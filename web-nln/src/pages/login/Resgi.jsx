@@ -1,6 +1,7 @@
 import "./LoginContainer.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import aixos from "axios";
 
 /**
  *  contain left -> if login -> form else -> image
@@ -18,10 +19,23 @@ function LoginContainer({}) {
   const [emailValue, setEmailValue] = useState("");
   const [repasswordValue, setRePasswordValue] = useState("");
 
+  const handleRegister = () => {
+    aixos
+      .post("http://localhost:8080/api/register", {
+        username: usernameValue,
+        password: passwordValue,
+        email: emailValue,
+      })
+      .then((res) => {
+        alert(res.data.message);
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="LoginContainer">
       <div className="InnerLoginContainer">
-      <div className="fixed-img">
+        <div className="fixed-img">
           <img
             alt="login"
             src={process.env.PUBLIC_URL + "/images/login/img login.png"}
@@ -38,7 +52,7 @@ function LoginContainer({}) {
           <div className="login-form">
             <form>
               <div className="username input-item">
-              <label
+                <label
                   htmlFor="username"
                   className="username-placeholder input-label"
                 >
@@ -53,7 +67,6 @@ function LoginContainer({}) {
                   onFocus={() => setUsernameFocused(true)}
                   onBlur={() => setUsernameFocused(false)}
                 ></input>
-                
               </div>
               <div className="email input-item">
                 <label
@@ -66,19 +79,16 @@ function LoginContainer({}) {
                   type="email"
                   name="email"
                   className="login-input-field"
-                  value={usernameValue}
                   onChange={(e) => setEmailValue(e.target.value)}
                   onFocus={() => setEmailFocused(true)}
                   onBlur={() => setEmailFocused(false)}
                 ></input>
-                
               </div>
 
               <div className="password input-item">
                 <label
                   htmlFor="password"
                   className="password-placeholder input-label"
-                  
                 >
                   MẬT KHẨU MỚI
                 </label>
@@ -92,13 +102,11 @@ function LoginContainer({}) {
                   onFocus={() => setPasswordFocused(true)}
                   onBlur={() => setPasswordFocused(false)}
                 />
-                
               </div>
               <div className="repassword input-item">
                 <label
                   htmlFor="repassword"
                   className="repassword-placeholder input-label"
-                  
                 >
                   NHẬP LẠI MẬT KHẨU
                 </label>
@@ -112,15 +120,12 @@ function LoginContainer({}) {
                   onFocus={() => setRePasswordFocused(true)}
                   onBlur={() => setRePasswordFocused(false)}
                 />
-                
               </div>
             </form>
           </div>
-          
+
           <div className="login-button">
-            <Link to={`/`}>
-              <button>ĐĂNG KÝ</button>
-            </Link>
+              <button onClick={handleRegister}>ĐĂNG KÝ</button>
           </div>
         </div>
       </div>
