@@ -17,22 +17,23 @@ exports.createUser = async (req, res) => {
       return res.status(409).json({ error: "User already exists" });
     }
 
-    // Create a new user
+    // // Create a new user
+    // const new_user = new User({
+    //   username,
+    //   password,
+    //   email,
+    // });
+
     const new_user = new User({
       username,
       password,
       email,
+      fullname,
+      phone,
+      gender,
+      address,
+      birthday,
     });
-
-    // const new_user = new User(
-    //   username,
-    //   password,
-    //   email,
-    //   username,
-    //   phone,
-    //   gender,
-    //   address,
-    //   birthday
 
     await new_user.save();
 
