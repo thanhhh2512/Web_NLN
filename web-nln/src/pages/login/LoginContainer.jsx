@@ -1,6 +1,7 @@
 import "./LoginContainer.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import aixos from "axios";
 
 /**
  *  contain left -> if login -> form else -> image
@@ -14,6 +15,17 @@ function LoginContainer({}) {
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
 
+  const handleLogin = () => {
+    aixos
+      .post("http://localhost:8080/api/login", {
+        username: usernameValue,
+        password: passwordValue,
+      })
+      .then((res) => {
+        alert(res.data.message);
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="LoginContainer">
       <div className="InnerLoginContainer">
@@ -25,7 +37,7 @@ function LoginContainer({}) {
             ></img>
           </div>
           <div className="Title">
-            <h1>TẠO MỚI TÀI KHOẢN</h1>
+            <h1>ĐĂNG NHẬP VÀO TÀI KHOẢN CỦA BẠN</h1>
           </div>
           <div className="login-form">
             <form>
@@ -69,7 +81,7 @@ function LoginContainer({}) {
           </div>
           <div className="login-button">
             <Link to={`/account`}>
-              <button>Đăng nhập</button>
+              <button onclick= {handleLogin}>Đăng nhập</button>
             </Link>
           </div>
         </div>
