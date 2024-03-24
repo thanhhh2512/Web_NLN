@@ -14,7 +14,7 @@
     height: 420px;
 }
 .title-right{
-    width: 760px;
+    width: 590px;
     height: 420px;
     display: flex;
     flex-direction: column;
@@ -25,6 +25,6 @@
     padding-left: 125px;
 }
 .content{
-    padding-left: 125px;
-    width: 300px;
+    padding-left: 150px;
+    width: 400px;
 }

@@ -4,7 +4,7 @@ export default function Introduction() {
     return (
         <div className='Introduction'>
             <div className='introduction-img'>
-                <h1>Sản phẩm dinh dưỡng thủy canh</h1>
+                <p>Sản phẩm dinh dưỡng thủy canh</p>
             </div>
             <div className='introduction-content'>
                 <div className='content-title'>
