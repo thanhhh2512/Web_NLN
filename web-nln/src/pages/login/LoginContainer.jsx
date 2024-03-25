@@ -8,7 +8,7 @@ import aixos from "axios";
  *  contain right -> if login -> image else -> form
  * @returns
  */
-function LoginContainer({}) {
+function LoginContainer() {
   const [isUsernameFocused, setUsernameFocused] = useState(true);
   const [isPasswordFocused, setPasswordFocused] = useState(true);
 
@@ -37,7 +37,7 @@ function LoginContainer({}) {
             ></img>
           </div>
           <div className="Title">
-            <h1>ĐĂNG NHẬP VÀO TÀI KHOẢN CỦA BẠN</h1>
+            <p>ĐĂNG NHẬP VÀO TÀI KHOẢN CỦA BẠN</p>
           </div>
           <div className="login-form">
             <form>
