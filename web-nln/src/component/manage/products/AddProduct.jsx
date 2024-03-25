@@ -3,6 +3,8 @@ import ImageUpload from "../../fixed/ImageUpload";
 import axios from "axios";
 import { useState } from "react";
 
+const typeProductArray = ["Hạt giống", "Rau củ", "Cây cảnh"];
+
 export default function AddProduct() {
   const [nameValue, setnameValue] = useState("");
   const [descriptionValue, setdescriptionValue] = useState("");
@@ -15,6 +17,7 @@ export default function AddProduct() {
   const [fastdescriptionValue, setfastdescriptionValue] = useState("");
   const [featureValue, setfeatureValue] = useState("");
   const handlecreateproduct = () => {
+    console.log("type: ", typeValue);
     axios
       .post("http://localhost:8080/api/", {
         name: nameValue,
@@ -29,7 +32,7 @@ export default function AddProduct() {
         feature: featureValue,
       })
       .then((res) => {
-        alert(res.data.message);
+        alert('thanh cong');
       })
       .catch((error) => console.error(error));
   };
@@ -54,13 +57,28 @@ export default function AddProduct() {
           <label className="label form-product" htmlFor="typeofproduct">
             Loại sản phẩm
           </label>
-          <input
+          {/* <input
             type="text"
             id="typeofproduct"
             className=" input-form"
             value={typeValue}
             onChange={(e) => settypeValue(e.target.value)}
-          ></input>
+          /> */}
+
+          <select
+            id="typeofproduct"
+            name="typeofproduct"
+            onChange={(e) => {
+              settypeValue(e.target.value)}}
+          >
+            {typeProductArray.map((item, index) => {
+              return (
+                <option value={item} key={index} defaultChecked={index === 0}>
+                  {item}
+                </option>
+              );
+            })}
+          </select>
           <label className="label form-product" htmlFor="characteristic">
             Đặc tính
           </label>
@@ -115,7 +133,7 @@ export default function AddProduct() {
             Hạn sử dụng
           </label>
           <input
-            type="text"
+            type="date"
             id="expiry"
             className=" input-form"
             value={expValue}
@@ -167,8 +185,14 @@ export default function AddProduct() {
             )}
           </div>
           <div className="control-btn">
-            <button className="-btn">Huỷ bỏ</button>
-            <button className="add-btn" onClick={handlecreateproduct}>
+            <button className="-btn" type="button">
+              Huỷ bỏ
+            </button>
+            <button
+              className="add-btn"
+              type="button"
+              onClick={handlecreateproduct}
+            >
               Thêm sản phẩm
             </button>
           </div>

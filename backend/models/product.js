@@ -38,10 +38,15 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   type: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "TypeProduct",
+    type: String,
+    enum: ["Hạt giống", "Rau củ", "Cây cảnh"],
     required: true,
   },
+  // type: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "TypeProduct",
+  //   required: true,
+  // },
   feature: [
     {
       type: String,

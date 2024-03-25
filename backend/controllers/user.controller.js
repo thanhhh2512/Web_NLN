@@ -1,18 +1,27 @@
 const User = require("../models/user");
 
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 function generateAccessToken(username) {
-  return jwt.sign({ username: username }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_LIFE });
+  return jwt.sign({ username: username }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: process.env.ACCESS_TOKEN_LIFE,
+  });
 }
-
 
 exports.createUser = async (req, res) => {
   try {
     //console.log(req.body);
-    const { username, password, email } = req.body;
-    // const { username, password, fullName, email,  phone, gender, address, birthday } = req.body;
+    const {
+      username,
+      password,
+      email,
+      fullname,
+      phone,
+      gender,
+      address,
+      birthday,
+    } = req.body;
 
     // Check if all required fields are present
     if (!username || !email || !password) {
@@ -25,22 +34,17 @@ exports.createUser = async (req, res) => {
       return res.status(409).json({ error: "User already exists" });
     }
 
-
     // Create a new user
 
     const new_user = new User({
       username,
       password,
       email,
-
       fullname,
       phone,
       gender,
       address,
       birthday,
-    });
-
-
     });
 
     // const new_user = new User(
@@ -52,7 +56,6 @@ exports.createUser = async (req, res) => {
     //   gender,
     //   address,
     //   birthday
-
 
     await new_user.save();
 
@@ -84,7 +87,7 @@ exports.login = async (req, res, next) => {
 
     const token = generateAccessToken(userJson);
 
-    return res.status(200).send({ 'access_token': accessToken });
+    return res.status(200).send({ access_token: accessToken });
   } catch (e) {
     return next(new Error(500, "An error has occurred."));
   }
@@ -92,30 +95,27 @@ exports.login = async (req, res, next) => {
 
 exports.getUser = async (req, res) => {
   try {
-      const userId = req.body.user;
-      if (!userId) throw new Error("User ID is required");
-      const data = await User.findOne({ user: userId });
-      return res.status(200).json(data);
+    const userId = req.body.user;
+    if (!userId) throw new Error("User ID is required");
+    const data = await User.findOne({ user: userId });
+    return res.status(200).json(data);
   } catch (err) {
-      console.error(error);
-      return res.status(500).json({ error: 'Internal server error' });
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
   }
-}
+};
 
 exports.updateUser = async (req, res) => {
   try {
-      const userId = req.body.user;
-      const updatedData = req.body.updatedData; // This should contain the updated fields for the user
+    const userId = req.body.user;
+    const updatedData = req.body.updatedData; // This should contain the updated fields for the user
 
-      const user = await User.findOneAndUpdate({ user: userId }, updatedData);
-      await user.save();
+    const user = await User.findOneAndUpdate({ user: userId }, updatedData);
+    await user.save();
 
-      return res.status(200).send("User updated successfully");
+    return res.status(200).send("User updated successfully");
+  } catch {
+    console.error(error);
+    return res.status(500).json({ error: error.message });
   }
-  catch { 
-      console.error(error);
-      return res.status(500).json({ error: error.message });
-  }
-}
-
-
+};
