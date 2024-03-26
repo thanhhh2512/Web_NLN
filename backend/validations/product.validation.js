@@ -9,11 +9,11 @@ const productValidationSchema = Joi.object({
   quantityp: Joi.number().required(),
   weight: Joi.number().required().default(0),
   price: Joi.number().required(),
-  mfg: Joi.date().required(),
+  // mfg: Joi.date().required(),
 
   exp: Joi.date().required(),
   type: Joi.string().required(),
-  feature: Joi.array().required(),
+  feature: Joi.string().required(),
   images: Joi.array().optional(),
 });
 
