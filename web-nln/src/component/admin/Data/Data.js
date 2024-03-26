@@ -19,25 +19,26 @@ import img3 from "../imgs/img3.png";
 
 // Sidebar Data
 export const SidebarData = [
-  {
-    icon: UilEstate,
-    heading: "Dashboard",
-  },
+  // {
+  //   icon: UilEstate,
+  //   heading: "Dashboard",
+  // },
   {
     icon: UilClipboardAlt,
-    heading: "Orders",
+    heading: "Quản lý đơn hàng",
   },
-  {
-    icon: UilUsersAlt,
-    heading: "Customers",
-  },
+  // {
+  //   icon: UilUsersAlt,
+  //   heading: "Customers",
+  // },
   {
     icon: UilPackage,
-    heading: 'Products'
+    heading: 'Quản lý sản phẩm',
+    dropdown: ["Thêm sản phẩm", "Chỉnh sửa sản phẩm"]
   },
   {
     icon: UilChart,
-    heading: 'Analytics'
+    heading: 'Thống kê'
   },
 ];
 

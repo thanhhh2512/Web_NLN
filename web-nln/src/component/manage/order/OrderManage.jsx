@@ -1,8 +1,14 @@
 import "./OrderManage.css";
 import { OrderData } from "../../../common/json/OrderData";
-import { useEffect, useState, useRef, useCallback } from "react";
-
+import { useEffect, useState, useRef, useCallback } from "react"
+import { Link, useParams } from "react-router-dom";
+import { CartData } from "../../../common/json/CartData";
 export default function OrderManage() {
+
+  const { ProductNo } = useParams();
+
+  // Tìm kiếm sản phẩm trong ProductData bằng id
+  const product = CartData.find((cart) => cart.ProductNo === ProductNo);
   const [lengthList, setLengthList] = useState(OrderData.length);
   const [filter, setFilter] = useState({ status: "", searchText: "" });
   const [prevFilter, setPrevFilter] = useState({ status: "", searchText: "" });
@@ -101,6 +107,7 @@ const filterOrders = useCallback(() => {
                     : "Chưa được xác nhận"}
                 </td>
                 <td>{Number.parseInt(item.total)/1000 + ".000 vnd"}</td>
+                <td><Link to ={`/order`}><i className="fa-solid fa-pen-to-square"></i></Link></td>
               </tr>
             ))}
           </tbody>

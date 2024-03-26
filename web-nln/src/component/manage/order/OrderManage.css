@@ -1,5 +1,5 @@
 .OrderManage {
-  margin: 20px 30px 20px 30px;
+  margin: 20px 30px 20px 70px;
 }
 .order-manage-title {
   color: var(--Text, #000);
@@ -20,7 +20,7 @@
 .select-status h5 {
   color: var(--Sort, #7f6e59);
   text-align: center;
-  font-family: Inter;
+  font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
@@ -58,7 +58,17 @@
     cursor: pointer;
 }
 .btn-reset {
-  margin-left: 300px;
+  margin-left: 200px;
+  background-color: #fff;
+  color: var(--Sort, #7f6e59);
+  text-align: center;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  margin-right: 20px;
+  border: none;
+
 }
 .btn-reset:hover{
     font-size: 15px;
