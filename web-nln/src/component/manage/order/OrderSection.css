@@ -23,17 +23,19 @@
     display: flex;
     flex-direction: column;
 }
-.head-table, .in-order{
+.header-table, .in-order{
     display: grid;
     grid-template-columns: 460px 150px 130px auto;
     gap: 103px;
+    text-align: center;
     /* border-bottom: 1px solid var(--Text, #000); */
 }
-.head-total, .total{
-    text-align: end;
+.header-total, .total{
+    text-align: center;
 }
 .item{
     border-bottom: 1px solid #8E8E8E;
+    justify-content: space-around;
 }
 .in-order{
     display: grid;
@@ -49,7 +51,7 @@
     text-align: center;
     width: 130px;
 }
-.item-detail{
+.in-order-section .item-detail{
     display: flex;
     align-items: center;
 
@@ -60,14 +62,40 @@
     height: 120px;
     margin: 5px;
 }
-.total-bill{
+.total-price{
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
 }
-.total-bill div{
+.total-price div{
     margin-left: 110px;
     margin-right: 10px;
+}
+.delivery-fee{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.delivery-fee div{
+    margin-left: 110px;
+    margin-right: 15px;
+    
+}
+.fee{
+    text-transform: uppercase;
+}
+.total{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+.total div{
+    margin-left: 110px;
+    margin-right: 10px;
+    font-weight: 650;
+}
+.bill{
+    text-transform: uppercase;
 }
 
 /* Phần địa chỉ giao hàng */
@@ -83,9 +111,9 @@
     
 }
 .choose-receiver{
-    background-color: #8E8E8E;
+    background-color: #c0bebe;
     border-radius: 20px;
-    width: 624px;
+    width: 60%;
 height: 400px;
 }
 .inf-show{
@@ -95,23 +123,28 @@ height: 400px;
 }
 .inf-show h2{
     border-bottom: 1px solid#000;
-    padding: 0 0 27px 120px;
+    padding-bottom: 27px;
+    display: flex;
+    justify-content: center;
 }
 .address{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-
+.address-detail{
+    border-right: 1px solid whitesmoke;
+    padding-right: 60px;
+}
 /* Phần phương thức giao hàng */
-.transport{
+.transportation{
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin: 30px;
-    width: 1390px;
-    padding: 10px 143px 10px 145px;
+    flex-direction: row;
+    justify-content: space-around;
 
+}
+.transport-title{
+    margin-right: 30px;
 }
 .transport h2,
 .footbill h2{
@@ -148,6 +181,64 @@ height: 400px;
     display: flex;
     justify-content: space-between;
 }
-.check-out{
-    align-items: center;
+.check-out-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.btn-confirm,
+.btn-delivery,
+.btn-recieve
+{
+    font-family: Roboto;
+    font-size: 20px;
+    color: black;
+    background-color: white;
+    border: 1px solid rgb(227, 252, 250);
+    width: 140px;
+    height: 60px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgb(231, 231, 231);
+}
+.btn-default{
+    font-family: Roboto;
+    font-size: 20px;
+    color: black;
+    background-color: white;
+    border: 1px solid rgb(227, 252, 250);
+    width: 200px;
+    height: 60px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgb(231, 231, 231);
+    
+}
+.btn-confirm:hover{
+    background-color: rgb(5, 232, 156);
+    color: white;
+    box-shadow: 0 0 5px green;
+    font-weight: 600px;
+    padding-bottom: 10px;
+}
+.btn-delivery:hover{
+    background-color: orange;
+    color: white;
+    box-shadow: 0 0 5px #ff8d00;
+    font-weight: 600px;
+    padding-bottom: 10px;
+}
+.btn-recieve:hover{
+    background-color: #3300ff;
+    color: white;
+    box-shadow: 0 0 5px rgb(2, 2, 239);
+    font-weight: 600px;
+    padding-bottom: 10px;
+}
+.btn-default:hover{
+    background-color: #ff0000;
+    color: white;
+    box-shadow: 0 0 5px #e60303;
+    font-weight: 600px;
+    padding-bottom: 10px;
 }
