@@ -14,11 +14,13 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import OrderSection from "./component/manage/order/OrderSection";
 import AdminPage from "./pages/Admin/AdminPage";
+import IntroductionPage from "./pages/home/IntroductionPage";
 function App() {
     return (
         <div className="App">
             <Router>
                 <Routes>
+                    <Route path="/introduction" element={<IntroductionPage/>}/>
                     <Route path="/loginpage" element={<LoginPage />} />
                     <Route path="/login" element={<LoginContainer />} />
                     <Route path="/register" element={<RegisterOage />} />
