@@ -18,7 +18,7 @@
   font-size: 24px;
   float: left;
   text-align: center;
-  padding: 14px 16px;
+  /* padding: 14px 16px; */
   text-decoration: none;
   align-items: center;
 }
@@ -27,7 +27,7 @@
   margin-top: 10px;
   color: #000;
   text-align: center;
-  font-family: 'Source Sans Pro';
+  font-family: Rpboto;
   font-size: 24px;
   font-style: normal;
   font-weight: 300;
@@ -36,13 +36,45 @@
 }
 
 
+/* Thêm CSS cho dropdown */
+.Header nav .dropdown {
+  position: relative;
+  padding: 0;
+}
+
+.Header nav .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 3;
+  top: 110%;
+}
+
+.Header nav .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.Header nav .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.Header nav .dropdown-content a:hover {
+  background-color: #ddd;
+}
 .Header #about-us {
   grid-area: about-us;
-  
 }
-.Header a{
+
+.Header a {
   text-decoration: none;
 }
+
 .Header #join-with-us {
   grid-area: join-with-us;
 }
@@ -54,10 +86,10 @@
 .Header #policy {
   grid-area: policy;
 }
+
 .Header .main-tools-container {
   display: flex;
   margin-left: 50px;
   justify-content: space-evenly;
   align-items: center;
-
 }

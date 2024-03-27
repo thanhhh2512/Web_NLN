@@ -2,6 +2,8 @@ import "./OrderSection.css";
 import { useEffect, useState } from "react";
 import { CartData } from "../../../common/json/CartData";
 import "../../cart/Cart.css";
+import { Link } from "react-router-dom";
+
 function OrderSection() {
   const [transport, setStransport] = useState("15.000");
   const [summary, setSummary] = useState();
@@ -96,25 +98,25 @@ function OrderSection() {
               <p>An Khánh</p>
             </div>
             <div className="transportation">
-                <div className="transport-title">
-                    <p>Loại vận chuyển:</p>
-                    <p>Hình thức thanh toán:</p>
-                </div>
-            <div className="transport-detail">
+              <div className="transport-title">
+                <p>Loại vận chuyển:</p>
+                <p>Hình thức thanh toán:</p>
+              </div>
+              <div className="transport-detail">
                 <p>Giao hàng nhanh</p>
                 <p>Thanh toán khi nhận hàng</p>
+              </div>
             </div>
-            
           </div>
-          </div>
-          
         </div>
       </div>
       <div className="check-out-btn">
-      <button className="btn-confirm"> Đã xác nhận</button>
-          <button className="btn-delivery"> Đã giao hàng</button>
-          <button className="btn-recieve"> Đã gửi hàng</button>
-          <button className="btn-default"> Chưa được xác nhận</button>
+       
+      <Link  to={"/admin"}><button className="btn-confirm"> Đã xác nhận</button></Link>
+      <Link  to={"/admin"}><button className="btn-delivery"> Đã giao hàng</button></Link>
+      <Link  to={"/admin"}><button className="btn-recieve"> Đã gửi hàng</button></Link>
+      <Link  to={"/admin"}><button className="btn-default"> Chưa được xác nhận</button></Link>
+        
       </div>
     </main>
   );
