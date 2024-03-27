@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 function generateAccessToken(username) {
   return jwt.sign({ username: username }, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: process.env.ACCESS_TOKEN_LIFE,
+    expiresIn: "2d",
   });
 }
 
@@ -74,24 +74,64 @@ exports.createUser = async (req, res) => {
 exports.login = async (req, res, next) => {
   try {
     const { username, password } = req.body;
+    console.log(req.body);
 
     const user = await User.findOne({ username: username });
+
     if (!user) {
-      return res.status(400).json("Your phone number is not registered.");
+      return res.status(400).json({ message: "Tài khoản chưa đăng ký." });
     }
 
-    const isPasswordValid = bcrypt.compareSync(password, user.password);
-    if (!isPasswordValid) {
-      return res.status(401).json("Invalid Password.");
+    // const isPasswordValid = bcrypt.compareSync(password, user.password);
+    // if (!isPasswordValid) {
+    //   return res.status(401).json("Invalid Password.");
+    // }
+
+    if (password !== user.password) {
+      return res.status(401).json({ message: "Invalid Password." });
     }
 
-    const token = generateAccessToken(userJson);
+    const token = generateAccessToken(user.username);
 
-    return res.status(200).send({ access_token: accessToken });
+    return res.status(200).send({
+      access_token: token,
+      user: {
+        ...user._doc,
+        password: "",
+      },
+    });
   } catch (e) {
+    console.log(e);
     return next(new Error(500, "An error has occurred."));
   }
 };
+
+// const bcrypt = require("bcrypt");
+
+// exports.login = async (req, res, next) => {
+//   try {
+//     const { username, password } = req.body;
+
+//     const user = await User.findOne({ username: username });
+//     if (!user) {
+//       return res.status(400).json("Tài khoản chưa đăng ký.");
+//     }
+
+//     const isPasswordValid = bcrypt.compareSync(password, user.password);
+//     if (!isPasswordValid) {
+//       console.log("Mật khẩu người dùng:", password);
+//       console.log("Mật khẩu trong cơ sở dữ liệu:", user.password);
+//       return res.status(401).json("Mật khẩu không hợp lệ.");
+//     }
+
+//     const token = generateAccessToken(user); // Đảm bảo rằng bạn đã định nghĩa hàm generateAccessToken một cách chính xác.
+
+//     return res.status(200).send({ access_token: token });
+//   } catch (e) {
+//     console.error(e);
+//     return next(new Error(500, "Đã xảy ra lỗi."));
+//   }
+// };
 
 exports.getUser = async (req, res) => {
   try {
