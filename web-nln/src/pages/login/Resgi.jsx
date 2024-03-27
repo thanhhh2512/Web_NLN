@@ -26,7 +26,7 @@ function RegisterContainer() {
 
   const handleRegister = () => {
     if (passwordValue !== repasswordValue) {
-        alert('loi')
+        alert('Mật khẩu và nhập lại mật khẩu không trùng khớp.')
     }
     aixos
       .post("http://localhost:8080/api/register", {
