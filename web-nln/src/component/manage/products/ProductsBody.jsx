@@ -10,6 +10,7 @@ function ProductsBody() {
         if(type ==='')
             return ProductData
         return ProductData.filter((item)=>{
+                // console.log(item)
                 return item.ProductType === type
             }
         )},[])
@@ -18,7 +19,7 @@ function ProductsBody() {
     // Xử lý click lọc sản phẩm
     useEffect(()=>{
         products.current = fillterType(fillter)
-        console.log(products.current)
+        // console.log([products.current, fillter])
         setLengthList(products.current.length)
     },[fillter,fillterType])
 
@@ -36,9 +37,9 @@ function ProductsBody() {
                             <button 
                                 key={type.id} 
                                 className ={
-                                    fillter === type.id ? 'active btn-type': 'btn-type'
+                                    fillter === type.title ? 'active btn-type': 'btn-type'
                                 }
-                                onClick={() => setFillter(type.id)}
+                                onClick={() => setFillter(type.title)}
                             >
                                 {type.title}
                             </button>
