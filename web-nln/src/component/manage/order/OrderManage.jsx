@@ -107,7 +107,7 @@ const filterOrders = useCallback(() => {
                     : "Chưa được xác nhận"}
                 </td>
                 <td>{Number.parseInt(item.total)/1000 + ".000 vnd"}</td>
-                <td><Link to ={`/order`}><i className="fa-solid fa-pen-to-square"></i></Link></td>
+                <td><Link to ={`/orderdetail`}><i className="fa-solid fa-pen-to-square"></i></Link></td>
               </tr>
             ))}
           </tbody>

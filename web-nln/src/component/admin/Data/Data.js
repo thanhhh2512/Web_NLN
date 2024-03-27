@@ -19,10 +19,10 @@ import img3 from "../imgs/img3.png";
 
 // Sidebar Data
 export const SidebarData = [
-  // {
-  //   icon: UilEstate,
-  //   heading: "Dashboard",
-  // },
+  {
+    icon: UilEstate,
+    heading: "Trang chủ",
+  },
   {
     icon: UilClipboardAlt,
     heading: "Quản lý đơn hàng",
@@ -38,14 +38,14 @@ export const SidebarData = [
   },
   {
     icon: UilChart,
-    heading: 'Thống kê'
+    heading: 'Doanh thu'
   },
 ];
 
 // Analytics Cards Data
 export const cardsData = [
   {
-    title: "Sales",
+    title: "Doanh thu",
     color: {
       backGround: "linear-gradient(180deg, #bb67ff 0%, #c484f3 100%)",
       boxShadow: "0px 10px 20px 0px #e0c6f5",
@@ -55,13 +55,13 @@ export const cardsData = [
     png: UilUsdSquare,
     series: [
       {
-        name: "Sales",
+        name: "Doanh thu",
         data: [31, 40, 28, 51, 42, 109, 100],
       },
     ],
   },
   {
-    title: "Revenue",
+    title: "Đơn hàng",
     color: {
       backGround: "linear-gradient(180deg, #FF919D 0%, #FC929D 100%)",
       boxShadow: "0px 10px 20px 0px #FDC0C7",
@@ -71,13 +71,13 @@ export const cardsData = [
     png: UilMoneyWithdrawal,
     series: [
       {
-        name: "Revenue",
+        name: "Số lượng đơn hàng",
         data: [10, 100, 50, 70, 80, 30, 40],
       },
     ],
   },
   {
-    title: "Expenses",
+    title: "Sản phẩm",
     color: {
       backGround:
         "linear-gradient(rgb(248, 212, 154) -146.42%, rgb(255 202 113) -46.42%)",
@@ -88,7 +88,7 @@ export const cardsData = [
     png: UilClipboardAlt,
     series: [
       {
-        name: "Expenses",
+        name: "Số lượng sản phẩm",
         data: [10, 25, 15, 30, 12, 15, 20],
       },
     ],

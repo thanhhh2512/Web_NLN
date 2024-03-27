@@ -1,5 +1,5 @@
 import Sidebar from "../../component/fixed/Sidebar";
-// import MainDash from "../../component/admin/Dashboard/MainDash/MainDash";
+import MainDash from "../../component/admin/Dashboard/MainDash/MainDash";
 // import RightSide from "../../component/admin/Dashboard/RigtSide/RightSide";
 // import AddProduct from "./component/manage/products/AddProduct";
 // import EditProduct from "./component/manage/products/EditProduct";
@@ -12,8 +12,8 @@ function AdminPage() {
   return (
     <div className="AdminPage">
       <Sidebar />
-      {<OrderManage />}
-      {/* <MainDash/> */}
+      {/* {<OrderManage />} */}
+      <MainDash/>
       {/* {<ManageProductPage />}  */}
 
       {/* {<EditProduct/>}

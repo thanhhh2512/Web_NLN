@@ -29,7 +29,7 @@ function App() {
                     <Route path="/cart" element={<CartPage />} />
                     <Route path="/order" element={<OrderPage />} />
                     <Route path="/admin" element={<AdminPage/>}/>
-                    <Route path="/ordersection" element={<OrderSection/>}/>
+                    <Route path="/orderdetail" element={<OrderSection/>}/>
                 </Routes>
             </Router>
         </div>

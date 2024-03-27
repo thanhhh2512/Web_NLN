@@ -79,7 +79,7 @@ function OrderSection() {
       </section>
       <div className="inf-show">
         <div className="choose-receiver">
-          <h2>Địa chỉ nhận hàng</h2>
+          <h2>Thông tin giao hàng</h2>
           <div className="address">
             <div className="address-title">
               <p>Tên người nhận:</p>

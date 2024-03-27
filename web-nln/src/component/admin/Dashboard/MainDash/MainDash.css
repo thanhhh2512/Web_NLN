@@ -3,6 +3,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    /* background-color: rgb(97, 238, 238); */
+    height: 100%;
+    margin-left: 20px;
+    width: 70%;
 }
 
 @media screen and (max-width: 1200px) {

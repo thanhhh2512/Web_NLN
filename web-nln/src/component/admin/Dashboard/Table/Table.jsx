@@ -7,46 +7,73 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 // import  Paper   from "@mui/material/Paper";
 import "./Table.css";
+import { OrderData } from "../../../../common/json/OrderData";
 
 function createData(name, trackingId, date, status) {
   return { name, trackingId, date, status };
 }
 
-const rows = [
-  createData("Lasania Chiken Fri", 18908424, "2 March 2022", "Approved"),
-  createData("Big Baza Bang ", 18908424, "2 March 2022", "Pending"),
-  createData("Mouth Freshner", 18908424, "2 March 2022", "Approved"),
-  createData("Cupcake", 18908421, "2 March 2022", "Delivered"),
-];
+const rows = OrderData.map((item) => {
+
+  const productNames = item.products.map((product) => {
+    return <div key={product.ProductNo}>{product.ProductName}</div>;
+  });
+
+  // Tạo đối tượng dữ liệu mới bằng cách gọi hàm createData và trả về nó từ mỗi vòng lặp
+  return createData(productNames[0], item.id, item.orderDate, getStatus(item.status));
+});
+
+// Hàm getStatusLabel để chuyển đổi trạng thái thành nhãn tương ứng
+function getStatus(status) {
+  switch (status) {
+    case 1:
+      return "Đã xác nhận";
+    case 2:
+      return "Đã giao hàng";
+    case 3:
+      return "Đã gửi hàng";
+    default:
+      return "Chưa được xác nhận";
+  }
+}
+
 
 
 const makeStyle=(status)=>{
-  if(status === 'Approved')
+  if(status === 'Đã xác nhận')
   {
     return {
-      background: 'rgb(145 254 159 / 47%)',
-      color: 'green',
+      background: ' rgb(252, 229, 233)',
+      color: 'black',
     }
   }
-  else if(status === 'Pending')
+  else if(status === 'Đã giao hàng')
   {
     return{
-      background: '#ffadad8f',
-      color: 'red',
+      background: ' rgb(252, 229, 233)',
+      color: 'black',
     }
   }
-  else{
+  else if(status === 'Đã gửi hàng')
+  {
     return{
-      background: '#59bfff',
-      color: 'white',
+      background: ' rgb(252, 229, 233)',
+      color: 'black',
     }
+  }
+  else if(status === 'Chưa được xác nhận')
+  {
+    return {
+      background: " rgb(252, 229, 233)",
+      color: "black",
+    };
   }
 }
 
 export default function BasicTable() {
   return (
       <div className="Table">
-      <h3>Recent Orders</h3>
+      <h3>Đơn hàng gần đây</h3>
         <TableContainer
           // component={Paper}
           // style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
@@ -54,10 +81,10 @@ export default function BasicTable() {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Product</TableCell>
-                <TableCell align="left">Tracking ID</TableCell>
-                <TableCell align="left">Date</TableCell>
-                <TableCell align="left">Status</TableCell>
+                <TableCell>Tên sản phẩm</TableCell>
+                <TableCell align="left">Mã đơn</TableCell>
+                <TableCell align="left">Ngày lập đơn</TableCell>
+                <TableCell align="left">Trạng thái</TableCell>
                 <TableCell align="left"></TableCell>
               </TableRow>
             </TableHead>

@@ -7,9 +7,9 @@ import { UilTimes } from "@iconscout/react-unicons";
 import Chart from "react-apexcharts";
 
 // parent Card
-
 const Card = (props) => {
   const [expanded, setExpanded] = useState(false);
+
   return (
     <AnimatePresence>
       {expanded ? (
@@ -31,7 +31,7 @@ function CompactCard({ param, setExpanded }) {
         background: param.color.backGround,
         boxShadow: param.color.boxShadow,
       }}
-      layoutId="expandableCard"
+      // layoutId="expandableCard"
       onClick={setExpanded}
     >
       <div className="radialBar">
@@ -44,7 +44,7 @@ function CompactCard({ param, setExpanded }) {
       <div className="detail">
         <Png />
         <span>${param.value}</span>
-        <span>Last 24 hours</span>
+        <span>24 giờ trước</span>
       </div>
     </motion.div>
   );
@@ -110,16 +110,16 @@ function ExpandedCard({ param, setExpanded }) {
         background: param.color.backGround,
         boxShadow: param.color.boxShadow,
       }}
-      layoutId="expandableCard"
+      // layoutId="expandableCard"
     >
       <div style={{ alignSelf: "flex-end", cursor: "pointer", color: "white" }}>
-        <UilTimes onClick={setExpanded} />
+        <UilTimes onClick={() => setExpanded(false)} />
       </div>
-        <span>{param.title}</span>
+      <span>{param.title}</span>
       <div className="chartContainer">
         <Chart options={data.options} series={param.series} type="area" />
       </div>
-      <span>Last 24 hours</span>
+      <span>24 giờ trước</span>
     </motion.div>
   );
 }
