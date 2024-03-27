@@ -12,8 +12,8 @@ function AdminPage() {
   return (
     <div className="AdminPage">
       <Sidebar />
-      {/* {<OrderManage />} */}
-      <MainDash/>
+      {<OrderManage />}
+      {/* <MainDash/> */}
       {/* {<ManageProductPage />}  */}
 
       {/* {<EditProduct/>}

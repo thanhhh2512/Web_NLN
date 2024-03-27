@@ -111,14 +111,15 @@
     
 }
 .choose-receiver{
-    background-color: #c0bebe;
+    border: 1px solid black;
     border-radius: 20px;
-    width: 60%;
+    width: 93%;
 height: 400px;
 }
 .inf-show{
     display: flex;
     justify-content: center;
+    
    
 }
 .inf-show h2{
@@ -131,10 +132,11 @@ height: 400px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    font-size: 22px;
 }
 .address-detail{
-    border-right: 1px solid whitesmoke;
-    padding-right: 60px;
+    border-right: 1px solid rgb(209, 209, 209);
+    padding-right: 180px;
 }
 /* Phần phương thức giao hàng */
 .transportation{
