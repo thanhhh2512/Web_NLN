@@ -1,4 +1,6 @@
 .AdminPage{
     display: flex;
     flex-direction: row;
+    max-height: 700px;
+    height: 700px;
 }
