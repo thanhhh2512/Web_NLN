@@ -5,7 +5,7 @@ import { UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion";
 import './Sidebar.css'
 
-const Sidebar = () => {
+const Sidebar = ({sendIndexToParent}) => {
   const [selected, setSelected] = useState(0);
   const [expanded, setExpanded] = useState(true);
 
@@ -19,7 +19,8 @@ const Sidebar = () => {
   };
 
   const handleDropdownToggle = (index) => {
-    setSelected(index === selected ? -1 : index); // Toggle dropdown
+    setSelected(index === selected ? -1 : index);
+    sendIndexToParent(index);
   };
 
   return (

@@ -183,13 +183,21 @@ height: 400px;
     display: flex;
     justify-content: space-between;
 }
-.check-out-btn{
-    display: flex;
-    flex-direction: row;
+.check-out-btn {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 20px;
     justify-content: space-evenly;
     margin-top: 40px;
     margin-bottom: 40px;
-}
+  }
+  
+  .check-out-btn button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
 .btn-confirm,
 .btn-delivery,
 .btn-recieve
