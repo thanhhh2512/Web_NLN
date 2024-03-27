@@ -30,7 +30,7 @@ export default function Header() {
     <Link to={"/"} id="about-me">
       Trang chủ
     </Link>
-    <a id="join-with-us">Giới thiệu</a>
+    <Link to="/introduction" id="join-with-us">Giới thiệu</Link>
     <div className="dropdown">
       <a id="news">Sản phẩm </a>
       <div className="dropdown-content">

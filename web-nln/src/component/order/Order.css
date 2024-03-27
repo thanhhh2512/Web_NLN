@@ -25,20 +25,21 @@
 }
 .head-table, .in-order{
     display: grid;
-    grid-template-columns: 460px 150px 130px auto;
+    grid-template-columns: 441px 184px 133px auto;
     gap: 103px;
     /* border-bottom: 1px solid var(--Text, #000); */
+    text-align: center;
 }
 .head-total, .total{
-    text-align: end;
+    text-align: center;
 }
 .item{
     border-bottom: 1px solid #8E8E8E;
 }
 .in-order{
     display: grid;
-    grid-template-columns: 420px 150px 130px 240px;
-    gap: 90px; 
+    grid-template-columns: 420px 131px 128px 227px;
+    gap: 90px;
 }
 .quantity-item{
     padding: 0;
@@ -62,7 +63,7 @@
 }
 .total-bill{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     margin-top: 10px;
 }
 .total-bill div{
@@ -72,11 +73,11 @@
 
 /* Phần địa chỉ giao hàng */
 .address-form,
-.choose-receiver{
+.choose-receivers{
     width: 520px;
 }
-.choose-receiver p,
-.choose-receiver label{
+.choose-receivers p,
+.choose-receivers label{
     font-size: 18px;
 }
 .inf-custom{

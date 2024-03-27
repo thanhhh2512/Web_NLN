@@ -12,6 +12,10 @@
     text-transform: uppercase;
     margin-top: 40px;
   }
+  .EditProduct input{
+    height: 30px;
+    width: 90%;
+  }
   .edit-label h2 {
     color: var(--Text, #000);
     font-family: Roboto;
@@ -36,6 +40,7 @@
   #image.input-form {
     height: 100px;
   }
+
   #image.input-form {
     border-style: dashed;
     position: relative;
@@ -45,7 +50,7 @@
   .EditProduct .image-button {
     position: absolute;
   
-    transform: translate(-50%, -220%);
+    transform: translate(50%, -220%);
     z-index: 2;
     width: 102px;
     height: 40px;

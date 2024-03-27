@@ -17,9 +17,7 @@
 }
 
 .introduction-content {
-  padding-top: 40px;
-  grid-area: "content";
-  padding: 0 48px;
+  padding: 23px 48px 0 48px;
   color: #000;
   font-family: Roboto;
   font-size: 96px;

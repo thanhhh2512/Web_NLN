@@ -2,6 +2,8 @@ import { ProductData } from "../../common/json/ProductData";
 import BestSellerItem from "./BestSellerItem";
 import { useState, useEffect } from "react";
 import "./DetailProductRecomment.css";
+import { NavLink } from "react-router-dom";
+import ProductItems from "./../product/ProductItems";
 
 export default function DetailProductRecommend() {
   const [randomProducts, setRandomProducts] = useState([]);
@@ -40,8 +42,14 @@ export default function DetailProductRecommend() {
         </div>
       </div>
       <div className="recommend-detail">
-        {randomProducts.map((item, index) => (
-          <BestSellerItem key={index} product={item} />
+        {randomProducts.map((item) => (
+          // Trong hàm render của component:
+          <a
+            href={`/detail/${item.ProductNo}`}
+            onClick={() => window.location.reload()}
+          >
+            <ProductItems key={item.ProductNo} product={item} />
+          </a>
         ))}
       </div>
     </div>

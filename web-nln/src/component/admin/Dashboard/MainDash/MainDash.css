@@ -4,9 +4,9 @@
     flex-direction: column;
     justify-content: space-evenly;
     /* background-color: rgb(97, 238, 238); */
-    height: 100%;
+    height: 700px;
     margin-left: 20px;
-    width: 70%;
+    width: 80%;
 }
 
 @media screen and (max-width: 1200px) {
