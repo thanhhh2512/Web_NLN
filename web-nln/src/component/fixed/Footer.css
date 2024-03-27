@@ -43,9 +43,10 @@
   line-height: normal;
   background-color: white;
 }
-.contact-button:focus{
+.contact-button:hover{
   background-color: #897358;
   color: white;
+  cursor: pointer;
 }
 
 .footer-contact a {

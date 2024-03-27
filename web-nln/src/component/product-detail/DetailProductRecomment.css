@@ -50,3 +50,6 @@
     border-bottom: 5px solid #8e7033;
     color: var(--Text2, #8e7033) 
 }
+.DetailProductRecommend .active{
+  background-color: white;
+}

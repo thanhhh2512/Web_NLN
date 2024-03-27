@@ -3,6 +3,7 @@ html, body {
   padding: 0; /* Loại bỏ padding */
   border: 0; /* Loại bỏ border */
 }
+
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -10,36 +11,31 @@ html, body {
   padding-top: 4rem;
   transition: all 300ms ease;
   background-color: #FAF5EE;
-
-  /* padding-right: 20px; */
 }
-/* logo */
-.bars{
+
+.bars {
   display: none;
 }
 
 .logo {
   display: flex;
-  height: 10rem;
-
   align-items: center;
   justify-content: center;
   height: 10%;
 }
+
 .logo > img {
   width: 15rem;
   height: 7rem;
 }
 
-
-/* menu */
 .menu {
-  margin-left: 20px;
   margin-top: 4rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
+
 .menuItem {
   display: flex;
   align-items: center;
@@ -56,26 +52,33 @@ html, body {
   cursor: pointer;
   background: rgb(254, 222, 228);
   margin-left: 0;
-
 }
+
 .sidebar .dropdown {
-
   position: absolute;
-  top: calc(100% + 5px); /* Đặt dropdown phía dưới menu item */
-  left: 0; /* Đặt dropdown bắt đầu từ vị trí bên trái của menu item */
-  background: #ffffff; /* Màu nền cho dropdown */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hiển thị bóng cho dropdown */
-  border-radius: 0.5rem; /* Bo tròn góc cho dropdown */
-  z-index: 1; /* Đảm bảo dropdown hiển thị trên top */
-  width: 218px; /* Thiết lập chiều rộng cho dropdown */
+  top: calc(100% + 5px);
+  left: 0;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  z-index: 1;
+  width: 218px;
   background-color: #FAF5EE;
+  display: none; /* Sửa lại: Ban đầu ẩn dropdown */
 }
-.dropdownOption:hover{
+
+.menuItem:hover .dropdown { /* Sửa lại: Hiển thị dropdown khi hover vào menuItem */
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownOption:hover {
   cursor: pointer;
   background: rgb(254, 222, 228);
   margin-left: 0;
 }
-.dropdownOption::before{
+
+.dropdownOption::before {
   content: "";
   width: 8px;
   height: 100%;
@@ -84,21 +87,18 @@ html, body {
 }
 
 .dropdownOption {
-  padding: 0.5rem 1rem; /* Đặt khoảng cách giữa các tùy chọn trong dropdown */
-  cursor: pointer; /* Biến con trỏ thành hình bàn tay khi di chuột qua các tùy chọn */
+  padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 
-/* Đảm bảo dropdown không bị ẩn đi khi được chọn */
 .menuItem.active .dropdown {
   display: flex;
   flex-direction: column;
 }
 
-/* Đảm bảo dropdown không hiển thị khi không được chọn */
 .menuItem .dropdown {
   display: none;
 }
-
 
 .menu .menuItem:last-child {
   position: absolute;
@@ -109,8 +109,8 @@ html, body {
 .active {
   background: rgb(254, 222, 228);
   margin-left: 0;
-
 }
+
 .active::before {
   content: "";
   width: 8px;
@@ -119,19 +119,19 @@ html, body {
   margin-right: calc(1rem - 8px);
 }
 
-
 /* Tablets */
 @media screen and (max-width: 1200px) {
-  .menuItem>span{
+  .menuItem > span {
     display: none;
   }
-  .logo{
+
+  .logo {
     display: none;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .sidebar{
+  .sidebar {
     position: fixed;
     z-index: 9;
     background: #ffe0e0;
@@ -139,28 +139,32 @@ html, body {
     padding-right: 1rem;
     height: 100%;
   }
-  .menuItem>span{
+
+  .menuItem > span {
     display: block;
   }
-  .logo{
+
+  .logo {
     display: flex;
   }
+
   .menu .menuItem:last-child {
     position: relative;
     margin-top: 6rem;
   }
-  .bars{
+
+  .bars {
     display: flex;
     position: fixed;
     top: 2rem;
-    left:60%;
-    background:#ffe0e0;
-    padding:10px;
+    left: 60%;
+    background: #ffe0e0;
+    padding: 10px;
     border-radius: 10px;
     z-index: 9;
   }
-  .close{
+
+  .close {
     left: -60%;
   }
 }
-

@@ -75,7 +75,7 @@ function OrderBody() {
                 <label className="label form-custom" htmlFor="detail-custom">Chi tiết</label>
                 <input type="text" name="detail-custom" className=" input-form"></input>
             </form>
-            <div className="choose-receiver">
+            <div className="choose-receivers">
                 <h2>Địa chỉ nhận hàng</h2>
                 <p>Vui lòng chọn địa chỉ mặc định hoặc thêm mới địa chỉ nhận hàng</p>
                 <div className="form-group">
@@ -112,9 +112,9 @@ function OrderBody() {
             <div>
                 <h2>Tóm tắt thanh toán</h2>
                 <div className="summary">
-                    <p><span>Tổng giá sản phẩm</span><span>{ totalBill()} vnd</span></p>
-                    <p><span>Phí vận chuyển</span><span>{transport} vnd</span></p>
-                    <p><span>Tổng đơn hàng</span><span>{summary} vnd</span></p>
+                    <p><span>Tổng giá hàng:</span><span>{ totalBill()} vnd</span></p>
+                    <p><span>Phí vận chuyển:</span><span>{transport} vnd</span></p>
+                    <p><span>Tổng đơn hàng:</span><span>{summary} vnd</span></p>
                 </div>
             </div> 
         </div>

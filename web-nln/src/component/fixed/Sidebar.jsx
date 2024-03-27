@@ -18,10 +18,24 @@ const Sidebar = ({sendIndexToParent}) => {
     }
   };
 
-  const handleDropdownToggle = (index) => {
-    setSelected(index === selected ? -1 : index);
+// Trong hàm handleDropdownToggle
+const handleDropdownToggle = (index) => {
+  if (selected === index) {
+    // Đã chọn dropdown, bấm lại để đóng dropdown
+    setSelected(-1);
+  } else {
+    // Chưa chọn dropdown, mở dropdown tại index được chọn
+    setSelected(index);
     sendIndexToParent(index);
-  };
+  }
+};
+
+const handleDropDown = (i) => {
+  // Trong trường hợp này, không cần kiểm tra selected === i vì nó đã được kiểm tra trong handleDropdownToggle
+  setSelected(-1); // Đóng dropdown khi một option được chọn
+  sendIndexToParent(i);
+};
+
 
   return (
     <>
@@ -48,7 +62,10 @@ const Sidebar = ({sendIndexToParent}) => {
               {index === selected && item.dropdown && (
                 <div className="dropdown">
                   {item.dropdown.map((option, i) => (
-                    <div className="dropdownOption" key={i}>
+                    <div className="dropdownOption" key={i=i+4} // Sửa lại đây
+                    onClick={() => {
+                      handleDropDown(i); // Sử dụng một index duy nhất cho mỗi dropdown option
+                    }}>
                       {option}
                     </div>
                   ))}

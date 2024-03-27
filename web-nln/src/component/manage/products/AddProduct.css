@@ -1,3 +1,6 @@
+.AddProduct{
+  width: 90%;
+}
 .add-form {
   margin-left: 100px;
 }
@@ -12,6 +15,10 @@
   text-transform: uppercase;
   margin-top: 40px;
 }
+.AddProduct input{
+  height: 30px;
+  width: 90%;
+}
 .add-label h2 {
   color: var(--Text, #000);
   font-family: Roboto;
@@ -20,7 +27,7 @@
   font-weight: 400;
   line-height: normal;
 }
-.AddProduct .title {
+.AddProduct .title-add {
   color: var(--Text, #000);
 
   text-align: center;
@@ -45,7 +52,7 @@
 .AddProduct .image-button {
   position: absolute;
 
-  transform: translate(-50%, -220%);
+  transform: translate(50%, -220%);
   z-index: 2;
   width: 102px;
   height: 40px;
@@ -71,7 +78,7 @@
   flex-direction: row;
   justify-content: space-around;
 }
-.AddProduct .cancel-btn,
+.control-btn .cancel-btn,
 .add-btn {
   color: var(--Text, #000);
   text-transform: uppercase;

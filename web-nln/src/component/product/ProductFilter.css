@@ -27,7 +27,14 @@
 .dropdown-menu1 li:hover .dropdown-menu1 li:hover {
   z-index: 2; /* Đặt z-index cao hơn cho dropdown-menu, dropdown-menu1 và phần hover */
 }
-
+.reset-all{
+  display: flex;
+  justify-content: end;
+  position: absolute;
+  text-align: center;
+  right: 0;
+  padding-top: 18px;
+}
 .dropdown-menu {
   width: 100px;
   border-top: none;
@@ -51,7 +58,7 @@
 }
 .dropdown-menu1 {
   height: 123px;
-  width: 186px;
+  width: 240px;
 
   border-top: none;
   list-style-type: none;
@@ -219,7 +226,7 @@
   
 }
 .ProductReview .expand-btn {
-  position: absolute;
+  position: relative;
   left: 46%;
   padding: 10px 20px;
   background-color: white;
@@ -234,7 +241,7 @@
   cursor: pointer;
 }
 .ProductReview .collapse-btn {
-  position: absolute;
+  position: relative;
   left: 46%;
   padding: 10px 20px;
   background-color: white;

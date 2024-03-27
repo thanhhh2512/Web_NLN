@@ -28,14 +28,14 @@ export default function Slide(){
           <SwiperSlide>
             <img
               className="swiper-image"
-              src={process.env.PUBLIC_URL + "/images/home/body.png"}
+              src={process.env.PUBLIC_URL + "/images/home/body2.png"}
               alt=""
             ></img>
           </SwiperSlide>
           <SwiperSlide>
             <img
               className="swiper-image"
-              src={process.env.PUBLIC_URL + "/images/home/body.png"}
+              src={process.env.PUBLIC_URL + "/images/home/body3.png"}
               alt=""
             ></img>
           </SwiperSlide>

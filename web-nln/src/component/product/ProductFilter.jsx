@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProductFilter.css';
 import { ProductData } from '../../common/json/ProductData';
 import ProductItems from './ProductItems';
 import { Link } from 'react-router-dom';
+
 
 export default function ProductFilter() {
   const [isOpenCharacteristic, setIsOpenCharacteristic] = useState(false);
@@ -15,16 +16,26 @@ export default function ProductFilter() {
   const [visibleProducts, setVisibleProducts] = useState(8); // Số lượng sản phẩm hiển thị ban đầu
 
   const [filteredProducts, setFilteredProducts] = useState(ProductData);
+  const [initialProducts, setInitialProducts] = useState([]);
 
-
+  useEffect(() => {
+    setInitialProducts(ProductData); // Cập nhật danh sách sản phẩm ban đầu mỗi khi ProductData thay đổi
+  }, [ProductData]);
   const toggleDescription = () => {
       setExpanded(!expanded);
   };
 
   const resetDescription = () => {
-      setExpanded(false);
-      setVisibleProducts(8); // Trở lại số lượng sản phẩm hiển thị ban đầu
+    setExpanded(false);
+    setVisibleProducts(8); // Trở lại số lượng sản phẩm hiển thị ban đầu
+    
   };
+  const resetFilter = () =>{
+    setFilteredProducts(initialProducts);
+    setSelectedProduct(null);
+    setSelectedPrice(null); // Xoá trạng thái được chọn
+
+  }
 
   const handleShowMore = () => {
       setVisibleProducts(ProductData.length); // Hiển thị tất cả sản phẩm
@@ -132,6 +143,7 @@ export default function ProductFilter() {
             </ul>
           )}
         </div>
+
       </div>
       <div className='result-container'>
         <div className='show-by'>
@@ -149,6 +161,11 @@ export default function ProductFilter() {
             <button className="clear-button" onClick={clearSelectedPrice}>X</button>
           </div>
         )}
+                <div className='reset-all'>
+          <button className='btn-reset' onClick={resetFilter}>
+            ĐẶT LẠI
+          </button>
+        </div>
       </div>
       <div className={`ProductReview ${expanded ? 'expanded' : ''}`}>
             <div className='title-review'>

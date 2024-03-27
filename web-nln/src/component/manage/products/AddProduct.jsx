@@ -39,7 +39,7 @@ export default function AddProduct() {
   return (
     <div className="AddProduct">
       <form className="add-form">
-        <div className="title">
+        <div className="title-add">
           <p>THÊM MỚI SẢN PHẨM</p>
         </div>
         <div className="add-label">
@@ -185,7 +185,7 @@ export default function AddProduct() {
             )}
           </div>
           <div className="control-btn">
-            <button className="-btn" type="button">
+            <button className="cancel-btn" type="button">
               Huỷ bỏ
             </button>
             <button
