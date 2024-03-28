@@ -9,13 +9,13 @@ export const ProductData = [
     ProductType: "Hạt giống",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-      ProductSummary:[
-        "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
-        " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-        ". Thu hoạch sau 32 - 35 ngày"
-      ],
-      ProductQuantity: "50 hạt/gói",
-      ProductWeight: "200g/gói",
+    ProductSummary: [
+      "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
+      " Khí hậu trồng: cả xứ nóng & xứ lạnh",
+      ". Thu hoạch sau 32 - 35 ngày",
+    ],
+    ProductQuantity: "50 hạt/gói",
+    ProductWeight: "200g/gói",
   },
   {
     ProductNo: "002",
@@ -27,13 +27,13 @@ export const ProductData = [
     ProductType: "Cây trồng",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-      ProductSummary:[
-        "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
-        " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-        ". Thu hoạch sau 32 - 35 ngày"
-      ],
-      ProductQuantity: "70 hạt/gói",
-      ProductWeight: "300g/gói",
+    ProductSummary: [
+      "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
+      " Khí hậu trồng: cả xứ nóng & xứ lạnh",
+      ". Thu hoạch sau 32 - 35 ngày",
+    ],
+    ProductQuantity: "70 hạt/gói",
+    ProductWeight: "300g/gói",
   },
   {
     ProductNo: "003",
@@ -45,13 +45,13 @@ export const ProductData = [
     ProductType: "Hệ thống thủy canh",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-      ProductSummary:[
-        "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
-        " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-        ". Thu hoạch sau 32 - 35 ngày"
-      ],
-      ProductQuantity: "70 hạt/gói",
-      ProductWeight: "400g/gói",
+    ProductSummary: [
+      "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
+      " Khí hậu trồng: cả xứ nóng & xứ lạnh",
+      ". Thu hoạch sau 32 - 35 ngày",
+    ],
+    ProductQuantity: "70 hạt/gói",
+    ProductWeight: "400g/gói",
   },
   {
     ProductNo: "004",
@@ -63,13 +63,13 @@ export const ProductData = [
     ProductType: "Rau củ",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-      ProductSummary:[
-        "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
-        " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-        ". Thu hoạch sau 32 - 35 ngày"
-      ],
-      ProductQuantity: "70 hạt/gói",
-      ProductWeight: "300g/gói",
+    ProductSummary: [
+      "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
+      " Khí hậu trồng: cả xứ nóng & xứ lạnh",
+      ". Thu hoạch sau 32 - 35 ngày",
+    ],
+    ProductQuantity: "70 hạt/gói",
+    ProductWeight: "300g/gói",
   },
   {
     ProductNo: "005",
@@ -81,13 +81,13 @@ export const ProductData = [
     ProductType: "Thuốc trừ sâu",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-      ProductSummary:[
-        "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
-        " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-        ". Thu hoạch sau 32 - 35 ngày"
-      ],
-      ProductQuantity: "70 hạt/gói",
-      ProductWeight: "300g/gói",
+    ProductSummary: [
+      "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
+      " Khí hậu trồng: cả xứ nóng & xứ lạnh",
+      ". Thu hoạch sau 32 - 35 ngày",
+    ],
+    ProductQuantity: "70 hạt/gói",
+    ProductWeight: "300g/gói",
   },
   {
     ProductNo: "006",
@@ -99,13 +99,13 @@ export const ProductData = [
     ProductType: "Dụng cụ",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-      ProductSummary:[
-        "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
-        " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-        ". Thu hoạch sau 32 - 35 ngày"
-      ],
-      ProductQuantity: "70 hạt/gói",
-      ProductWeight: "367g/gói",
+    ProductSummary: [
+      "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
+      " Khí hậu trồng: cả xứ nóng & xứ lạnh",
+      ". Thu hoạch sau 32 - 35 ngày",
+    ],
+    ProductQuantity: "70 hạt/gói",
+    ProductWeight: "367g/gói",
   },
   {
     ProductNo: "007",
@@ -117,13 +117,13 @@ export const ProductData = [
     ProductType: "Hạt giông",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-      ProductSummary:[
-        "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
-        " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-        ". Thu hoạch sau 32 - 35 ngày"
-      ],
-      ProductQuantity: "87 hạt/gói",
-      ProductWeight: "420g/gói",
+    ProductSummary: [
+      "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
+      " Khí hậu trồng: cả xứ nóng & xứ lạnh",
+      ". Thu hoạch sau 32 - 35 ngày",
+    ],
+    ProductQuantity: "87 hạt/gói",
+    ProductWeight: "420g/gói",
   },
   {
     ProductNo: "008",
@@ -135,13 +135,13 @@ export const ProductData = [
     ProductType: "Phân bón",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-      ProductSummary:[
-        "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
-        " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-        ". Thu hoạch sau 32 - 35 ngày"
-      ],
-      ProductQuantity: "79 hạt/gói",
-      ProductWeight: "330g/gói",
+    ProductSummary: [
+      "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
+      " Khí hậu trồng: cả xứ nóng & xứ lạnh",
+      ". Thu hoạch sau 32 - 35 ngày",
+    ],
+    ProductQuantity: "79 hạt/gói",
+    ProductWeight: "330g/gói",
   },
   {
     ProductNo: "009",
@@ -153,13 +153,13 @@ export const ProductData = [
     ProductType: "Thuốc trừ sâu",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-      ProductSummary:[
-        "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
-        " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-        ". Thu hoạch sau 32 - 35 ngày"
-      ],
-      ProductQuantity: "70 hạt/gói",
-      ProductWeight: "300g/gói",
+    ProductSummary: [
+      "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
+      " Khí hậu trồng: cả xứ nóng & xứ lạnh",
+      ". Thu hoạch sau 32 - 35 ngày",
+    ],
+    ProductQuantity: "70 hạt/gói",
+    ProductWeight: "300g/gói",
   },
   {
     ProductNo: "010",
@@ -171,13 +171,13 @@ export const ProductData = [
     ProductType: "Phân bón",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-      ProductSummary:[
-        "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
-        " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-        ". Thu hoạch sau 32 - 35 ngày"
-      ],
-      ProductQuantity: "70 hạt/gói",
-      ProductWeight: "300g/gói",
+    ProductSummary: [
+      "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
+      " Khí hậu trồng: cả xứ nóng & xứ lạnh",
+      ". Thu hoạch sau 32 - 35 ngày",
+    ],
+    ProductQuantity: "70 hạt/gói",
+    ProductWeight: "300g/gói",
   },
   {
     ProductNo: "011",
@@ -189,10 +189,10 @@ export const ProductData = [
     ProductType: "Phân bón",
     ProductDetail:
       "Hạt giống cải xanh thuộc công ty ABC có chất lượng tốt, dễ dàng ủ giống và trồng, tỉ lệ lên mầm cao. Giống cải thành phẩm xanh, to, có chất lượng cao Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt",
-    ProductSummary:[
+    ProductSummary: [
       "Hạt giống thủy canh rau xanh là những giống cây được ưa chuộng trong phương pháp canh tác thủy canh, một phương pháp trồng cây mà không cần đất phục vụ cho việc sinh trưởng. Nhờ vào việc sử dụng nước và dung dịch dinh dưỡng phân hủy, hạt giống thủy canh rau xanh phát triển mạnh mẽ và nhanh chóng, đồng thời mang lại năng suất cao và chất lượng tốt.",
       " Khí hậu trồng: cả xứ nóng & xứ lạnh",
-      ". Thu hoạch sau 32 - 35 ngày"
+      ". Thu hoạch sau 32 - 35 ngày",
     ],
     ProductQuantity: "70 hạt/gói",
     ProductWeight: "300g/gói",

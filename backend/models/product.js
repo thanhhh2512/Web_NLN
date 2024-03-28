@@ -47,12 +47,11 @@ const productSchema = new mongoose.Schema({
   //   ref: "TypeProduct",
   //   required: true,
   // },
-  feature: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
+  feature: {
+    type: String,
+    enum: ["Bột", "Viên", "Lỏng"],
+    required: true,
+  },
   images: [
     {
       path: String,
