@@ -40,10 +40,13 @@
 #summary.input-form,
 #description.input-form,
 #detail-product.input-form,
-#image.input-form {
+#input-text.input-form {
   height: 100px;
 }
-#image.input-form {
+#upload-input{
+  display: none;
+}
+#input-text.input-form {
   border-style: dashed;
   position: relative;
   z-index: 1;
@@ -52,7 +55,7 @@
 .AddProduct .image-button {
   position: absolute;
 
-  transform: translate(50%, -220%);
+  transform: translate(370%, -20%);
   z-index: 2;
   width: 102px;
   height: 40px;
