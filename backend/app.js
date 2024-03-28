@@ -20,6 +20,6 @@ app.use("/api", oderRouter);
 app.use("/api", productRouter);
 app.use("/api", productTypeRouter);
 
-// app.use('/public', express.static(__dirname + '/public'));
+app.use("/public", express.static(__dirname + "/public"));
 
 module.exports = app;

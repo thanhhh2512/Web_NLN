@@ -1,6 +1,7 @@
 const Product = require("../models/product");
 const productValidate = require("../validations/product.validation");
 const e = require("express");
+const Image = require("../models/imageModel");
 
 module.exports = {
   getProduct: async (req, res) => {
@@ -76,7 +77,13 @@ module.exports = {
       if (error)
         return res.status(400).json({ error: error.details[0].message });
 
-      const images = req?.files?.map((image) => image.path);
+      const image = req?.file;
+
+      if (!image) {
+        return res.status(400).json({ error: "Vui lòng thêm ảnh" });
+      }
+
+      console.log(image);
 
       const createdProduct = new Product({
         name,
@@ -90,6 +97,12 @@ module.exports = {
         type,
         fastdescription,
         feature,
+      });
+
+      createdProduct.images.push({
+        // 'public\\images\\image-1619797876169.jpg' => 'public/images/image-1619797876169.jpg'
+        path: "/" + image.path.replace(/\\/g, "/"),
+        name: image.filename,
       });
 
       await createdProduct.save();

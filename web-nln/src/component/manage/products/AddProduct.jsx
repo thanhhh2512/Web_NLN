@@ -16,9 +16,12 @@ export default function AddProduct() {
   const [fastdescriptionValue, setfastdescriptionValue] = useState("");
   const [featureValue, setfeatureValue] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
+  const [image, setImage] = useState();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    setImage(file);
+
     const reader = new FileReader();
 
     reader.onloadend = () => {
@@ -32,20 +35,29 @@ export default function AddProduct() {
 
   const handlecreateproduct = (e) => {
     console.log("type: ", typeValue);
+    console.log("img ", image);
     axios
-      .post("http://localhost:8080/api/", {
-        name: nameValue,
-        description: descriptionValue,
-        quantity: quantityValue,
-        quantityp: quantitypValue,
-        weight: weightValue,
-        price: priceValue,
-        exp: expValue,
-        type: typeValue,
-        fastdescription: fastdescriptionValue,
-        feature: featureValue,
-        image: imageUrl, // Gửi URL của ảnh lên máy chủ
-      })
+      .post(
+        "http://localhost:8080/api/",
+        {
+          name: nameValue,
+          description: descriptionValue,
+          quantity: quantityValue,
+          quantityp: quantitypValue,
+          weight: weightValue,
+          price: priceValue,
+          exp: expValue,
+          type: typeValue,
+          fastdescription: fastdescriptionValue,
+          feature: featureValue,
+          image: image, // Gửi ảnh lên máy chủ
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
       .then((res) => {
         alert("thanh cong");
       })
@@ -177,11 +189,7 @@ export default function AddProduct() {
             <label className="image-button" htmlFor="upload-input">
               Thêm ảnh
             </label>
-            <input
-            type="text"
-            id="input-text"
-            className="input-form"
-            ></input>
+            <input type="text" id="input-text" className="input-form"></input>
             <input
               type="file"
               accept="image/*"
