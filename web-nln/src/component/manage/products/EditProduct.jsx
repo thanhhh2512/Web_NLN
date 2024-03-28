@@ -1,7 +1,54 @@
 import './EditProduct.css'
 import ImageUpload from '../../fixed/ImageUpload';
+import React, { useState } from "react";
+import axios from "axios";
 
 export default function EditProduct(){
+  const [nameValue, setnameValue] = useState("");
+  const [descriptionValue, setdescriptionValue] = useState("");
+  const [quantityValue, setquantityValue] = useState("");
+  const [quantitypValue, setquantitypValue] = useState("");
+  const [weightValue, setweightValue] = useState("");
+  const [priceValue, setpriceValue] = useState("");
+  const [expValue, setexpValue] = useState("");
+  const [typeValue, settypeValue] = useState("");
+  const [fastdescriptionValue, setfastdescriptionValue] = useState("");
+  const [featureValue, setfeatureValue] = useState("");
+  const [imageUrl, setImageUrl] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImageUrl(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+  const handlecreateproduct = (e) => {
+    console.log("type: ", typeValue);
+    axios
+      .post("http://localhost:8080/api/", {
+        name: nameValue,
+        description: descriptionValue,
+        quantity: quantityValue,
+        quantityp: quantitypValue,
+        weight: weightValue,
+        price: priceValue,
+        exp: expValue,
+        type: typeValue,
+        fastdescription: fastdescriptionValue,
+        feature: featureValue,
+        image: imageUrl, // Gửi URL của ảnh lên máy chủ
+      })
+      .then((res) => {
+        alert("thanh cong");
+      })
+      .catch((error) => console.error(error));
+  };
     return(
         <div className='EditProduct'>
             <form className="edit-form">
@@ -72,29 +119,28 @@ export default function EditProduct(){
           <input type="text" id="quantity-in-warehouse" className=" input-form"></input>
           
           <div className="img-input">
-            <label className="label form-product" htmlFor="image">
-            Hình ảnh
-          </label>
-          <input
+          <label className="label form-product" htmlFor="image">
+              Hình ảnh
+            </label>
+            <label className="image-button" htmlFor="upload-input">
+              Thêm ảnh
+            </label>
+            <input
             type="text"
-            id="image"
-            className=" input-form"
-          ></input>
+            id="input-text"
+            className="input-form"
+            ></input>
             <input
               type="file"
               accept="image/*"
-              onChange={ImageUpload.handleImageChange}
-              style={{ display: "none" }}
+              onChange={handleImageChange}
               id="upload-input"
             />
-            <div className="upload-input">
-              <button className="image-button">Thêm ảnh</button>
-            </div>
-            {ImageUpload.selectedImage && (
-              <img 
-                src={URL.createObjectURL(ImageUpload.selectedImage)}
-                alt="Selected"
-              />
+
+            {imageUrl && (
+              <div className="uploaded-image">
+                <img src={imageUrl} alt="Uploaded" />
+              </div>
             )}
           </div>
          

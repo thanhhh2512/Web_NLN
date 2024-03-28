@@ -1,7 +1,6 @@
-import "./AddProduct.css";
-import ImageUpload from "../../fixed/ImageUpload";
+import React, { useState } from "react";
 import axios from "axios";
-import { useState } from "react";
+import "./AddProduct.css";
 
 const typeProductArray = ["Hạt giống", "Rau củ", "Cây cảnh"];
 
@@ -16,7 +15,22 @@ export default function AddProduct() {
   const [typeValue, settypeValue] = useState("");
   const [fastdescriptionValue, setfastdescriptionValue] = useState("");
   const [featureValue, setfeatureValue] = useState("");
-  const handlecreateproduct = () => {
+  const [imageUrl, setImageUrl] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImageUrl(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handlecreateproduct = (e) => {
     console.log("type: ", typeValue);
     axios
       .post("http://localhost:8080/api/", {
@@ -30,12 +44,14 @@ export default function AddProduct() {
         type: typeValue,
         fastdescription: fastdescriptionValue,
         feature: featureValue,
+        image: imageUrl, // Gửi URL của ảnh lên máy chủ
       })
       .then((res) => {
-        alert('thanh cong');
+        alert("thanh cong");
       })
       .catch((error) => console.error(error));
   };
+
   return (
     <div className="AddProduct">
       <form className="add-form">
@@ -57,19 +73,13 @@ export default function AddProduct() {
           <label className="label form-product" htmlFor="typeofproduct">
             Loại sản phẩm
           </label>
-          {/* <input
-            type="text"
-            id="typeofproduct"
-            className=" input-form"
-            value={typeValue}
-            onChange={(e) => settypeValue(e.target.value)}
-          /> */}
 
           <select
             id="typeofproduct"
             name="typeofproduct"
             onChange={(e) => {
-              settypeValue(e.target.value)}}
+              settypeValue(e.target.value);
+            }}
           >
             {typeProductArray.map((item, index) => {
               return (
@@ -164,24 +174,25 @@ export default function AddProduct() {
             <label className="label form-product" htmlFor="image">
               Hình ảnh
             </label>
-            <input type="text" id="image" className=" input-form"></input>
+            <label className="image-button" htmlFor="upload-input">
+              Thêm ảnh
+            </label>
+            <input
+            type="text"
+            id="input-text"
+            className="input-form"
+            ></input>
             <input
               type="file"
               accept="image/*"
-              onChange={ImageUpload.handleImageChange}
-              style={{ display: "none" }}
+              onChange={handleImageChange}
               id="upload-input"
-              // value={iamges}
-              // onChange={(e) => setfastdescriptionValue(e.target.value)}
             />
-            <div className="upload-input">
-              <button className="image-button">Thêm ảnh</button>
-            </div>
-            {ImageUpload.selectedImage && (
-              <img
-                src={URL.createObjectURL(ImageUpload.selectedImage)}
-                alt="Selected"
-              />
+
+            {imageUrl && (
+              <div className="uploaded-image">
+                <img src={imageUrl} alt="Uploaded" />
+              </div>
             )}
           </div>
           <div className="control-btn">
