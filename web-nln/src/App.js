@@ -3,10 +3,10 @@ import "./App.css";
 
 import HomePage from "./pages/home/HomePage";
 import LoginContainer from "./pages/login/LoginContainer";
-import LoginPage from "./pages/login/LoginPage"
-import RegisterOage from "./pages/login/Resgi"
+import LoginPage from "./pages/login/LoginPage";
+import RegisterOage from "./pages/login/Resgi";
 import ProductPage from "./pages/product/ProductPage";
-import DetailProductPage from "./pages/product/DetailProductPage"
+import DetailProductPage from "./pages/product/DetailProductPage";
 
 import AccountPage from "./pages/Account/AccountPage";
 
@@ -15,26 +15,27 @@ import OrderPage from "./pages/OrderPage";
 import OrderSection from "./component/manage/order/OrderSection";
 import AdminPage from "./pages/Admin/AdminPage";
 import IntroductionPage from "./pages/home/IntroductionPage";
+
 function App() {
-    return (
-        <div className="App">
-            <Router>
-                <Routes>
-                    <Route path="/introduction" element={<IntroductionPage/>}/>
-                    <Route path="/loginpage" element={<LoginPage />} />
-                    <Route path="/login" element={<LoginContainer />} />
-                    <Route path="/register" element={<RegisterOage />} />
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/product/:id" element={<ProductPage />} />
-                    <Route path="/detail/:ProductNo" element={<DetailProductPage />} />
-                    <Route path="/account" element={<AccountPage />} />
-                    <Route path="/cart" element={<CartPage />} />
-                    <Route path="/order" element={<OrderPage />} />
-                    <Route path="/admin" element={<AdminPage/>}/>
-                    <Route path="/orderdetail" element={<OrderSection/>}/>
-                </Routes>
-            </Router>
-        </div>
-    );
+  return (
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/introduction" element={<IntroductionPage />} />
+          <Route path="/loginpage" element={<LoginPage />} />
+          <Route path="/login" element={<LoginContainer />} />
+          <Route path="/register" element={<RegisterOage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/detail/:ProductNo" element={<DetailProductPage />} />
+          <Route path="/account" element={<AccountPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/order" element={<OrderPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/orderdetail" element={<OrderSection />} />
+        </Routes>
+      </Router>
+    </div>
+  );
 }
 export default App;
