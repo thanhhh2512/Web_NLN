@@ -5,16 +5,12 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { TypeofProductData } from "../../common/json/TypeofProductData";
 
 export default function Header() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+  const [searchVisible, setSearchVisible] = useState(false);
+  const toggleSearch = () => {
+    setSearchVisible(!searchVisible);
   };
+  
 
-  const closeDropdown = () => {
-    setDropdownOpen(false);
-  };
 
   return (
     <>
@@ -47,9 +43,15 @@ export default function Header() {
     <a id="poligy">Tư vấn</a>
   </nav>
   <div className="main-tools-container">
-    <Link to={"/search"}>
-      <i className="fa-solid fa-magnifying-glass tools-icon"></i>
-    </Link>
+  <a onClick={toggleSearch}>
+    <i className="fa-solid fa-magnifying-glass tools-icon"></i>
+  </a>
+  {searchVisible && (
+    <div className="search-container">
+      {/* Thêm đoạn mã JSX cho ô tìm kiếm ở đây */}
+      <input type="text" placeholder="Tìm kiếm..." />
+    </div>
+  )}
     <Link to="/cart">
       <i className="fa-solid fa-cart-shopping tools-icon"></i>
     </Link>
