@@ -211,6 +211,7 @@ export default function ProductFilter() {
           </button>
         </div>
       </div>
+
       <div className={`ProductReview ${expanded ? "expanded" : ""}`}>
         <div className="title-review">
           <p>{products.length} SẢN PHẨM</p>
