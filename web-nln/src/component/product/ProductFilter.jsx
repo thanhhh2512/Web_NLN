@@ -172,7 +172,7 @@ export default function ProductFilter() {
                 <p>{filteredProducts.length} SẢN PHẨM</p>
             </div>
             <div className='product-container'>
-                {/* Chia danh sách sản phẩm thành các phần, mỗi phần chứa productsPerRow sản phẩm */}
+                
                 {filteredProducts.slice(0, visibleProducts).map((product) => (
                     <div key={product.ProductNo} className='product-row'>
                         {/* Render mỗi phần như một hàng */}
