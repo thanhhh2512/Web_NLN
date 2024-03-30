@@ -58,7 +58,7 @@
     cursor: pointer;
 }
 .btn-reset {
-  margin-left: 200px;
+  margin-left: 155px;
   background-color: #fff;
   color: var(--Sort, #7f6e59);
   text-align: center;
@@ -71,8 +71,9 @@
 
 }
 .btn-reset:hover{
-    font-size: 15px;
+    
     cursor: pointer;
+  
 }
 
 /* Bảng */
