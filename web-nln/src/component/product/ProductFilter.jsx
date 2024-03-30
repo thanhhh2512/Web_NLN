@@ -13,8 +13,8 @@ export default function ProductFilter() {
 
   const [isOpenPrice, setIsOpenPrice] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(null);
-  const [expanded, setExpanded] = useState(false);
-  const [visibleProducts, setVisibleProducts] = useState(8); // Số lượng sản phẩm hiển thị ban đầu
+  // const [expanded, setExpanded] = useState(false);
+  // const [visibleProducts, setVisibleProducts] = useState(8); // Số lượng sản phẩm hiển thị ban đầu
 
   const [filteredProducts, setFilteredProducts] = useState(ProductData);
   const [initialProducts, setInitialProducts] = useState([]);
@@ -30,7 +30,7 @@ export default function ProductFilter() {
     axios
       .get(`http://localhost:8080/api/products`, {
         params: {
-          limit: visibleProducts,
+          // limit: visibleProducts,
           search: searchParams.get("search"),
           sort: searchParams.get("sort"),
           characteristic: selectedCharacteristic,
@@ -221,7 +221,7 @@ export default function ProductFilter() {
         <div className="product-container">
           {/* Chia danh sách sản phẩm thành các phần, mỗi phần chứa productsPerRow sản phẩm */}
           {products.length > 0 &&
-            products.slice(0, visibleProducts).map((product) => (
+            products.map((product) => (
               <div key={product._id} className="product-row">
                 {/* Render mỗi phần như một hàng */}
                 <Link key={product._id} to={`/detail/${product._id}`}>
