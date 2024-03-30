@@ -38,7 +38,7 @@ export default function AddProduct() {
     console.log("img ", image);
     axios
       .post(
-        "http://localhost:8080/api/",
+        "http://localhost:8080/api/products",
         {
           name: nameValue,
           description: descriptionValue,
