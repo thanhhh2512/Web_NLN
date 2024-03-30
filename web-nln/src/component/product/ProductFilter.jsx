@@ -47,24 +47,24 @@ export default function ProductFilter() {
       });
   }, []);
 
-  const toggleDescription = () => {
-    setExpanded(!expanded);
-  };
+  // const toggleDescription = () => {
+  //   setExpanded(!expanded);
+  // };
 
-  const resetDescription = () => {
-    setExpanded(false);
-    setVisibleProducts(8); // Trở lại số lượng sản phẩm hiển thị ban đầu
-  };
+  // const resetDescription = () => {
+  //   setExpanded(false);
+  //   setVisibleProducts(8); // Trở lại số lượng sản phẩm hiển thị ban đầu
+  // };
 
   const resetFilter = () => {
     setFilteredProducts(initialProducts);
     setSelectedProduct(null);
     setSelectedPrice(null); // Xoá trạng thái được chọn
   };
-  const handleShowMore = () => {
-    setVisibleProducts(ProductData.length); // Hiển thị tất cả sản phẩm
-    setExpanded(true);
-  };
+  // const handleShowMore = () => {
+  //   setVisibleProducts(ProductData.length); // Hiển thị tất cả sản phẩm
+  //   setExpanded(true);
+  // };
   const toggleDropdownCharacteristic = () => {
     setIsOpenCharacteristic(!isOpenCharacteristic);
     setIsOpenPrice(false);
@@ -228,7 +228,7 @@ export default function ProductFilter() {
                   <ProductItems
                     product={product}
                     // expanded={expanded}
-                    toggleDescription={toggleDescription}
+                    // toggleDescription={toggleDescription}
                   />
                 </Link>
               </div>
