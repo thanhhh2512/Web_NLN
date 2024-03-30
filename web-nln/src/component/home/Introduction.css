@@ -6,18 +6,17 @@
 }
 
 .introduction-img {
-    margin-bottom: 5px;
-    color: #000;
-    font-family: Roboto;
-    text-align: left;
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+  color: #000;
+  font-family: Roboto;
+  text-align: left;
+  font-size: 128px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-top: 43px;
 }
-
 .introduction-content {
-  padding: 23px 48px 0 48px;
+  padding: 50px 48px 0 48px;
   color: #000;
   font-family: Roboto;
   font-size: 96px;
@@ -26,7 +25,7 @@
   line-height: normal;
 }
 
-.content-title h2{
+.content-title h2 {
   color: #000;
   text-align: left;
   font-family: Roboto;
@@ -53,9 +52,41 @@
 }
 
 .content-app {
-  text-align: right;
+  display: flex;
+  flex-direction: row;
+
 }
 
-.content-app .intro-img{
+.content-app .intro-img {
   width: 100%;
+}
+.intro1 {
+  display: flex;
+  flex-direction: column;
+  height: 219;
+  margin-right: 30px;
+}
+.img-intro1 {
+  width: 75px;
+  height: 75.998px;
+  margin-left: 28px;
+}
+.content-app-title1 {
+  width: 135px;
+  height: 74px;
+}
+.content-app-title1 p {
+  color: var(--Text, #000);
+
+  text-align: center;
+  font-family: Roboto;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.img-intro3{
+  width: 68px;
+  height: 75.998px;
+  margin-left: 28px;
 }

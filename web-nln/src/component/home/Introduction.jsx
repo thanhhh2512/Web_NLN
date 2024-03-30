@@ -4,7 +4,7 @@ export default function Introduction() {
     return (
         <div className='Introduction'>
             <div className='introduction-img'>
-                <p>Sản phẩm dinh dưỡng thủy canh</p>
+                Sản phẩm dinh dưỡng thủy canh
             </div>
             <div className='introduction-content'>
                 <div className='content-title'>
@@ -21,12 +21,48 @@ export default function Introduction() {
                     </p>
                 </div>
                 <div className='content-app'>
-                    <img
+                    <div className="intro1">
+                        <img className="img-intro1"  src={
+                            process.env.PUBLIC_URL +
+                            "/images/home/Group1.png" 
+                        }alt="" ></img>
+                        <div className="content-app-title1">
+                            <p>Rau củ ngon sạch</p>
+                        </div>
+                    </div>
+                    <div className="intro1">
+                        <img className="img-intro1"  src={
+                            process.env.PUBLIC_URL +
+                            "/images/home/Group2.png" 
+                        }alt="" ></img>
+                        <div className="content-app-title1">
+                            <p>Công nghệ hiện đại</p>
+                        </div>
+                    </div>
+                    <div className="intro1">
+                        <img className="img-intro3"  src={
+                            process.env.PUBLIC_URL +
+                            "/images/home/Group3.png" 
+                        }alt="" ></img>
+                        <div className="content-app-title1">
+                            <p>An toàn sức khỏe</p>
+                        </div>
+                    </div>
+                    <div className="intro1">
+                        <img className="img-intro1"  src={
+                            process.env.PUBLIC_URL +
+                            "/images/home/Group4.png" 
+                        }alt="" ></img>
+                        <div className="content-app-title1">
+                            <p>Lợi ích lâu dài</p>
+                        </div>
+                    </div>
+                    {/* <img
                         src={
                             process.env.PUBLIC_URL +
                             "/images/home/intro_img.png"
                         }
-                        className='intro-img'></img>
+                        className='intro-img'></img> */}
                 </div>
             </div>
         </div>
