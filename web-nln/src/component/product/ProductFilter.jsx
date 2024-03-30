@@ -212,7 +212,7 @@ export default function ProductFilter() {
         </div>
       </div>
 
-      <div className={`ProductReview ${expanded ? "expanded" : ""}`}>
+      <div >
         <div className="title-review">
           <p>{products.length} SẢN PHẨM</p>
           {/* <p>{filteredProducts.length} SẢN PHẨM</p> */}
@@ -226,14 +226,14 @@ export default function ProductFilter() {
                 <Link key={product._id} to={`/detail/${product._id}`}>
                   <ProductItems
                     product={product}
-                    expanded={expanded}
+                    // expanded={expanded}
                     toggleDescription={toggleDescription}
                   />
                 </Link>
               </div>
             ))}
         </div>
-        {!expanded && (
+        {/* {!expanded && (
           <button className="expand-btn" onClick={handleShowMore}>
             Xem thêm
           </button>
@@ -242,7 +242,7 @@ export default function ProductFilter() {
           <button className="collapse-btn" onClick={resetDescription}>
             Thu gọn
           </button>
-        )}
+        )} */}
       </div>
     </div>
   );
