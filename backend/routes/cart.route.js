@@ -6,7 +6,7 @@ router
   .route("/carts")
   .get(carts.getCart)
   .put(carts.updateCart)
-  .delete(carts.deleteCart);
-// .post(carts.postcart);
+  .delete(carts.deleteCart)
+  .post(carts.addToCart);
 
 module.exports = router;

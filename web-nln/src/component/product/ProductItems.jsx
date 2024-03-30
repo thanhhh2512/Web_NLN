@@ -10,7 +10,7 @@ const ProductItem = ({ product }) => {
           />
         </div>
         <div className="product-name">{product.name}</div>
-        <div className="product-description">{product.description}</div>
+        <div className="product-description">{product.type}</div>
       </div>
       <div className="product-bot">
         <div className="product-price">{product.price}</div>

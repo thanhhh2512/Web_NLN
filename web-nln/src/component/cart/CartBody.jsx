@@ -11,13 +11,13 @@ const priceItemInCart = (item) => {
 function CartBody() {
   // fake Data
   var Cart = CartData;
-  var [sumCart, setSumCart] = useState(() => {
-    var tmp = 0;
-    Cart.forEach((item) => {
-      tmp = tmp + priceItemInCart(item);
-    });
-    return tmp;
-  });
+  // var [sumCart, setSumCart] = useState(() => {
+  //   var tmp = 0;
+  //   Cart.forEach((item) => {
+  //     tmp = tmp + priceItemInCart(item);
+  //   });
+  //   return tmp;
+  // });
 
   // Hàm dùng xử lí thay đổi giá trị tổng
   function sumCartValue() {
@@ -33,17 +33,43 @@ function CartBody() {
     // Vì giờ làm nó thay đổi trong file khác cách thay đổi trong dữ liệu gửi đi
     sumCartValue();
   }
+  const [cart, setCart] = useState(CartData);
+  const [sumCart, setSumCart] = useState(0);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts", {
-    method: "GET",
-    headers: {},
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
+    // Calculate sumCart when cart changes
+    let tmp = 0;
+    cart.forEach((item) => {
+      tmp = tmp + priceItemInCart(item);
     });
-  },[])
+    setSumCart(tmp);
+  }, [cart]);
+
+  const addToCart = async (product, quantity) => {
+    try {
+      const response = await fetch("/api/addToCart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: "userId", // Provide the user ID here
+          product: product,
+          quantity: quantity,
+        }),
+      });
+      const data = await response.json();
+      console.log(data); // Log the response for debugging
+      // Update cart after adding to cart successfully
+      setCart([...cart, { product: data.productDB, quantity: quantity }]);
+    } catch (error) {
+      console.error(error);
+      // Handle error
+    }
+  };
+  const handleAddToCart = (product) => {
+    addToCart(product, 1); // Assuming quantity to add is 1
+  };
 
   // render danh sách sản phẩm
   const listItem = Cart.map((item) => {
@@ -89,6 +115,7 @@ function CartBody() {
       </div>
     );
   });
+
   return (
     <div className="cart-form-warraper">
       <div className="warraper-title">
