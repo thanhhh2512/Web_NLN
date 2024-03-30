@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CartData } from "../../common/json/CartData";
+// import { CartData } from "../../common/json/CartData";
 import "./Cart.css";
 
 const priceItemInCart = (item) => {
@@ -9,8 +9,17 @@ const priceItemInCart = (item) => {
   return total;
 };
 function CartBody() {
-  // fake Data
-  var Cart = CartData;
+
+  const [cart, setCart] = useState();
+  const [sumCart, setSumCart] = useState(0);
+  // Call API
+  useEffect(()=>{
+    fetch('http://localhost:8080/api/carts')
+    .then(res => res.json())
+    .then(data =>{
+      setCart(data)
+    })
+  })
   // var [sumCart, setSumCart] = useState(() => {
   //   var tmp = 0;
   //   Cart.forEach((item) => {
@@ -22,7 +31,7 @@ function CartBody() {
   // Hàm dùng xử lí thay đổi giá trị tổng
   function sumCartValue() {
     var tmp = 0;
-    Cart.forEach((item) => {
+    cart.forEach((item) => {
       tmp = tmp + priceItemInCart(item);
     });
     setSumCart(tmp);
@@ -33,8 +42,6 @@ function CartBody() {
     // Vì giờ làm nó thay đổi trong file khác cách thay đổi trong dữ liệu gửi đi
     sumCartValue();
   }
-  const [cart, setCart] = useState(CartData);
-  const [sumCart, setSumCart] = useState(0);
 
   useEffect(() => {
     // Calculate sumCart when cart changes
@@ -72,7 +79,7 @@ function CartBody() {
   };
 
   // render danh sách sản phẩm
-  const listItem = Cart.map((item) => {
+  const listItem = cart.map((item) => {
     return (
       <div className="item" key={item.ProductNo}>
         <div className="img-item">
