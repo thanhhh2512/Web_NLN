@@ -3,20 +3,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import aixos from "axios";
 
-/**
- *  contain left -> if login -> form else -> image
- *  contain right -> if login -> image else -> form
- * @returns
- */
 function LoginContainer() {
   const navigate = useNavigate();
-  // const [isUsernameFocused, setUsernameFocused] = useState(true);
-  // const [isPasswordFocused, setPasswordFocused] = useState(true);
 
   const [usernameValue, setUsernameValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
 
-  
   const handleLogin = () => {
     aixos
       .post("http://localhost:8080/api/login", {
@@ -24,10 +16,11 @@ function LoginContainer() {
         password: passwordValue,
       })
       .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data.user));
         if (res.data.user.isAdmin) {
-          navigate('/admin');
+          navigate("/admin");
         } else {
-          navigate('/');
+          navigate("/");
         }
       })
       .catch((error) => console.error(error));
@@ -86,7 +79,7 @@ function LoginContainer() {
             <a href="#l">Quên mật khẩu?</a>
           </div>
           <div className="login-button">
-               <button onClick= {handleLogin}>Đăng nhập</button>
+            <button onClick={handleLogin}>Đăng nhập</button>
             {/* <Link to={`/account`}>
               <button onclick= {handleLogin}>Đăng nhập</button>
             </Link> */}

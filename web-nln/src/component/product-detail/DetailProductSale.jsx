@@ -1,32 +1,42 @@
 import "./DetailProductSale.css";
 
+import axios from "axios";
+
 import Image from "../Image/Image";
 
 export default function DetailProductSale({ product }) {
-  const addToCart = async (product, quantity) => {
-    try {
-      const response = await fetch("http://localhost:8080/api/carts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: "userId",
-          product: product,
-          quantity: quantity,
-        }),
-      });
-      const data = await response.json();
-      console.log(data); // Log the response for debugging
-      // Update cart after adding to cart successfully
-      setCart([...cart, { product: data.productDB, quantity: quantity }]);
-    } catch (error) {
-      console.error(error);
-      // Handle error
-    }
-  };
-  const handleAddToCart = (product) => {
-    addToCart(product, 1);
+  // const addToCart = async (product, quantity) => {
+  //   try {
+  //     const response = await fetch("http://localhost:8080/api/carts", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         user: "userId",
+  //         product: product,
+  //         quantity: quantity,
+  //       }),
+  //     });
+  //     const data = await response.json();
+  //     console.log(data); // Log the response for debugging
+  //     // Update cart after adding to cart successfully
+  //     setCart([...cart, { product: data.productDB, quantity: quantity }]);
+  //   } catch (error) {
+  //     console.error(error);
+  //     // Handle error
+  //   }
+  // };
+  const handleAddToCart = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    axios
+      .post("http://localhost:8080/api/carts", {
+        userId: user._id,
+        product: product,
+        quantity: 1,
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   };
   return (
     <div className="detail-productsale-container">
@@ -43,10 +53,7 @@ export default function DetailProductSale({ product }) {
             <p>{product?.fastdescription}</p>
           </div>
           <div className="product-button">
-            <button
-              className="add-btn"
-              onClick={() => handleAddToCart(product)}
-            >
+            <button className="add-btn" onClick={() => handleAddToCart()}>
               Thêm vào giỏ hàng
             </button>
             <button className="purchase-btn">Mua hàng</button>

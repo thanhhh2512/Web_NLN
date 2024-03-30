@@ -5,7 +5,7 @@ import axios from "axios";
 import DetailProductDescription from "./DetailProductDescription";
 import DetailProductSale from "./DetailProductSale";
 import DetailProductPolicy from "./DetailProductPolicy";
-import DetailProductRecommend from "./DetailProductRecommend";
+// import DetailProductRecommend from "./DetailProductRecommend";
 
 export default function DetailProductBody() {
   const { ProductNo } = useParams();
@@ -13,7 +13,6 @@ export default function DetailProductBody() {
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/products/" + ProductNo).then((res) => {
-      console.log(res);
       setProduct(res.data.data);
     });
   }, []);
