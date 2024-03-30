@@ -212,8 +212,8 @@ export default function ProductFilter() {
         </div>
       </div>
 
-      <div >
-      {/* className={`ProductReview ${expanded ? "expanded" : ""}` */}
+      <div>
+        {/* className={`ProductReview ${expanded ? "expanded" : ""}` */}
         <div className="title-review">
           <p>{products.length} SẢN PHẨM</p>
           {/* <p>{filteredProducts.length} SẢN PHẨM</p> */}
