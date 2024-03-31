@@ -4,10 +4,16 @@ const Product = require("../models/product");
 
 exports.getCart = async (req, res) => {
   try {
-    const userId = req.body.user;
+    const userId = req.query.user;
+
     if (!userId) throw new Error("User ID is required");
 
-    const data = await Cart.findOne({ user: userId });
+    const data = await Cart.findOne({ user: userId }).populate({
+      path: "items",
+      populate: {
+        path: "product",
+      },
+    });
 
     return res.status(200).json({
       data,
@@ -23,9 +29,8 @@ exports.updateCart = async (req, res) => {
     const userId = req.body.user;
     if (!userId) throw new Error("User ID is required");
 
-    const updatedData = req.body.cartItems;
-
     const cart = await Cart.findOneAndUpdate({ user: userId }, updatedData);
+    const cartItems = req.body.cartItems;
 
     return res.status(200).json({ data: updatedCart });
   } catch (error) {
@@ -57,7 +62,12 @@ exports.addToCart = async (req, res) => {
 
     if (!userId) throw new Error("User ID is required");
 
-    const cart = await Cart.findOne({ user: userId }).populate("items");
+    const cart = await Cart.findOne({ user: userId }).populate({
+      path: "items",
+      populate: {
+        path: "product",
+      },
+    });
 
     if (!cart) {
       const cartItem = new CartItem({
@@ -73,9 +83,9 @@ exports.addToCart = async (req, res) => {
       newCart.items.push(cartItem);
       await newCart.save();
     } else {
-      if (cart.items.filter((item) => item.product == product._id).length > 0) {
+      if (cart.items.some((item) => item.product._id == product._id)) {
         const cartItemOld = cart.items.find(
-          (item) => item.product == product._id
+          (item) => item.product._id == product._id
         );
         await CartItem.findByIdAndUpdate(cartItemOld._id, {
           quantity: cartItemOld.quantity + quantity,
@@ -93,7 +103,7 @@ exports.addToCart = async (req, res) => {
 
     return res
       .status(201)
-      .json({ message: "Add Product to Cart successfully" });
+      .json({ message: "Add Product to Cart successfully", cart });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: error.message });
