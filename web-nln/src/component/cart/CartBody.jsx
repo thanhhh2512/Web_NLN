@@ -8,15 +8,15 @@ import { formatPrice } from "../../utils/formatPrice";
 
 function CartBody() {
   const [cart, setCart] = useState([]);
-  console.log(cart);
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user")) || { _id: 'null'};
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/carts?user=" + user._id)
       .then((res) => {
-        setCart(res.data.data.items);
-        console.log(res.data.data.items);
+        if(res.data.data.items )
+          setCart(res.data.data.items);
+        console.log(res);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -110,7 +110,7 @@ function CartBody() {
         <div className="salelist">
           <section className="list-items">
             {/* Khúc này có thể chia ra component */}
-            {listItem}
+            {listItem.length >0 ? listItem : "Giỏ hàng trống"}
           </section>
         </div>
         <div className="container-review">

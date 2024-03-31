@@ -96,7 +96,7 @@ exports.addToCart = async (req, res) => {
           quantity: quantity,
         });
         await cartItem.save();
-        cart.items.push(product._id);
+        cart.items.push(cartItem);
         await cart.save();
       }
     }
