@@ -11,10 +11,16 @@
     background: #fff;
     height: 30px;
     min-width: 90px;
+    margin-left: 10px;
+}
+.btn-type:hover{
+    cursor: pointer;
+    transform: scale(1.10);
 }
 .btn-type.active{
     color: #fff;
     background: var(--Text, #000);
+    
 }
 .btn-reset{
     border: none;
@@ -52,4 +58,9 @@
     gap: 90px;
     border: 1px dashed #8E8E8E;
     padding-left: 15px;
+}
+.filter-type{
+    display: flex;
+    flex-direction: row;
+
 }

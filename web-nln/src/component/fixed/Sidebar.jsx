@@ -73,7 +73,7 @@ const handleDropDown = (i) => {
               )}
             </div>
           ))}
-          <div className="menuItem">
+          <div className="menuItems">
             <UilSignOutAlt />
           </div>
         </div>
