@@ -4,9 +4,10 @@
     flex-direction: column;
     justify-content: space-evenly;
     /* background-color: rgb(97, 238, 238); */
-    height: 700px;
+    height: 666px;
     margin-left: 20px;
-    width: 80%;
+    width: 180%;
+    
 }
 
 @media screen and (max-width: 1200px) {
