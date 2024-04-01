@@ -54,8 +54,7 @@
   width: 700px;
   height: fit-content;
 }
-.itemList-detail {
-}
+
 .img-item img {
   background: cover no-repeat, #d9d9d9;
   width: 60px;
@@ -75,7 +74,7 @@
 }
 .quantity-item input {
   text-align: center;
-  width: 30px;
+  /* width: 30px; */
   /* padding-inline: 15px 1px; */
 }
 .price-item {
