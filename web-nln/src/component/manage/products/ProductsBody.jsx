@@ -86,7 +86,9 @@ function ProductsBody() {
             <button className='btn-reset' onClick={()=>setFillter('')}>Đặt lại</button>
         </div> */}
         <div className='length-list'>
+
             <p>{products.length} sản phẩm</p>
+
         </div>
         <section className='itemList manager-products'>
             {products.length > 0 && products.map((item)=>{

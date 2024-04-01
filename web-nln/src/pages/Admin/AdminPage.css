@@ -1,6 +1,11 @@
 .AdminPage{
     display: flex;
     flex-direction: row;
-    max-height: 100%;
-    height: fit-content;
+    /* max-height: 100%;
+    height: fit-content; */
+   
+}
+.AdminPage .content-right{
+    position: relative;
+    left: 15%;
 }
