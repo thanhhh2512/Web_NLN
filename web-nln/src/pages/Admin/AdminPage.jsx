@@ -32,9 +32,9 @@ function AdminPage() {
     case 4:
       content = <AddProduct />;
       break;
-    case 5:
-      content = <EditProduct />;
-      break;
+    // case 5:
+    //   content = <EditProduct />;
+    //   break;
     default:
       break;
   }
@@ -43,7 +43,7 @@ function AdminPage() {
     <div className="AdminPage">
       <Sidebar sendIndexToParent={handleSidebarIndex} />
       {/* <OrderManage sendIndexToParent={selectSideBarIndex}/> */}
-      {content} = {selectSideBarIndex}
+      {content}
       {/* <ManageProductPage sendIndexToParent={selectSideBarIndex}/> */}
       {/* {<EditProduct/>}
             {<AddProduct/>}  */}

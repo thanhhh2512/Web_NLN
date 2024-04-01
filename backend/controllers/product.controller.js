@@ -78,6 +78,7 @@ module.exports = {
         return res.status(400).json({ error: error.details[0].message });
 
       const image = req?.file;
+      console.log("Image create: ", image);
 
       if (!image) {
         return res.status(400).json({ error: "Vui lòng thêm ảnh" });
@@ -130,15 +131,14 @@ module.exports = {
         feature,
       } = req.body;
 
-      const existProduct = Product.findById(req.params.id);
+      const existProduct = await Product.findById(req.params.id);
 
       if (!existProduct)
         return res.status(404).json({ error: "Không tìm thấy sản phẩm" });
 
       existProduct.name = name || existProduct.name;
       existProduct.description = description || existProduct.description;
-      existProduct.fastdescription =
-        fastdescription || existProduct.fastdescription;
+      existProduct.fastdescription = fastdescription || existProduct.fastdescription;
       existProduct.quantity = quantity || existProduct.quantity;
       existProduct.quantityp = quantityp || existProduct.quantityp;
       existProduct.weight = weight || existProduct.weight;
@@ -148,12 +148,23 @@ module.exports = {
       existProduct.type = type || existProduct.type;
       existProduct.feature = feature || existProduct.feature;
 
+      const image = req.file;
+      console.log("Image: ", image);
+
+      if (image) {
+        existProduct.images = [];
+        existProduct.images.push({
+          path: "/" + image.path.replace(/\\/g, "/"),
+          name: image.filename,
+        });
+      }
+
       await existProduct.save();
 
       return res.status(201).json({ data: existProduct });
     } catch (error) {
       console.error(error); // Log lỗi ra console để debug
-      return res.status(500).json({ error: "Internal server error" }); // Trả về lỗi 500 nếu có lỗi xảy ra
+      return res.status(500).json({ error: "update product server error" }); // Trả về lỗi 500 nếu có lỗi xảy ra
     }
   },
 

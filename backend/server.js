@@ -8,7 +8,7 @@ app.listen(process.env.PORT, () => {
 });
 
 mongoose
-  .connect("mongodb://localhost:27017/nienluan", {
+  .connect("mongodb+srv://elle322002:nhoem13579@mycluster.brp0arg.mongodb.net/nienluan?retryWrites=true&w=majority&appName=myCluster", {
     family: 4,
   })
   .then(() => {
@@ -17,3 +17,4 @@ mongoose
   .catch((error) => {
     console.error(error);
   });
+  

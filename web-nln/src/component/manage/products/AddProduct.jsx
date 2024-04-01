@@ -36,6 +36,7 @@ export default function AddProduct() {
   const handlecreateproduct = (e) => {
     console.log("type: ", typeValue);
     console.log("img ", image);
+    console.log("url: ", imageUrl);
     axios
       .post(
         "http://localhost:8080/api/products",
