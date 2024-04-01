@@ -15,6 +15,7 @@ import OrderPage from "./pages/OrderPage";
 import OrderSection from "./component/manage/order/OrderSection";
 import AdminPage from "./pages/Admin/AdminPage";
 import IntroductionPage from "./pages/home/IntroductionPage";
+import EditProduct from "./component/manage/products/EditProduct";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/order" element={<OrderPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/editProduct/:id" element={<EditProduct />} />
           <Route path="/orderdetail" element={<OrderSection />} />
         </Routes>
       </Router>
