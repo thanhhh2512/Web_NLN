@@ -34,7 +34,7 @@ export const SidebarData = [
   {
     icon: UilPackage,
     heading: 'Quản lý sản phẩm',
-    dropdown: ["Thêm sản phẩm", "Chỉnh sửa sản phẩm"]
+    dropdown: ["Thêm sản phẩm"]
   },
   {
     icon: UilChart,
