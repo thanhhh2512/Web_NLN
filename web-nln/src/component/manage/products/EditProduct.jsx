@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export default function EditProduct(){
+  const typeProductArray = ["Hạt giống", "Rau củ", "Cây cảnh"];
+
   const [nameValue, setnameValue] = useState("");
   const [descriptionValue, setdescriptionValue] = useState("");
   const [quantityValue, setquantityValue] = useState("");
@@ -64,11 +66,21 @@ export default function EditProduct(){
           <label className="label form-product" htmlFor="typeofproduct">
             Loại sản phẩm
           </label>
-          <input
-            type="text"
+          <select
             id="typeofproduct"
-            className=" input-form"
-          ></input>
+            name="typeofproduct"
+            onChange={(e) => {
+              settypeValue(e.target.value);
+            }}
+          >
+            {typeProductArray.map((item, index) => {
+              return (
+                <option value={item} key={index} defaultChecked={index === 0}>
+                  {item}
+                </option>
+              );
+            })}
+          </select>
           <label className="label form-product" htmlFor="characteristic">
             Đặc tính
           </label>
@@ -81,14 +93,6 @@ export default function EditProduct(){
             Mô tả sản phẩm
           </label>
           <input type="text" id="description" className=" input-form"></input>
-          <label className="label form-product" htmlFor="detail-product">
-            Chi tiết sản phẩm
-          </label>
-          <input
-            type="text"
-            name="detail-product"
-            className=" input-form"
-          ></input>
           <label className="label form-product" htmlFor="weight">
             Khối lượng
           </label>
@@ -104,7 +108,7 @@ export default function EditProduct(){
           <label className="label form-product" htmlFor="expiry">
             Hạn sử dụng
           </label>
-          <input type="text" id="expiry" className=" input-form"></input>
+          <input type="date" id="expiry" className=" input-form"></input>
           <label className="label form-product" htmlFor="price">
             Giá bán
           </label>
