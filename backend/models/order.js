@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const orderItemSchma = new mongoose.Schema({
   product: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product',
+    ref: "Product",
   },
   quantity: {
     type: Number,
-    default: 1
+    default: 1,
   },
 });
 
@@ -15,29 +15,29 @@ const orderSchema = new mongoose.Schema({
   items: [orderItemSchma],
   address: {
     type: String,
-    required: true
+    required: true,
   },
   paymentMethod: {
     type: String,
-    default: 'Trực tiếp',
-    required: true
+    default: "Trực tiếp",
+    required: true,
   },
   deliveryMethod: {
     type: String,
-    default: 'Giao hàng tiết kiệm',
+    default: "Giao hàng tiết kiệm",
   },
   createdAt: {
     type: Date,
-    default: Date.now()
+    default: Date.now(),
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
   },
   note: {
     type: String,
-    required: false
-  }
+    required: false,
+  },
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model("Order", orderSchema);

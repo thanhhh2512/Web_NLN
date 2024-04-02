@@ -10,6 +10,7 @@ import DetailProductPolicy from "./DetailProductPolicy";
 export default function DetailProductBody() {
   const { ProductNo } = useParams();
   const [product, setProduct] = useState();
+  //update
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/products/" + ProductNo).then((res) => {

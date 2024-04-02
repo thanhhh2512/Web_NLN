@@ -15,6 +15,8 @@ exports.getCart = async (req, res) => {
       },
     });
 
+    console.log(data);
+
     return res.status(200).json({
       data,
     });
@@ -56,6 +58,7 @@ exports.deleteCart = async (req, res) => {
   }
 };
 
+
 exports.addToCart = async (req, res) => {
   try {
     const { product, quantity, userId } = req.body;
@@ -96,7 +99,9 @@ exports.addToCart = async (req, res) => {
           quantity: quantity,
         });
         await cartItem.save();
-        cart.items.push(cartItem);
+
+        cart.items.push(cartItem._id);
+
         await cart.save();
       }
     }

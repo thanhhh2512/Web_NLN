@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import { CartData } from "../../common/json/CartData";
 import "./Cart.css";
 import axios from "axios";
 
 import { formatPrice } from "../../utils/formatPrice";
+
+import CartItem from "./CartItem";
 
 function CartBody() {
   const [cart, setCart] = useState([]);
@@ -14,12 +15,13 @@ function CartBody() {
     axios
       .get("http://localhost:8080/api/carts?user=" + user._id)
       .then((res) => {
-        if(res.data.data.items )
-          setCart(res.data.data.items);
-        console.log(res);
+
+        setCart(res.data.data.items);
+
       })
       .catch((err) => console.log(err));
   }, []);
+
   const deleteFromCart = (productId) => {
     axios
       .delete("http://localhost:8080/api/carts/" + productId)
@@ -29,78 +31,6 @@ function CartBody() {
       .catch((err) => console.log(err));
   };
 
-  const addToCart = (product, quantity) => {
-    axios
-      .post("http://localhost:8080/api/carts", {
-        userId: user._id, // Provide the user ID here
-        product: {
-          _id: product.product._id,
-          quantity: quantity,
-        },
-        quantity: quantity,
-      })
-      .then((res) => {
-        console.log(res.data);
-        setCart(res.data.cart.items);
-      })
-      .catch((err) => console.log(err));
-
-    // setCart([...cart, { product: data.productDB, quantity: quantity }]);
-  };
-
-  const listItem = cart.map((item) => {
-    return (
-      <div className="item" key={item._id}>
-        <div className="img-item">
-          <img
-            src={"http://localhost:8080" + item.product.images[0].path}
-            alt={item.product.name}
-          />
-        </div>
-        <div className="itemList-detail">
-          <div className="des-item">{item.product.name}</div>
-          <div className="more-infor">
-            <div>
-              <p className="type-product">
-                <span className="label">Loại sản phẩm</span>
-                <span className="pref-item">{item.product.type}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="quantity-item">
-          <button
-            className="btn-pre"
-            onClick={(e) => addToCart(item, item.quantity - 1)}
-          >
-            -
-          </button>
-          <input
-            min="1"
-            max="99"
-            type="number"
-            width="30px"
-            value={item.quantity}
-            readOnly
-          />
-          <button
-            className="btn-add"
-            onClick={(e) => addToCart(item, item.quantity + 1)}
-          >
-            +
-          </button>
-        </div>
-        <div className="price-item">
-          <p>
-            <span className="label">Giá</span>
-            <span>{formatPrice(item.product.price)}</span>
-          </p>
-          <div className="remove-item">Xoá </div>
-        </div>
-      </div>
-    );
-  });
-
   return (
     <div className="cart-form-warraper">
       <div className="warraper-title">
@@ -109,8 +39,11 @@ function CartBody() {
       <div className="detail-cart">
         <div className="salelist">
           <section className="list-items">
-            {/* Khúc này có thể chia ra component */}
-            {listItem.length >0 ? listItem : "Giỏ hàng trống"}
+
+            {cart.map((item) => (
+              <CartItem key={item._id} item={item} setCart={setCart} />
+            ))}
+
           </section>
         </div>
         <div className="container-review">
