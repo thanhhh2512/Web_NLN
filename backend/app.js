@@ -8,6 +8,7 @@ const userRouter = require("./routes/user.route");
 const oderRouter = require("./routes/order.route");
 const productRouter = require("./routes/product.router");
 const productTypeRouter = require("./routes/productType.route");
+const cartItemRouter = require("./routes/cartItem.route");
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use("/api", cartRouter);
 app.use("/api", oderRouter);
 app.use("/api", productRouter);
 app.use("/api", productTypeRouter);
+app.use("/api", cartItemRouter);
 
 app.use("/public", express.static(__dirname + "/public"));
 
