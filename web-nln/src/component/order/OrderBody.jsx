@@ -2,126 +2,253 @@ import { useEffect, useState } from "react";
 import { CartData } from "../../common/json/CartData";
 import '../cart/Cart.css'
 import './Order.css'
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function OrderBody() {
-    const [transport, setStransport] = useState("15.000")
-    const [summary, setSummary] = useState()
-    // Tính tổng giá trị hàng
-    const totalBill = ()=>{
-        var tmp = 0;
-        CartData.forEach((item) => {
-            tmp = tmp + Number.parseInt(item.ProductPrice) * Number.parseFloat(item.Quantity);
-        });
-        return (tmp/1000) + ".000";
-    } 
-    useEffect(() =>{
-        var total = (Number.parseInt(totalBill()) + Number.parseInt(transport)) + ".000";
-        setSummary(total)
-    },[transport])
-    // Xử lí sự kiện thay đổi đơn vị vận chuyển
+    const user = JSON.parse(localStorage.getItem("user")) || { _id: 'null' };
+    const [cart, setCart] = useState([]);
+    const [orderData, setOrderData] = useState({
+        address: user.address || '',
+        paymentMethod: 'Thanh toán khi nhận hàng' || '',
+        deliveryMethod: 'Giao hàng tiết kiệm' || '',
+        user: user._id || '',
+        note: '',
+        transport: "15.000"
+    });
+    const [addressType, setAddressType] = useState('Default');
+    const [summary, setSummary] = useState("0");
+    const navigate = useNavigate();
+    useEffect(() => {
+        getOrderData();
+    }, []);
 
-    // render danh sách đơn hàng
-    var listOrder = CartData.map(item =>{
-                   return (
-                    <div className="item in-order" key={item.ProductNo}>
-                        <div className='item-detail'>
-                            <img src={item.ProductImage[0]} alt={item.ProductName} />
-                            {item.ProductName}
-                        </div>
-                        <div className='quantity-item' >
-                            <input className="q-order"value={item.Quantity} type="number" readOnly ></input>
-                        </div>
-                        <div className='price-item' >
-                            {Number.parseInt(item.ProductPrice)/1000 + ".000 vnd"}
-                        </div>
-                        <div className='total'>
-                            { (Number.parseInt(item.ProductPrice) * Number.parseInt(item.Quantity))/1000 +".000"} vnd
-                        </div>
-                    </div>)
-                })
-    return (
-    <main className="wrapper">
-        <div className="title-page">
-            <h1>Đơn hàng của bạn</h1>
+    useEffect(() => {
+        calculateSummary();
+    }, [orderData.transport, cart]);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+
+        if (value === "15.000") {
+            orderData.deliveryMethod = "Giao hàng tiết kiệm";
+        } else if (value === "35.000") {
+            orderData.deliveryMethod = "Giao hàng nhanh";
+        }
+
+        setOrderData(prevData => ({
+            ...prevData,
+            [name]: value,
+            deliveryMethod: orderData.deliveryMethod
+        }));
+    };
+
+
+    const handleChangeAddressType = (e) => {
+        setAddressType(e.target.value);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const requestData = {
+                items: cart,
+                address: orderData.address,
+                paymentMethod: orderData.paymentMethod,
+                deliveryMethod: orderData.deliveryMethod,
+                user: orderData.user,
+                note: orderData.note
+            };
+            console.log(requestData);
+            const response = await axios.post(`http://localhost:8080/api/order/create`, requestData);
+            console.log('Order created:', response.data);
+            if (response.status === 200 || response.status === 201) {
+                // Thực hiện xoá các cart item từ giỏ hàng
+                const deleteResponse = await deletePaidItemsFromCart();
+                if (deleteResponse || deleteResponse.success) {
+                    // Xoá thành công, chuyển hướng đến trang cart
+                    navigate('/cart');
+                } else {
+                    // Xoá không thành công, xử lý theo cách thích hợp (ví dụ: hiển thị thông báo lỗi)
+                    console.error('Error deleting paid items from cart:', deleteResponse.error);
+
+                }
+            }
+
+        } catch (error) {
+            console.error('Error creating order:', error);
+        }
+    };
+    console.log(cart)
+    const deletePaidItemsFromCart = async () => {
+        try {
+            // Lấy danh sách các sản phẩm trong giỏ hàng
+            const paidItemsIds = cart.map((item)=>item._id)
+            console.log(paidItemsIds);
+            // Gửi yêu cầu để xoá các sản phẩm đã thanh toán
+            const deleteResponse = await axios.delete('http://localhost:8080/api/cart-items', { data: { ids: paidItemsIds } });
+
+            // Xoá các sản phẩm đã thanh toán khỏi state của giỏ hàng
+            const updatedCart = cart.filter(item => !item.isPaid);
+            setCart(updatedCart);
+            return deleteResponse.data;
+
+        } catch (error) {
+            console.error('Error deleting paid items from cart:', error);
+            return { success: false, error: error.message };
+        }
+    }
+    const totalBill = () => {
+        return cart.reduce((total, item) => total + Number(item.product.price) * Number(item.quantity), 0) / 1000;
+    }
+
+    const getOrderData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8080/api/carts?user=${user._id}`);
+            const data = response.data.data.items;
+            if (data !== null) {
+                setCart(data);
+            }
+        } catch (error) {
+            console.error('Error fetching cart data:', error);
+        }
+    }
+
+    const calculateSummary = () => {
+        const total = totalBill() + Number(orderData.transport);
+        setSummary(total);
+    }
+
+    const listOrder = cart.map(item => (
+        <div className="item in-order" key={item._id}>
+            <div className='item-detail'>
+                <img src={'http://localhost:8080' + item.product.images[0].path} alt={item.product.name} />
+                {item.product.name}
+            </div>
+            <div className='quantity-item' >
+                <input className="q-order" value={item.quantity} type="number" readOnly />
+            </div>
+            <div className='price-item' >
+                {(Number(item.product.price) / 1000).toFixed(3)} vnd
+            </div>
+            <div className='total'>
+                {((Number(item.product.price) * Number(item.quantity)) / 1000).toFixed(3)} vnd
+            </div>
         </div>
-        <section className="order-detail">
-            <div className="head-table">
-                <p>Tóm tắt đơn hàng</p>
-                <p>Số lượng</p>
-                <p>Giá</p>
-                <p className="head-total">Tổng cộng</p>
+    ));
+
+    return (
+        <main className="wrapper">
+            <div className="title-page">
+                <h1>Đơn hàng của bạn</h1>
             </div>
-            <div className='itemList'>
-                {listOrder}
-            </div>
-            <div className="total-bill">
-                <div className="form-custom"> Tổng giá sản phẩm</div>
-                <div>{ totalBill()} vnd
+            <section className="order-detail">
+                <div className="head-table">
+                    <p>Tóm tắt đơn hàng</p>
+                    <p>Số lượng</p>
+                    <p>Giá</p>
+                    <p className="head-total">Tổng cộng</p>
+                </div>
+                <div className='itemList'>
+                    {listOrder}
+                </div>
+                <div className="total-bill">
+                    <div className="form-custom"> Tổng giá sản phẩm</div>
+                    <div>{totalBill()} vnd
+                    </div>
+                </div>
+            </section>
+            <div className="inf-custom">
+                <form className="address-form">
+                    <h2>Chi tiết địa chỉ</h2>
+
+                    <label className="label form-custom" htmlFor="name-custom">Tên người nhận</label>
+
+                    <input type="text" name="name-custom" value={user.fullname} disabled className=" input-form"></input>
+                    <label className="label form-custom" htmlFor="phone-number">Số điện thoại</label>
+                    <input type="text" name="phone-number" value={user.phone} disabled className=" input-form"></input>
+                    {/* <label className="label form-custom" htmlFor="city">Tỉnh/thành phố</label>
+                    <input type="text" name="city" disabled={{}} className=" input-form"></input>
+                    <label className="label form-custom" htmlFor="distric">Quận/ huyện</label>
+                    <input type="text" name="distric" className=" input-form"></input>
+                    <label className="label form-custom" htmlFor="ward">Phường/ xã</label>
+                    <input type="text" name="ward" className=" input-form"></input> */}
+                    <label className="label form-custom" htmlFor="detail-custom">Ghi chú</label>
+                    <input type="text" name="note"
+                        value={orderData.note}
+                        onChange={handleChange} className=" input-form"></input>
+                    <label>
+                        Địa chỉ:
+                    </label>
+                    <input
+                        type="text"
+                        name="address"
+                        value={orderData.address}
+                        onChange={handleChange}
+                        disabled={addressType === "Default"}
+                    />
+                </form>
+                <div className="choose-receivers">
+                    <h2>Địa chỉ nhận hàng</h2>
+                    <p>Vui lòng chọn địa chỉ mặc định hoặc thêm mới địa chỉ nhận hàng</p>
+                    <div className="form-group">
+                        <input
+                            type="radio"
+                            id="default"
+                            name="address"
+                            value="Default"
+                            checked={addressType === 'Default'} // Kiểm tra nếu địa chỉ là mặc định
+                            onChange={handleChangeAddressType} // Gọi hàm handleChange khi có sự kiện onChange
+                        />
+                        <label htmlFor="default">Mặc định</label>
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="radio"
+                            id="add"
+                            name="address"
+                            value={"Add new address"}
+                            checked={addressType !== "Default"} // Kiểm tra nếu địa chỉ là thêm địa chỉ mới
+                            onChange={handleChangeAddressType} // Gọi hàm handleChange khi có sự kiện onChange
+                        />
+                        <label htmlFor="add">Thêm địa chỉ mới</label>
+                    </div>
                 </div>
             </div>
-        </section>
-        <div className="inf-custom">
-            <form className="address-form">
-                <h2>Chi tiết địa chỉ</h2>
-                <label className="label form-custom" htmlFor="name-custom">Tên người nhận</label>
-                <input type="text" name="name-custom" className=" input-form"></input>
-                <label className="label form-custom" htmlFor="phone-number">Số điện thoại</label>
-                <input type="text" name="phone-number" className=" input-form"></input>
-                <label className="label form-custom" htmlFor="city">Tỉnh/thành phố</label>
-                <input type="text" name="city" className=" input-form"></input>
-                <label className="label form-custom" htmlFor="distric">Quận/ huyện</label>
-                <input type="text" name="distric" className=" input-form"></input>
-                <label className="label form-custom" htmlFor="ward">Phường/ xã</label>
-                <input type="text" name="ward" className=" input-form"></input>
-                <label className="label form-custom" htmlFor="detail-custom">Chi tiết</label>
-                <input type="text" name="detail-custom" className=" input-form"></input>
-            </form>
-            <div className="choose-receivers">
-                <h2>Địa chỉ nhận hàng</h2>
-                <p>Vui lòng chọn địa chỉ mặc định hoặc thêm mới địa chỉ nhận hàng</p>
-                <div className="form-group">
-                <input type="radio" id="default" name="address" value="Default" checked={true}/>
-                <label htmlFor="default">Mặc định</label>
-                </div>
-                <div className="form-group">
-                    <input type="radio" id="add" name="address" value="Add new address"></input>
-                    <label htmlFor="add">Thêm địa chỉ mới</label>
-                </div>
-            </div>
-        </div>    
-        <div className="transport">
-            <h2>Loại vận chuyển</h2>
-            <div className="select-radio">
+            <div className="transport">
+                <h2>Loại vận chuyển</h2>
+                <div className="select-radio">
                     <div className="option-gh">
-                        <div><input type="radio" id="ghtk" name="transport" value="15.000" checked={transport === "15.000"} onChange={(e) => setStransport(e.target.value)}></input><label htmlFor="ghtk">Giao hàng tiết kiệm</label></div>
+                        <div><input type="radio" id="ghtk" name="transport" value="15.000" checked={orderData.transport === "15.000"} onChange={handleChange}></input><label htmlFor="ghtk">Giao hàng tiết kiệm</label></div>
                         <p>Giao hàng sau 3-5 ngày</p>
                         <p>15.000 vnd</p>
                     </div>
                     <div className="option-gh">
-                        <div><input type="radio" id="ghn" name="transport" value="30.000" checked={transport === "30.000"} onChange={(e) => setStransport(e.target.value)}></input><label htmlFor="ghn">Giao hàng nhanh</label></div>
+                        <div><input type="radio" id="ghn" name="transport" value="35.000" checked={orderData.transport === "35.000"} onChange={handleChange}></input><label htmlFor="ghn">Giao hàng nhanh</label></div>
                         <p>Giao hàng sau 1-2 ngày</p>
                         <p>35.000 vnd</p>
                     </div>
-            </div>
-        </div>
-        <div className="footbill">
-            <div>
-                <h2>Hình thức thanh toán</h2>
-                <input type="radio" name="payment" id="payment" value="cash" checked></input>
-                <label htmlFor="payment">Thanh toán khi nhận hàng</label>
-            </div>
-            <div>
-                <h2>Tóm tắt thanh toán</h2>
-                <div className="summary">
-                    <p><span>Tổng giá hàng:</span><span>{ totalBill()} vnd</span></p>
-                    <p><span>Phí vận chuyển:</span><span>{transport} vnd</span></p>
-                    <p><span>Tổng đơn hàng:</span><span>{summary} vnd</span></p>
                 </div>
-            </div> 
-        </div>
-        <div className="check-out">
-            <a href="/order" ><button className="btn-submit"> Đặt hàng</button></a>
-        </div>
-    </main>
+            </div>
+            <div className="footbill">
+                <div>
+                    <h2>Hình thức thanh toán</h2>
+                    <input type="radio" name="paymentMethod" id="payment" value="cash" checked></input>
+                    <label htmlFor="payment">Thanh toán khi nhận hàng</label>
+                </div>
+                <div>
+                    <h2>Tóm tắt thanh toán</h2>
+                    <div className="summary">
+                        <p><span>Tổng giá hàng:</span><span>{totalBill()} vnd</span></p>
+                        <p><span>Phí vận chuyển:</span><span>{orderData.transport} vnd</span></p>
+                        <p><span>Tổng đơn hàng:</span><span>{summary} vnd</span></p>
+                    </div>
+                </div>
+            </div>
+            <div className="check-out">
+                <a href="#" ><button onClick={handleSubmit} className="btn-submit"> Đặt hàng</button></a>
+            </div>
+        </main>
     );
 }
 
