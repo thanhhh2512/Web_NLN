@@ -4,8 +4,10 @@ const upload = require("../middlewares/multer");
 
 router.get("/products", controller.getProducts);
 router.get("/products/:id", controller.getProduct);
+router.get("/productsa", controller.getProductsa);
+router.get("/productsa/:id", controller.getProducta);
 router.post("/products", upload.single("image"), controller.createProduct);
-router.put("/products/:id", upload.single("image"),controller.updateProduct);
+router.put("/products/:id", upload.single("image"), controller.updateProduct);
 router.delete("/products/:id", controller.deleteProduct);
 
 // router.patch(
