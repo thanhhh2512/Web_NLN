@@ -17,6 +17,10 @@
   grid-template-columns: repeat(4, 1fr); /* Tạo 4 cột với độ rộng bằng nhau */
   gap: 20px; /* Khoảng cách giữa các hình ảnh */
 }
+.container-img img:hover{
+  box-shadow: 8px 8px 20px rgb(197, 197, 197);
+  transform: scale(1.05);
+}
 
 .container-img a {
   width: 100%;

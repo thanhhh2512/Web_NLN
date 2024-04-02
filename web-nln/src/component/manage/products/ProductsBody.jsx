@@ -1,34 +1,70 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import './Products.css'
 import { TypeofProductData } from '../../../common/json/TypeofProductData';
-import { ProductData } from '../../../common/json/ProductData';
+import axios from 'axios';
+import EditProduct from './EditProduct';
+import { Link } from 'react-router-dom';
+
 function ProductsBody() {
-    const [lengthList, setLengthList] = useState(ProductData.length)
     const [fillter, setFillter] = useState('')
-    var products = useRef(ProductData)
-    const fillterType = useCallback((type) =>{
-        if(type ==='')
-            return ProductData
-        return ProductData.filter((item)=>{
-                // console.log(item)
-                return item.ProductType === type
-            }
-        )},[])
+    const [products, setProducts] = useState([]);
+    const serverApi = process.env.REACT_APP_SERVER_URL
+    const serverUrl = process.env.REACT_APP_SERVER
+    
+
+    //var products = useRef(ProductData)
+    // const fillterType = useCallback((type) =>{
+    //     if(type ==='')
+    //         return ProductData
+    //     return ProductData.filter((item)=>{
+    //             // console.log(item)
+    //             return item.ProductType === type
+    //         }
+    //     )},[])
     
 
     // Xử lý click lọc sản phẩm
+    // useEffect(()=>{
+    //     products.current = fillterType(fillter)
+    //     console.log([products.current, fillter])
+    //     setLengthList(products.current.length)
+    // },[fillter,fillterType])
+
+    async function fetchData(){
+        const data = await axios.get(serverApi+'/products').then((res)=>{
+            setProducts(res.data.data)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+
+    async function deleteProduct(id){
+        if(window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) {
+            const data = await axios.delete(serverApi+'/products/'+id).then((res)=>{
+                fetchData()
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+    }
+
+    function editPage(id){
+        
+    }
+
+    
+
     useEffect(()=>{
-        products.current = fillterType(fillter)
-        // console.log([products.current, fillter])
-        setLengthList(products.current.length)
-    },[fillter,fillterType])
+        fetchData()
+    },[])
+
 
     return ( 
     <div className="wrapper">
         <div className="title-page">
            <h1>Quản lý sản phẩm</h1> 
         </div>
-        <div className="select-type">
+        {/* <div className="select-type">
             <h5>Loại sản phẩm</h5>
             <div className='fillter-type'>
                 {TypeofProductData.map(type =>{
@@ -48,17 +84,19 @@ function ProductsBody() {
                 })}
             </div>
             <button className='btn-reset' onClick={()=>setFillter('')}>Đặt lại</button>
-        </div>
+        </div> */}
         <div className='length-list'>
-            <p>{lengthList } sản phẩm</p>
+
+            <p>{products.length} sản phẩm</p>
+
         </div>
         <section className='itemList manager-products'>
-            {products.current.map((item)=>{
+            {products.length > 0 && products.map((item)=>{
                 return (
                     <div className="block-item " key={item.ProductNo}>
                         <div className="item-detail">
-                            <img src={"/"+item.ProductImage} alt={item.ProductName}/>
-                            {item.ProductName}
+                            <img src={serverUrl+item.images[0].path} alt={item.name}/>
+                            {item.name}
                         </div>
                         <div className='saled'>
                             <p>Đã bán:</p>
@@ -69,13 +107,15 @@ function ProductsBody() {
                             <p>5</p>
                         </div>
                         <div className='control-manage'>
-                            <p><i className="fa-solid fa-pen-to-square"></i></p>
-                            <p><i className="fa-solid fa-trash"></i></p>
+                            <Link to={{ pathname: `/admin/editProduct/${item._id}` }}><i className="fa-solid fa-edit"></i></Link>
+                            <p><i className="fa-solid fa-trash" onClick={() => deleteProduct(item._id)}></i></p>
                         </div>
-                    </div>)
+                    </div>
+                )
             })}
         </section>
-    </div> );
+    </div> 
+    );
 }
 
 export default ProductsBody;

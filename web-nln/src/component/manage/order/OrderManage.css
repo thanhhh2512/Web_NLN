@@ -49,13 +49,16 @@
   font-weight: 300;
   line-height: normal;
 }
-.filter-status button:hover {
-  border: none;
-  box-shadow: 0 0 5px rgb(226, 226, 226);
-  color: rgb(255, 255, 255);
-  font-weight: 500;
-  background-color: #000;
-  cursor: pointer;
+
+.filter-status button:hover{
+    border: none;
+    box-shadow: 0 0 5px rgb(218, 216, 216);
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    background-color: #000;
+    cursor: pointer;
+    
+
 }
 .btn-reset {
   margin-left: 120px;
@@ -69,8 +72,12 @@
   margin-right: 20px;
   border: none;
 }
-.btn-reset:hover {
-  cursor: pointer;
+
+.btn-reset:hover{
+    transform: scale(1.15);
+    cursor: pointer;
+  
+
 }
 
 /* Bảng */
