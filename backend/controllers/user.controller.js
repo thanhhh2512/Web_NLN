@@ -35,8 +35,17 @@ exports.createUser = async (req, res) => {
     } = req.body;
 
     // Check if all required fields are present
-    if (!username || !email || !password) {
-      return res.status(400).json({ error: "All fields are required" });
+    if (
+      !username ||
+      !email ||
+      !password ||
+      !fullname ||
+      !phone ||
+      !gender ||
+      !address ||
+      !fullname
+    ) {
+      return res.status(400).json({ error: "Vui lòng điền đầy đủ các trường" });
     }
 
     // Check if user already exists

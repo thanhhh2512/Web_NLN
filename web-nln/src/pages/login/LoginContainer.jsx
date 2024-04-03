@@ -23,7 +23,10 @@ function LoginContainer() {
           navigate("/");
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        alert(error.response.data.error);
+        console.error(error);
+      });
   };
   return (
     <div className="LoginContainer">
@@ -32,7 +35,7 @@ function LoginContainer() {
           <div className="login-image">
             <img
               alt="home"
-              src={process.env.PUBLIC_URL + "/images/fixed/image 29.png"}
+              src={process.env.PUBLIC_URL + "/images/fixed/image 30.png"}
             ></img>
           </div>
           <div className="Title">

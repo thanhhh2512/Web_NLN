@@ -52,6 +52,7 @@ function OrderSection() {
       });
     return tmp / 1000 + ".000";
   };
+
   // Handle transport change
 
 
@@ -60,6 +61,7 @@ function OrderSection() {
   if (order && order.items) {
     listOrder = order.items.map((item) => (
       <div className="item in-order-section" key={item._id}>
+
         <div className="item-detail">
           <img src={`http://localhost:8080${item.product.images[0].path}`} alt={item.product.name} />
           {item.product.name}
@@ -139,10 +141,12 @@ function OrderSection() {
       </div>
       <div className="check-out-btn">
 
+
         <Link to={"/admin"}><button className="btn-confirm"> Đã xác nhận</button></Link>
         <Link to={"/admin"}><button className="btn-delivery"> Đã giao hàng</button></Link>
         <Link to={"/admin"}><button className="btn-recieve"> Đã gửi hàng</button></Link>
         <Link to={"/admin"}><button className="btn-default"> Chưa được xác nhận</button></Link>
+
 
       </div>
     </main>

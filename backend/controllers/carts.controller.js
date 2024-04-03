@@ -58,7 +58,6 @@ exports.deleteCart = async (req, res) => {
   }
 };
 
-
 exports.addToCart = async (req, res) => {
   try {
     const { product, quantity, userId } = req.body;

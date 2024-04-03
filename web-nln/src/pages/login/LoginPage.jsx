@@ -24,9 +24,8 @@ function LoginContainer({}) {
               src={process.env.PUBLIC_URL + "/images/fixed/image 29.png"}
             ></img>
           </div>
-
-          
-          <div className="login-button">
+          <div className="button-container">
+                   <div className="login-button">
             <Link to={`/login`}>
               <button>ĐĂNG NHẬP</button>
             </Link>
@@ -36,6 +35,8 @@ function LoginContainer({}) {
               <button>ĐĂNG KÝ</button>
             </Link>
           </div>
+          </div>
+   
           
         </div>
         <div className="fixed-img">

@@ -37,6 +37,7 @@ export default function DetailProductSale({ product }) {
       })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
+    alert("Thêm sản phẩm vào giỏ hàng thành công");
   };
   return (
     <div className="detail-productsale-container">

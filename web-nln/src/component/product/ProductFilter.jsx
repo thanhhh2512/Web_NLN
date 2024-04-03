@@ -2,10 +2,20 @@ import React, { useState, useEffect } from "react";
 import "./ProductFilter.css";
 import { ProductData } from "../../common/json/ProductData";
 import ProductItems from "./ProductItems";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useParams } from "react-router-dom";
 import axios from "axios";
 
+const typeProduct = {
+  "00001": "Hạt giống",
+  "00002": "Rau củ",
+  "00003": "Cây cảnh",
+  "00005": "Phân bón",
+  "00006": "Thuốc trừ sâu",
+  "00004": "Dụng cụ thủy canh",
+};
+
 export default function ProductFilter() {
+  const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isOpenCharacteristic, setIsOpenCharacteristic] = useState(false);
   const [selectedCharacteristic, setSelectedCharacteristic] = useState(null);
@@ -13,8 +23,6 @@ export default function ProductFilter() {
 
   const [isOpenPrice, setIsOpenPrice] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(null);
-  // const [expanded, setExpanded] = useState(false);
-  // const [visibleProducts, setVisibleProducts] = useState(8); // Số lượng sản phẩm hiển thị ban đầu
 
   const [filteredProducts, setFilteredProducts] = useState(ProductData);
   const [initialProducts, setInitialProducts] = useState([]);
@@ -28,9 +36,9 @@ export default function ProductFilter() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/products`, {
+      .get(`http://localhost:8080/api/productsa`, {
         params: {
-          // limit: visibleProducts,
+          type: typeProduct[id],
           search: searchParams.get("search"),
           sort: searchParams.get("sort"),
           characteristic: selectedCharacteristic,
@@ -39,32 +47,19 @@ export default function ProductFilter() {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setProducts(response.data.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-
-  // const toggleDescription = () => {
-  //   setExpanded(!expanded);
-  // };
-
-  // const resetDescription = () => {
-  //   setExpanded(false);
-  //   setVisibleProducts(8); // Trở lại số lượng sản phẩm hiển thị ban đầu
-  // };
+  }, [id]);
 
   const resetFilter = () => {
     setFilteredProducts(initialProducts);
     setSelectedProduct(null);
     setSelectedPrice(null); // Xoá trạng thái được chọn
   };
-  // const handleShowMore = () => {
-  //   setVisibleProducts(ProductData.length); // Hiển thị tất cả sản phẩm
-  //   setExpanded(true);
-  // };
+
   const toggleDropdownCharacteristic = () => {
     setIsOpenCharacteristic(!isOpenCharacteristic);
     setIsOpenPrice(false);
@@ -87,6 +82,7 @@ export default function ProductFilter() {
 
   const meetsPriceRange = (productPrice, priceRange) => {
     const price = parseInt(productPrice.replace("vnd", "").trim());
+
     if (priceRange === "0 - 50.000") {
       return price <= 50000;
     } else if (priceRange === "50.000 - 100.000") {
