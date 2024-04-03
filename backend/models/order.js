@@ -38,6 +38,16 @@ const orderSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  status: {
+    type: Number,
+    required: false,
+    default: 4
+  },
+  total: {
+    type: Number,
+    required: true,
+    nullable: false
+  }
 });
 
 module.exports = mongoose.model("Order", orderSchema);

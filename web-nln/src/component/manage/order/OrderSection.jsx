@@ -2,61 +2,86 @@ import "./OrderSection.css";
 import { useEffect, useState } from "react";
 import { CartData } from "../../../common/json/CartData";
 import "../../cart/Cart.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
+import axios from "axios";
 
 function OrderSection() {
-  const [transport, setStransport] = useState("15.000");
+  const [order, setOrder] = useState(null);
+
   const [summary, setSummary] = useState();
-  // Tính tổng giá trị hàng
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const orderId = searchParams.get('orderId');
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/orderDetail?orderId=${orderId}`);
+
+        const data = await response.data;
+        setOrder(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+
+    fetchOrder();
+
+  }, [orderId]);
+
+  useEffect(() => {
+    if (!order) return;
+
+    // Calculate total summary
+    const totalBill = order.items.reduce((total, item) => {
+      return total + (Number.parseInt(item.product.price) * Number.parseFloat(item.quantity)) / 1000;
+    }, 0);
+
+    const total = order.total;
+    setSummary(total.toFixed(3)); // Format to 3 decimal places
+  }, [order]);
   const totalBill = () => {
     var tmp = 0;
-    CartData.forEach((item) => {
-      tmp =
-        tmp +
-        Number.parseInt(item.ProductPrice) * Number.parseFloat(item.Quantity);
-    });
+    if (order && order.items)
+      order.items.forEach((item) => {
+        tmp =
+          tmp +
+          Number.parseInt(item.product.price) * Number.parseFloat(item.quantity);
+      });
     return tmp / 1000 + ".000";
   };
-  useEffect(() => {
-    var total =
-      Number.parseInt(totalBill()) + Number.parseInt(transport) + ".000";
-    setSummary(total);
-  }, [transport]);
-  // Xử lí sự kiện thay đổi đơn vị vận chuyển
+  // Handle transport change
 
-  // render danh sách đơn hàng
-  var listOrder = CartData.map((item) => {
-    return (
-      <div className="item in-order-section" key={item.ProductNo}>
+
+  // Render order items
+  var listOrder = null;
+  if (order && order.items) {
+    listOrder = order.items.map((item) => (
+      <div className="item in-order-section" key={item._id}>
         <div className="item-detail">
-          <img src={item.ProductImage[0]} alt={item.ProductName} />
-          {item.ProductName}
+          <img src={`http://localhost:8080${item.product.images[0].path}`} alt={item.product.name} />
+          {item.product.name}
         </div>
         <div className="quantity-item">
-          <input
-            className="q-order"
-            value={item.Quantity}
-            type="number"
-            readOnly
-          ></input>
+          <input className="q-order" value={item.quantity} type="number" readOnly />
         </div>
         <div className="price-item">
-          {Number.parseInt(item.ProductPrice) / 1000 + ".000 vnd"}
+          {(Number.parseInt(item.product.price) / 1000).toFixed(3)} vnd
         </div>
         <div className="total">
-          {(Number.parseInt(item.ProductPrice) *
-            Number.parseInt(item.Quantity)) /
-            1000 +
-            ".000"}{" "}
-          vnd
+          {((Number.parseInt(item.product.price) * Number.parseInt(item.quantity)) / 1000).toFixed(3)} vnd
         </div>
       </div>
-    );
-  });
+    ));
+  }
+  console.log(listOrder)
+  console.log(order)
   return (
     <main className="wrapper">
       <div className="title-page">
-        <h1>Đơn hàng </h1>
+        <h1>Chi tiết đơn hàng #{orderId}</h1>
       </div>
       <section className="order-detail">
         <div className="header-table">
@@ -65,14 +90,14 @@ function OrderSection() {
           <p>Giá</p>
           <p className="header-total">Tổng cộng</p>
         </div>
-        <div className="item-List">{listOrder}</div>
+        <div className="item-List">{listOrder && listOrder}</div>
         <div className="total-price">
           <div className="form-custom"> Tổng giá sản phẩm</div>
           <div>{totalBill()} vnd</div>
         </div>
         <div className="delivery-fee">
           <div className="fee">Phí vận chuyển</div>
-          <div>{transport} vnd</div>
+          <div>{order && order.deliveryMethod === "Giao hàng tiết kiệm" ? "15.000" : "30.000"} vnd</div>
         </div>
         <div className="total">
           <div className="bill"> Tổng đơn hàng</div>
@@ -86,16 +111,18 @@ function OrderSection() {
             <div className="address-title">
               <p>Tên người nhận:</p>
               <p>Số điện thoại:</p>
-              <p>Tỉnh/Thành phố:</p>
-              <p>Quận/huyện:</p>
-              <p>Phường/Xã:</p>
+              <p>Địa chỉ:</p>
+              <p>Email:</p>
             </div>
             <div className="address-detail">
-              <p>Nguyen van A</p>
-              <p>0959595022</p>
-              <p>Cần Thơ</p>
-              <p>Ninh Kiều</p>
-              <p>An Khánh</p>
+              {order && (
+                <>
+                  <p>{order.user.fullname}</p>
+                  <p>{order.user.phone}</p>
+                  <p>{order.user.address || order.address}</p>
+                  <p>{order.user.email}</p>
+                </>
+              )}
             </div>
             <div className="transportation">
               <div className="transport-title">
@@ -103,20 +130,20 @@ function OrderSection() {
                 <p>Hình thức thanh toán:</p>
               </div>
               <div className="transport-detail">
-                <p>Giao hàng nhanh</p>
-                <p>Thanh toán khi nhận hàng</p>
+                <p>{order && order.deliveryMethod}</p>
+                <p>{order && order.paymentMethod}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="check-out-btn">
-       
-      <Link  to={"/admin"}><button className="btn-confirm"> Đã xác nhận</button></Link>
-      <Link  to={"/admin"}><button className="btn-delivery"> Đã giao hàng</button></Link>
-      <Link  to={"/admin"}><button className="btn-recieve"> Đã gửi hàng</button></Link>
-      <Link  to={"/admin"}><button className="btn-default"> Chưa được xác nhận</button></Link>
-        
+
+        <Link to={"/admin"}><button className="btn-confirm"> Đã xác nhận</button></Link>
+        <Link to={"/admin"}><button className="btn-delivery"> Đã giao hàng</button></Link>
+        <Link to={"/admin"}><button className="btn-recieve"> Đã gửi hàng</button></Link>
+        <Link to={"/admin"}><button className="btn-default"> Chưa được xác nhận</button></Link>
+
       </div>
     </main>
   );

@@ -57,7 +57,8 @@ function OrderBody() {
                 paymentMethod: orderData.paymentMethod,
                 deliveryMethod: orderData.deliveryMethod,
                 user: orderData.user,
-                note: orderData.note
+                note: orderData.note,
+                total:summary
             };
             console.log(requestData);
             const response = await axios.post(`http://localhost:8080/api/order/create`, requestData);
@@ -83,7 +84,7 @@ function OrderBody() {
     const deletePaidItemsFromCart = async () => {
         try {
             // Lấy danh sách các sản phẩm trong giỏ hàng
-            const paidItemsIds = cart.map((item)=>item._id)
+            const paidItemsIds = cart.map((item) => item._id)
             console.log(paidItemsIds);
             // Gửi yêu cầu để xoá các sản phẩm đã thanh toán
             const deleteResponse = await axios.delete('http://localhost:8080/api/cart-items', { data: { ids: paidItemsIds } });
@@ -113,12 +114,10 @@ function OrderBody() {
             console.error('Error fetching cart data:', error);
         }
     }
-
     const calculateSummary = () => {
         const total = totalBill() + Number(orderData.transport);
-        setSummary(total);
+        setSummary(total.toFixed(3)); // Đảm bảo rằng tổng cộng có tối đa 3 chữ số thập phân
     }
-
     const listOrder = cart.map(item => (
         <div className="item in-order" key={item._id}>
             <div className='item-detail'>
@@ -154,7 +153,7 @@ function OrderBody() {
                 </div>
                 <div className="total-bill">
                     <div className="form-custom"> Tổng giá sản phẩm</div>
-                    <div>{totalBill()} vnd
+                    <div>{totalBill().toFixed(3)} vnd
                     </div>
                 </div>
             </section>
@@ -239,7 +238,7 @@ function OrderBody() {
                 <div>
                     <h2>Tóm tắt thanh toán</h2>
                     <div className="summary">
-                        <p><span>Tổng giá hàng:</span><span>{totalBill()} vnd</span></p>
+                        <p><span>Tổng giá hàng:</span><span>{totalBill().toFixed(3)} vnd</span></p>
                         <p><span>Phí vận chuyển:</span><span>{orderData.transport} vnd</span></p>
                         <p><span>Tổng đơn hàng:</span><span>{summary} vnd</span></p>
                     </div>

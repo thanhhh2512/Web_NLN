@@ -1,20 +1,37 @@
 import "./OrderManage.css";
-import { OrderData } from "../../../common/json/OrderData";
+
 import { useEffect, useState, useRef, useCallback } from "react"
 import { Link, useParams } from "react-router-dom";
 import { CartData } from "../../../common/json/CartData";
+import axios from "axios";
 export default function OrderManage() {
+  const [orders, setOrders] = useState([]);
 
-  const { ProductNo } = useParams();
+  useEffect(() => {
+    // Gọi API để lấy danh sách các đơn hàng
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/orders');
+        setOrders(response.data);
 
-  // Tìm kiếm sản phẩm trong ProductData bằng id
-  const product = CartData.find((cart) => cart.ProductNo === ProductNo);
-  const [lengthList, setLengthList] = useState(OrderData.length);
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+      }
+    };
+
+    fetchOrders();
+
+
+  }, []);
+
+
+
+
   const [filter, setFilter] = useState({ status: "", searchText: "" });
   const [prevFilter, setPrevFilter] = useState({ status: "", searchText: "" });
-  var order = useRef(OrderData);
-const filterOrders = useCallback(() => {
-    let filteredData = OrderData;
+  var order = useRef(orders);
+  const filterOrders = useCallback(() => {
+    let filteredData = orders;
 
     if (filter.status !== "") {
       filteredData = filteredData.filter(
@@ -28,7 +45,7 @@ const filterOrders = useCallback(() => {
   useEffect(() => {
     if (prevFilter !== filter) {
       order.current = filterOrders();
-      setLengthList(order.current.length);
+
       setPrevFilter(filter);
     }
   }, [filter, prevFilter, filterOrders]);
@@ -36,7 +53,16 @@ const filterOrders = useCallback(() => {
   const handleFilterChange = (newFilter) => {
     setFilter({ ...filter, ...newFilter });
   };
-
+  const getUserInfo = async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/user?userId=${userId}`);
+      return response.data; // Trả về dữ liệu người dùng từ server
+    } catch (error) {
+      console.error('Error fetching user info:', error);
+      return null;
+    }
+  };
+  console.log(orders)
   return (
     <div className="OrderManage">
       <div className="order-manage-title">
@@ -56,10 +82,10 @@ const filterOrders = useCallback(() => {
               {status === 1
                 ? "Đã xác nhận"
                 : status === 2
-                ? "Đã giao hàng"
-                : status === 3
-                ? "Đã gửi hàng"
-                : "Chưa được xác nhận"}
+                  ? "Đã giao hàng"
+                  : status === 3
+                    ? "Đã gửi hàng"
+                    : "Chưa được xác nhận"}
             </button>
           ))}
         </div>
@@ -83,31 +109,31 @@ const filterOrders = useCallback(() => {
           </thead>
           <tbody>
             {order.current.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.orderDate}</td>
-                <td>{item.customer}</td>
+              <tr key={item._id}>
+                <td>{item._id}</td>
+                <td>{item.createdAt}</td>
+                <td>{item.user.fullname}</td>
                 <td
                   className={
                     item.status === 1
                       ? "confirmed"
                       : item.status === 2
-                      ? "delivery"
-                      : item.status === 3
-                      ? "received"
-                      : "default"
+                        ? "delivery"
+                        : item.status === 3
+                          ? "received"
+                          : "default"
                   }
                 >
                   {item.status === 1
                     ? "Đã xác nhận"
                     : item.status === 2
-                    ? "Đã giao hàng"
-                    : item.status === 3
-                    ? "Đã gửi hàng"
-                    : "Chưa được xác nhận"}
+                      ? "Đã giao hàng"
+                      : item.status === 3
+                        ? "Đã gửi hàng"
+                        : "Chưa được xác nhận"}
                 </td>
-                <td>{Number.parseInt(item.total)/1000 + ".000 vnd"}</td>
-                <td><Link to ={`/orderdetail`}><i className="fa-solid fa-pen-to-square"></i></Link></td>
+                <td>{Number.parseFloat(item.total).toFixed(3) + " vnd"}</td>
+                <td><Link to={`/orderdetail?orderId=${item._id}`}><i className="fa-solid fa-pen-to-square"></i></Link></td>
               </tr>
             ))}
           </tbody>
