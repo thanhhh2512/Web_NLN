@@ -2,8 +2,13 @@
   height: 100vh;
   background-color: #ffffff;
   overflow: hidden;
-}
 
+}
+.login-content .login-image img {
+  width: 367px;
+  height: 150px;
+
+}
 .InnerLoginContainer {
   display: flex;
   height: 100%;
@@ -17,8 +22,6 @@
 .fixed-img {
   flex: 1;
 }
-
-
 .LoginContainer .login-content {
   flex: 1;
   display: flex;
@@ -28,9 +31,12 @@
 }
 .LoginContainer .Title p {
   color: var(--Text, #000);
+
+
   text-align: center;
-  font-family: Roboto;
-  font-size: 32px;
+  font-family: Inter;
+  font-size: 20px;
+
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -51,9 +57,19 @@
 .login-input-field {
   border: 0;
   border-bottom: 1px solid #000;
-  width: 300px;
+
+  width: 500px;
   padding-top: 12px;
-  font-size: 16px;
+  color: #7c7c7c;
+
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+
+  padding-top: 12px;
+
 }
 
 .login-input-field:focus {
@@ -62,14 +78,23 @@
 
 .login-input-field:focus::placeholder {
   color: transparent;
-}
 
+}
+.button-container {
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+
+}
 .login-button button {
   text-transform: uppercase;
   background-color: #fff;
   width: 312px;
+
+  height: 60px;
   padding: 12px 48px;
-  margin: 36px 0;
+  margin: 20px 0;
+
 }
 
 .login-button button:hover {
