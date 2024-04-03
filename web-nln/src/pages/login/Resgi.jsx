@@ -26,7 +26,7 @@ function RegisterContainer() {
 
   const handleRegister = () => {
     if (passwordValue !== repasswordValue) {
-        alert('Mật khẩu và nhập lại mật khẩu không trùng khớp.')
+      alert("Mật khẩu và nhập lại mật khẩu không trùng khớp.");
     }
     aixos
       .post("http://localhost:8080/api/register", {
@@ -42,7 +42,10 @@ function RegisterContainer() {
       .then((res) => {
         alert(res.data.message);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        alert(error.response.data.error);
+        console.error(error);
+      });
   };
 
   return (
@@ -135,7 +138,11 @@ function RegisterContainer() {
                 ></input>
               </div>
               <div className="gender input-item">
-                <select id="gender" name="gender" onChange={(e) => setGenderValue(e.target.value)}>
+                <select
+                  id="gender"
+                  name="gender"
+                  onChange={(e) => setGenderValue(e.target.value)}
+                >
                   <option value="Nam">Nam</option>
                   <option value="Nữ">Nu</option>
                   <option value="Khác">Khác</option>

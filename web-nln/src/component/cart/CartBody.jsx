@@ -10,7 +10,7 @@ import CartItem from "./CartItem";
 function CartBody() {
   const [cart, setCart] = useState([]);
 
-  const user = JSON.parse(localStorage.getItem("user")) || { _id: 'null'};
+  const user = JSON.parse(localStorage.getItem("user")) || { _id: 'null' };
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/carts?user=" + user._id)
@@ -21,7 +21,7 @@ function CartBody() {
       })
       .catch((err) => console.log(err));
   }, []);
-
+  console.log(cart);
   const deleteFromCart = (productId) => {
     axios
       .delete("http://localhost:8080/api/carts/" + productId)

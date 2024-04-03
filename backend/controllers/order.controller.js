@@ -2,7 +2,7 @@ const Order = require('../models/order');
 
 exports.getOrders = async (req, res) => {
     try {
-        const data = await Order.findOne();
+        const data = await Order.find();
         return res.status(200).json(data);
     } catch (error) {
         console.error(error);

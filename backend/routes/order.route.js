@@ -4,8 +4,8 @@ const order = require("../controllers/order.controller");
 
 const router = express.Router();
 
-router.route("/order").get(order.getOrders).post(order.updateOrder);
-
+router.route("/orders").get(order.getOrders)
+router.route('/order/create').post(order.createOrder);
 router
   .route("/order/:orderId")
   .put(order.updateOrder)

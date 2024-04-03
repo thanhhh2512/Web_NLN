@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AccountOrder.css";
 import { OrderData } from "../../common/json/OrderData";
 import { Link } from "react-router-dom";
+import axios from "axios";
 function AccountOrder() {
   //https://fakestoreapi.com/products/
   const [ordersData, setOrderData] = useState(OrderData);
@@ -10,7 +11,7 @@ function AccountOrder() {
   const toggleCollapsible = () => {
     setIsOpen(!isOpen);
   };
-  console.log(ordersData);
+
   return (
     <>
       <div className="text-b-lg">ĐƠN HÀNG CỦA BẠN</div>
@@ -109,10 +110,10 @@ function AccountOrder() {
                       {item.status === 1
                         ? "Đã xác nhận"
                         : item.status === 2
-                        ? "Đã giao hàng"
-                        : item.status === 3
-                        ? "Đã gửi hàng"
-                        : "Chưa được xác nhận"}
+                          ? "Đã giao hàng"
+                          : item.status === 3
+                            ? "Đã gửi hàng"
+                            : "Chưa được xác nhận"}
                     </div>
                   </div>
 

@@ -23,7 +23,10 @@ function LoginContainer() {
           navigate("/");
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        alert(error.response.data.error);
+        console.error(error);
+      });
   };
   return (
     <div className="LoginContainer">
