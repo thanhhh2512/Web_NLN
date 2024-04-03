@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./AddProduct.css";
 
-const typeProductArray = ["Hạt giống", "Rau củ", "Cây cảnh"];
+const typeProductArray = [
+  "Hạt giống",
+  "Rau củ",
+  "Cây cảnh",
+  "Dụng cụ thủy canh",
+  "Phân bón",
+  "Thuốc trừ sâu",
+];
 
 export default function AddProduct() {
   const [nameValue, setnameValue] = useState("");

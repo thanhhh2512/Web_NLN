@@ -9,6 +9,9 @@ const typeProduct = {
   "00001": "Hạt giống",
   "00002": "Rau củ",
   "00003": "Cây cảnh",
+  "00005": "Phân bón",
+  "00006": "Thuốc trừ sâu",
+  "00004": "Dụng cụ thủy canh",
 };
 
 export default function ProductFilter() {

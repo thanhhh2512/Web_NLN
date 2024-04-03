@@ -39,7 +39,14 @@ const productSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ["Hạt giống", "Rau củ", "Cây cảnh"],
+    enum: [
+      "Hạt giống",
+      "Rau củ",
+      "Cây cảnh",
+      "Phân bón",
+      "Thuốc trừ sâu",
+      "Dụng cụ thủy canh",
+    ],
     required: true,
   },
   feature: {

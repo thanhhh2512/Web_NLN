@@ -22,7 +22,7 @@ export const TypeofProductData = [
   {
     id: "00004",
     imagePath: [process.env.PUBLIC_URL + "images/product/Frame11.png"],
-    title: "Hạt giống thủy canh"
+    title: "Dụng cụ thủy canh"
   },
   {
     id: "00005",
