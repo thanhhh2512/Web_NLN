@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.route("/orders").get(order.getOrders)
 router.route('/order/create').post(order.createOrder);
+router.route("/orderdetail").get(order.getOrderById).put(order.updateOrderById);
 router
   .route("/order/:orderId")
   .put(order.updateOrder)
