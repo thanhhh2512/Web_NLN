@@ -1,3 +1,8 @@
+html, body {
+  margin: 0; /* Loại bỏ margin */
+  padding: 0; /* Loại bỏ padding */
+  border: 0; /* Loại bỏ border */
+}
 .Footer {
   text-align: center;
   display: flex;
@@ -26,7 +31,10 @@
   position: relative;
   z-index: 1;
 }
-
+.img-footer img{
+  width: 100%;
+  height: 80%;
+}
 .contact-button {
   position: absolute;
   bottom: 35%;
