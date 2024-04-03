@@ -1,15 +1,16 @@
 .RegisterContainer {
-    height: 1000px;
+    min-height: 70vh; 
     background-color: #ffffff;
 }
 
 .InnerRegisterContainer {
     display: flex;
-    height: 100%;
+    height: 600px; 
+    width: 100%;
 }
 
 .fixed-img img {
-    height: 100%;
+    height: 115%;
     width: 100%;
     object-fit: cover;
 }
@@ -22,6 +23,7 @@
     flex: 1;
     display: flex;
     align-items: center;
+    
     flex-direction: column;
 }
 
@@ -33,7 +35,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 20px;
 }
 
@@ -51,8 +53,8 @@
 .register-input-field {
     border: 0;
     border-bottom: 1px solid #000;
-    width: 300px;
-    padding-top: 12px;
+    width: 560px;
+    padding-top: 5px;
     font-size: 16px;
 }
 
@@ -68,7 +70,6 @@
     text-transform: uppercase;
     background-color: #fff;
     width: 312px;
-   
 }
 
 .register-button button:hover {
@@ -82,23 +83,12 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 30px 0;
+    margin: 15px 0;
 }
 
 .RegisterContainer .input-item .input-label {
-    /* position: absolute; */
     display: block;
-    font-size: 20px;
+    font-size: 16px;
     font-family: Roboto;
     font-weight: 300;
-
-    /* left: 0;
-  top: 50%;
-  transform: translate(0, -50%);
-  transition: all .5 linear; */
 }
-
-/* .Register-input-field:focus + .input-label {
-  top: 0;
-  transform: translate(0, -50%);
-} */

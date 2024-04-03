@@ -87,7 +87,7 @@ function ProductsBody() {
                         <div className="item-detail">
                             <img src={serverUrl+item.images[0].path} alt={item.name}/>
                             {item.name}
-                            <p>{item.type}</p>
+                            
                         </div>
                         <div className='saled'>
                             <p>Đã bán:</p>
