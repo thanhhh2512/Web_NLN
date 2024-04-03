@@ -23,7 +23,9 @@ function OrderSection() {
     setSummary(total);
   }, [transport]);
   // Xử lí sự kiện thay đổi đơn vị vận chuyển
-
+  axios.get("http://localhost:8080/api/orders").then((res) => {
+    
+  });
   // render danh sách đơn hàng
   var listOrder = CartData.map((item) => {
     return (
@@ -111,12 +113,18 @@ function OrderSection() {
         </div>
       </div>
       <div className="check-out-btn">
-       
-      <Link  to={"/admin"}><button className="btn-confirm"> Đã xác nhận</button></Link>
-      <Link  to={"/admin"}><button className="btn-delivery"> Đã giao hàng</button></Link>
-      <Link  to={"/admin"}><button className="btn-recieve"> Đã gửi hàng</button></Link>
-      <Link  to={"/admin"}><button className="btn-default"> Chưa được xác nhận</button></Link>
-        
+        <Link to={"/admin"}>
+          <button className="btn-confirm"> Đã xác nhận</button>
+        </Link>
+        <Link to={"/admin"}>
+          <button className="btn-delivery"> Đã giao hàng</button>
+        </Link>
+        <Link to={"/admin"}>
+          <button className="btn-recieve"> Đã gửi hàng</button>
+        </Link>
+        <Link to={"/admin"}>
+          <button className="btn-default"> Chưa được xác nhận</button>
+        </Link>
       </div>
     </main>
   );
