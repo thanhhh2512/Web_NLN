@@ -60,7 +60,7 @@ img {
 .info {
   margin-top: 70px;
   text-align: left;
-  width: 50%;
+  width: 70%;
 }
 .info p {
   color: var(--text-p, #838383);
@@ -76,7 +76,7 @@ img {
   width: 25%;
   margin-top: 14px;
 }
-.add-btn {
+.detail-productsale-container .add-btn {
   width: 304px;
   height: 55px;
   margin-bottom: 20px;
@@ -102,4 +102,24 @@ img {
   font-weight: 300;
   line-height: normal;
   background-color: white;
+}
+.detail-productsale-container .add-btn:hover{
+  background-color: #897358;
+  color: white;
+  cursor: pointer;
+}
+.detail-productsale-container .add-btn:active{
+  background-color: #897358;
+  color: white;
+  cursor: pointer;
+}
+.purchase-btn:hover{
+  background-color: #897358;
+  color: white;
+  cursor: pointer;
+}
+.purchase-btn:active{
+  background-color: #897358;
+  color: white;
+  cursor: pointer;
 }
