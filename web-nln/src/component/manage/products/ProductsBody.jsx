@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef, useCallback } from 'react';
 import './Products.css'
 import { TypeofProductData } from '../../../common/json/TypeofProductData';
@@ -43,12 +44,18 @@ function ProductsBody() {
     },[])
 
 
-    return ( 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
     <div className="wrapper">
+
         <div className="title-page">
            <h1>Quản lý sản phẩm</h1> 
         </div>
         <div className="select-type">
+
             <h5>Loại sản phẩm</h5>
             <div className='fillter-type'>
                 {TypeofProductData.map(type =>{
@@ -68,6 +75,7 @@ function ProductsBody() {
                 })}
             </div>
             <button className='btn-reset' onClick={()=>setFillter('')}>Đặt lại</button>
+
         </div>
         <div className='length-list'>
             <p>{products.length} sản phẩm</p>

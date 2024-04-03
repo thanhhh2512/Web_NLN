@@ -14,7 +14,7 @@ function AdminPage() {
   const [selectDropDownIndex, setSelectDropDownIndex] = useState(0);
 
   const handleSidebarIndex = (index, i) => {
-    console.log(index);
+    
     setSelectSideBarIndex(index);
     setSelectDropDownIndex(i);
   };
@@ -41,9 +41,17 @@ function AdminPage() {
 
   return (
     <div className="AdminPage">
-      <Sidebar sendIndexToParent={handleSidebarIndex} />
+      <div className="sidebar-left">
+        <Sidebar sendIndexToParent={handleSidebarIndex} />
+      </div>
+      
       {/* <OrderManage sendIndexToParent={selectSideBarIndex}/> */}
-      {content}
+
+      <div className="content-right">
+        {content}
+      </div>
+      
+
       {/* <ManageProductPage sendIndexToParent={selectSideBarIndex}/> */}
       {/* {<EditProduct/>}
             {<AddProduct/>}  */}

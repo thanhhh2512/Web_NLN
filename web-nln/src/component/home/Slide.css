@@ -61,3 +61,7 @@ background-color: #F2D066;
   align-items: center;
   flex-shrink: 0;
 }
+.word-container button:hover{
+  background-color: #f1c53f;
+  cursor: pointer;
+}

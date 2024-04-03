@@ -5,6 +5,8 @@ import axios from "axios";
 import { redirect, useParams } from 'react-router-dom';
 
 export default function EditProduct(){
+  const typeProductArray = ["Hạt giống", "Rau củ", "Cây cảnh"];
+
   const [nameValue, setnameValue] = useState("");
   const [descriptionValue, setdescriptionValue] = useState("");
   const [quantityValue, setquantityValue] = useState("");
@@ -107,13 +109,23 @@ export default function EditProduct(){
           <label className="label form-product" htmlFor="typeofproduct">
             Loại sản phẩm
           </label>
-          <input
-            type="text"
+          <select
             id="typeofproduct"
-            className=" input-form"
-            value={typeValue}
-            onChange={(e) => settypeValue(e.target.value)}
-          ></input>
+
+            name="typeofproduct"
+            onChange={(e) => {
+              settypeValue(e.target.value);
+            }}
+          >
+            {typeProductArray.map((item, index) => {
+              return (
+                <option value={item} key={index} defaultChecked={index === 0}>
+                  {item}
+                </option>
+              );
+            })}
+          </select>
+
           <label className="label form-product" htmlFor="characteristic">
             Đặc tính
           </label>
@@ -125,6 +137,7 @@ export default function EditProduct(){
           <label className="label form-product" htmlFor="description">
             Mô tả sản phẩm
           </label>
+
           <input type="text" id="description" className=" input-form" value={descriptionValue} onChange={(e) => setdescriptionValue(e.target.value)}></input>
           <label className="label form-product" htmlFor="weight">
             Khối lượng
@@ -143,7 +156,8 @@ export default function EditProduct(){
           <label className="label form-product" htmlFor="expiry">
             Hạn sử dụng
           </label>
-          <input type="text" id="expiry" className=" input-form" value={expValue} onChange={(e) => setexpValue(e.target.value)}></input>
+
+          <input type="date" id="expiry" className=" input-form" value={expValue} onChange={(e) => setexpValue(e.target.value)}></input>
           <label className="label form-product" htmlFor="price">
             Giá bán
           </label>

@@ -7,6 +7,21 @@ module.exports = {
   getProduct: async (req, res) => {
     try {
       const id = req.params.id;
+
+      const data = await Product.findById(id);
+      if (!data)
+        return res.status(404).json({ error: "Không tìm thấy sản phẩm" });
+
+      return res.status(200).json({ data: data });
+    } catch (error) {
+      console.error(error); // Log lỗi ra console để debug
+      return res.status(500).json({ error: "Internal server error" }); // Trả về lỗi
+    }
+  },
+  getProducta: async (req, res) => {
+    try {
+      const id = req.params.id;
+
       const data = await Product.findById(id);
       if (!data)
         return res.status(404).json({ error: "Không tìm thấy sản phẩm" });
@@ -18,6 +33,36 @@ module.exports = {
     }
   },
 
+  getProductsa: async (req, res) => {
+    try {
+      const limit = parseInt(req.query.limit, 10);
+      const page = parseInt(req.query.page, 1);
+      const { type } = req.query;
+      console.log(type);
+
+      const products = Product.find({
+        type,
+      }).sort({ _id: -1 });
+      const data = await products.skip((page - 1) * limit).limit(limit);
+      console.log(products);
+
+      const totalDoc = await Product.countDocuments(); // Sửa lỗi ở đây
+      const totalPage = Math.ceil(totalDoc / limit);
+
+      return res.status(200).json({
+        data,
+        meta: {
+          page,
+          limit,
+          totalDoc,
+          totalPage,
+        },
+      });
+    } catch (error) {
+      console.error(error); // Log lỗi ra console để debug
+      return res.status(500).json({ error: "Internal server error" }); // Trả về lỗi 500 nếu có lỗi xảy ra
+    }
+  },
   getProducts: async (req, res) => {
     try {
       const limit = parseInt(req.query.limit, 10);
@@ -138,7 +183,8 @@ module.exports = {
 
       existProduct.name = name || existProduct.name;
       existProduct.description = description || existProduct.description;
-      existProduct.fastdescription = fastdescription || existProduct.fastdescription;
+      existProduct.fastdescription =
+        fastdescription || existProduct.fastdescription;
       existProduct.quantity = quantity || existProduct.quantity;
       existProduct.quantityp = quantityp || existProduct.quantityp;
       existProduct.weight = weight || existProduct.weight;
