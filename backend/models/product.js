@@ -37,6 +37,10 @@ const productSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  saleCount: {
+    type: Number,
+    default: 0,
+  },
   type: {
     type: String,
     enum: [

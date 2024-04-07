@@ -9,11 +9,10 @@ export default function Product() {
       </div>
       <div className="container-img">
       {TypeofProductData.map(product => (
-        <Link key={product.id} to={`/product/${product.id}`}>
+        <a key={product.id} href={`/product/${product.id}`}>
           <img src={product.imagePath[0]} alt={`Product ${product.id}`} />
-        </Link>
+        </a>
       ))}
-          
       </div>
     </div>
   );
