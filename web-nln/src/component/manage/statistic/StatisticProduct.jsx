@@ -1,10 +1,10 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { TypeofProductData } from '../../../common/json/TypeofProductData';
+import { TypeofStatisticData } from '../../../common/json/TypeofStatistic';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './StatisticProduct.css'
-import { format, isBefore } from 'date-fns';
+import { differenceInDays, format } from "date-fns";
 
 function StatisticProduct() {
     const [fillter, setFillter] = useState('')
@@ -16,8 +16,24 @@ function StatisticProduct() {
 
     useEffect(()=>{
         setProducts(allProducts.filter((item)=>{
+            const daysRemaining = differenceInDays(item.exp, new Date());
             if(fillter === '') return item
-            else return item.type === fillter
+            else {
+                if(fillter === 'Bán chạy') {
+                    return item.saleCount > 5
+                }
+                else if (fillter === 'Sắp hết hạn') {
+                    console.log(daysRemaining)
+                    return daysRemaining <= 12 && daysRemaining >= 0
+                }
+                else if (fillter === 'Hết hạn') {
+                    return daysRemaining < 0
+                }
+                else if (fillter === 'Sắp hết hàng') {
+                    return parseInt(item.quantityp) <= 5
+                }
+                
+            }
         }))
     },[fillter])
 
@@ -59,7 +75,7 @@ function StatisticProduct() {
 
             <h5>Loại sản phẩm</h5>
             <div className='fillter-type'>
-                {TypeofProductData.map(type =>{
+                {TypeofStatisticData.map(type =>{
                     if(type.title)
                         return (
                             <button 
@@ -84,7 +100,15 @@ function StatisticProduct() {
         <section className='itemList manager-products'>
             {products.length > 0 && products.map((item)=>{
                 const formattedDate = format(item.exp, 'dd/MM/yyyy');
-                const expirationStatus = isBefore(new Date(), item.exp) ? 'Còn hạn sử dụng' : 'Đã hết hạn';
+                const daysRemaining = differenceInDays(item.exp, new Date());
+                let expirationStatus;
+                if (daysRemaining > 12) {
+                    expirationStatus = "Còn hạn sử dụng";
+                } else if (daysRemaining <= 12 && daysRemaining >= 0) {
+                    expirationStatus = "Sắp hết hạn";
+                } else {
+                    expirationStatus = "Hết hạn";
+                }
                 return (
                     <div className="block-item " key={item.ProductNo}>
                         <div className="item-detail">
@@ -94,7 +118,7 @@ function StatisticProduct() {
                         </div>
                         <div className='saled'>
                             <p>Đã bán:</p>
-                            <p>5</p>
+                            <p>{item.saleCount}</p>
                         </div>
                         <div className='stored'>
                             <p>Còn lại:</p>

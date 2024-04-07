@@ -6,53 +6,22 @@ import { CartData } from "../../../common/json/CartData";
 import axios from "axios";
 export default function OrderManage() {
   const [orders, setOrders] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
+  const [fillter, setFillter] = useState('')
 
   useEffect(() => {
-    // Gọi API để lấy danh sách các đơn hàng
-    const fetchOrders = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/api/orders');
-        setOrders(response.data);
-
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-      }
-    };
-
-    fetchOrders();
-
-
+    getOrders();
   }, []);
 
+  async function getOrders() {
+    const data = await axios.get("http://localhost:8080/api/orders").then((res) => {
+      setOrders(res.data);
+      setAllOrders(res.data);
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
 
-
-
-  const [filter, setFilter] = useState({ status: "", searchText: "" });
-  const [prevFilter, setPrevFilter] = useState({ status: "", searchText: "" });
-  var order = useRef(orders);
-  const filterOrders = useCallback(() => {
-    let filteredData = orders;
-
-    if (filter.status !== "") {
-      filteredData = filteredData.filter(
-        (item) => item.status === filter.status
-      );
-    }
-
-    return filteredData;
-  }, [filter]);
-
-  useEffect(() => {
-    if (prevFilter !== filter) {
-      order.current = filterOrders();
-
-      setPrevFilter(filter);
-    }
-  }, [filter, prevFilter, filterOrders]);
-
-  const handleFilterChange = (newFilter) => {
-    setFilter({ ...filter, ...newFilter });
-  };
   const getUserInfo = async (userId) => {
     try {
       const response = await axios.get(`http://localhost:8080/api/user?userId=${userId}`);
@@ -62,7 +31,27 @@ export default function OrderManage() {
       return null;
     }
   };
-  console.log(orders)
+
+  useEffect(() => {
+    setOrders(allOrders.filter((item) => {
+      if (fillter === '') return item
+      else {
+        if (fillter === 1) {
+          return item.status === 1
+        }
+        else if (fillter === 2) {
+          return item.status === 2
+        }
+        else if (fillter === 3) {
+          return item.status === 3
+        }
+        else {
+          return item.status === 4
+        }
+      }
+    }))
+  }, [fillter])
+
   return (
     <div className="OrderManage">
       <div className="order-manage-title">
@@ -74,10 +63,8 @@ export default function OrderManage() {
           {[1, 2, 3, 4].map((status) => (
             <button
               key={status}
-              className={
-                filter.status === status ? "active btn-status" : "btn-status"
-              }
-              onClick={() => handleFilterChange({ status })}
+              onClick={() => setFillter(status)}
+              
             >
               {status === 1
                 ? "Đã xác nhận"
@@ -91,7 +78,7 @@ export default function OrderManage() {
         </div>
         <button
           className="btn-reset"
-          onClick={() => handleFilterChange({ status: "", searchText: "" })}
+          onClick={() => setFillter('')}
         >
           Đặt lại
         </button>
@@ -108,7 +95,7 @@ export default function OrderManage() {
             </tr>
           </thead>
           <tbody>
-            {order.current.map((item) => (
+            {orders && orders.map((item) => (
               <tr key={item._id}>
                 <td>{item._id}</td>
                 <td>{item.createdAt}</td>

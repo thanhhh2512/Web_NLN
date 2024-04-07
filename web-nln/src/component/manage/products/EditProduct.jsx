@@ -56,6 +56,7 @@ export default function EditProduct(){
       setfeatureValue(res.data.data.feature)
       setImageUrl(res.data.data.images[0].path)
     }).catch((err)=>{
+      window.location.href = "/admin";
       console.log(err)
     })
   }
