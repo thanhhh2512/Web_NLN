@@ -38,7 +38,7 @@ export const SidebarData = [
   },
   {
     icon: UilChart,
-    heading: 'Doanh thu'
+    heading: 'Thống kê'
   },
 ];
 

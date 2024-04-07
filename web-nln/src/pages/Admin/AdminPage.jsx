@@ -7,7 +7,7 @@ import ManageProductPage from "../ManageProduct/index";
 import "./AdminPage.css";
 import { useState } from "react";
 import AddProduct from "./../../component/manage/products/AddProduct";
-import EditProduct from "./../../component/manage/products/EditProduct";
+import StatisticProduct from "../../component/manage/statistic/StatisticProduct";
 
 function AdminPage() {
   const [selectSideBarIndex, setSelectSideBarIndex] = useState(0);
@@ -29,12 +29,13 @@ function AdminPage() {
     case 2:
       content = <ManageProductPage />;
       break;
+    case 3:
+        content = < StatisticProduct/>;
+        break;
     case 4:
       content = <AddProduct />;
       break;
-    // case 5:
-    //   content = <EditProduct />;
-    //   break;
+   
     default:
       break;
   }

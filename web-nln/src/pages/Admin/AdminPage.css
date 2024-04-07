@@ -1,11 +1,19 @@
 .AdminPage{
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
     /* max-height: 100%;
     height: fit-content; */
    
 }
 .AdminPage .content-right{
     position: relative;
-    left: 15%;
+    display: flex;
+    justify-content: end;
+    
+}
+.AdminPage .sidebar-left{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
 }

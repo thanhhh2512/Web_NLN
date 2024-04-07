@@ -1,5 +1,9 @@
 .AddProduct{
-  width: 140%;
+  display: flex;
+  position: absolute;
+  left: 15%;
+  /* justify-content: center; */
+  
 }
 .add-form {
   margin-left: 100px;
