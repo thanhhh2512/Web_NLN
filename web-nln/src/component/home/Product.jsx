@@ -13,6 +13,7 @@ export default function Product() {
         <h1>Sản phẩm</h1>
       </div>
       <div className="container-img">
+
         {TypeofProductData.map((product) => (
           <div
             key={product.id}
@@ -21,6 +22,7 @@ export default function Product() {
             <img src={product.imagePath[0]} alt={`Product ${product.id}`} />
           </div>
         ))}
+
       </div>
     </div>
   );
