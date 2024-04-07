@@ -1,11 +1,12 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react';
-import './Products.css'
 import { TypeofProductData } from '../../../common/json/TypeofProductData';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './StatisticProduct.css'
+import { format, isBefore } from 'date-fns';
 
-function ProductsBody() {
+function StatisticProduct() {
     const [fillter, setFillter] = useState('')
     const [allProducts, setAllProducts] = useState([])
     const [products, setProducts] = useState([]);
@@ -49,7 +50,7 @@ function ProductsBody() {
   }, []);
 
   return (
-    <div className="wrapper">
+    <div className="wrapper-statistic">
 
         <div className="title-page">
            <h1>Quản lý sản phẩm</h1> 
@@ -82,6 +83,8 @@ function ProductsBody() {
         </div>
         <section className='itemList manager-products'>
             {products.length > 0 && products.map((item)=>{
+                const formattedDate = format(item.exp, 'dd/MM/yyyy');
+                const expirationStatus = isBefore(new Date(), item.exp) ? 'Còn hạn sử dụng' : 'Đã hết hạn';
                 return (
                     <div className="block-item " key={item.ProductNo}>
                         <div className="item-detail">
@@ -97,9 +100,17 @@ function ProductsBody() {
                             <p>Còn lại:</p>
                             <p>{item.quantityp}</p>
                         </div>
+                        <div className='exp'>
+                        <p>Hạn sử dụng: {formattedDate}</p>
+                        </div>
+                        <div className='exp-status'>
+                            <p>Trạng thái: {expirationStatus}</p>
+                        </div>
                         <div className='control-manage'>
+                        <Link to={{ pathname: `/admin/addProduct/${item._id}` }}style={{ width: 'auto', display: 'inline-block' }}><i class="fa-solid fa-circle-plus"></i></Link>
                             <Link to={{ pathname: `/admin/editProduct/${item._id}` }}><i className="fa-solid fa-edit"></i></Link>
                             <p><i className="fa-solid fa-trash" onClick={() => deleteProduct(item._id)}></i></p>
+                            
                         </div>
                     </div>
                 )
@@ -109,4 +120,4 @@ function ProductsBody() {
     );
 }
 
-export default ProductsBody;
+export default StatisticProduct;

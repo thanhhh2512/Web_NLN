@@ -7,7 +7,6 @@ import LoginPage from "./pages/login/LoginPage";
 import RegisterOage from "./pages/login/Resgi";
 import ProductPage from "./pages/product/ProductPage";
 import DetailProductPage from "./pages/product/DetailProductPage";
-
 import AccountPage from "./pages/Account/AccountPage";
 
 import CartPage from "./pages/CartPage";
@@ -16,6 +15,7 @@ import OrderSection from "./component/manage/order/OrderSection";
 import AdminPage from "./pages/Admin/AdminPage";
 import IntroductionPage from "./pages/home/IntroductionPage";
 import EditProduct from "./component/manage/products/EditProduct";
+import AddProduct from './component/manage/products/AddProduct';
 
 function App() {
   return (
@@ -35,6 +35,7 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/admin/editProduct/:id" element={<EditProduct />} />
           <Route path="/orderdetail" element={<OrderSection />} />
+          <Route path="/admin/addProduct/:id" element={<AddProduct/>}/>
         </Routes>
       </Router>
     </div>

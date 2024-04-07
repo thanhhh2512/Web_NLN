@@ -43,6 +43,16 @@
 .control-manage{
     justify-content: flex-end;
     margin-right: 30px;
+    gap: 7px;
+    
+}
+.control-manage i{
+    color: rgb(219, 188, 139);
+}
+.control-manage i:hover{
+    transform: scale(1.05);
+    color: rgb(225, 164, 66); ;
+    cursor: pointer;
 }
 .saled p + p,
 .stored p + p,

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./AddProduct.css";
-
+import { Link } from "react-router-dom";
 const typeProductArray = [
   "Hạt giống",
   "Rau củ",
@@ -212,9 +212,7 @@ export default function AddProduct() {
             )}
           </div>
           <div className="control-btn">
-            <button className="cancel-btn" type="button">
-              Huỷ bỏ
-            </button>
+          <Link to="/admin"><button className="cancel-btn">Huỷ bỏ</button></Link>
             <button
               className="add-btn"
               type="button"

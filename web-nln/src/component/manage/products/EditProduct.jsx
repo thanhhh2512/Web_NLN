@@ -3,6 +3,7 @@ import ImageUpload from '../../fixed/ImageUpload';
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { redirect, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function EditProduct(){
   const typeProductArray = ["Hạt giống", "Rau củ", "Cây cảnh"];
@@ -201,7 +202,7 @@ export default function EditProduct(){
          
         </div> 
         <div className="control-btn">
-            <button className="cancel-btn">Huỷ bỏ</button>
+        <Link to="/admin"><button className="cancel-btn">Huỷ bỏ</button></Link>
             <button className='save-btn' onClick={() => updateProduct(id)}>Lưu thay đổi</button>
           </div>
       </div>
