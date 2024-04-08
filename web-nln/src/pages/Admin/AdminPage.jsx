@@ -5,16 +5,18 @@ import OrderManage from "../../component/manage/order/OrderManage";
 import ManageProductPage from "../ManageProduct/index";
 
 import "./AdminPage.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AddProduct from "./../../component/manage/products/AddProduct";
 import StatisticProduct from "../../component/manage/statistic/StatisticProduct";
+import { useAuth } from "../../hooks/useAuth";
 
 function AdminPage() {
   const [selectSideBarIndex, setSelectSideBarIndex] = useState(0);
   const [selectDropDownIndex, setSelectDropDownIndex] = useState(0);
-
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const handleSidebarIndex = (index, i) => {
-    
     setSelectSideBarIndex(index);
     setSelectDropDownIndex(i);
   };
@@ -30,28 +32,32 @@ function AdminPage() {
       content = <ManageProductPage />;
       break;
     case 3:
-        content = < StatisticProduct/>;
-        break;
+      content = <StatisticProduct />;
+      break;
     case 4:
       content = <AddProduct />;
       break;
-   
+
     default:
       break;
   }
+
+  // useEffect(() => {
+  //   console.log(user);
+  //   if (!user || !user?.isAdmin) {
+  //     // navigate(-1);
+  //   }
+  // }, [user]);
 
   return (
     <div className="AdminPage">
       <div className="sidebar-left">
         <Sidebar sendIndexToParent={handleSidebarIndex} />
       </div>
-      
+
       {/* <OrderManage sendIndexToParent={selectSideBarIndex}/> */}
 
-      <div className="content-right">
-        {content}
-      </div>
-      
+      <div className="content-right">{content}</div>
 
       {/* <ManageProductPage sendIndexToParent={selectSideBarIndex}/> */}
       {/* {<EditProduct/>}

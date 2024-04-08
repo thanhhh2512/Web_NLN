@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link, Outlet } from "react-router-dom";
 import "./Header.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -6,8 +7,20 @@ import { TypeofProductData } from "../../common/json/TypeofProductData";
 
 export default function Header() {
   const [searchVisible, setSearchVisible] = useState(false);
+  const navigate = useNavigate();
   const toggleSearch = () => {
     setSearchVisible(!searchVisible);
+  };
+
+  
+  const handleClick = () => {
+    const user = localStorage.getItem("user");
+
+    if (!user) {
+      return navigate("/loginpage");
+    }
+
+    return navigate("/account");
   };
 
   return (
@@ -52,9 +65,9 @@ export default function Header() {
           <Link to="/cart">
             <i className="fa-solid fa-cart-shopping tools-icon"></i>
           </Link>
-          <Link to={"/loginpage"}>
+          <button onClick={handleClick}>
             <i className="fa-solid fa-user tools-icon"></i>
-          </Link>
+          </button>
         </div>
       </div>
 

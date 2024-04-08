@@ -3,7 +3,10 @@ export default function Footer() {
   return (
     <div className="Footer">
       <div className="footer-contact">
-        <img src={process.env.PUBLIC_URL + "/images/fixed/Frame 18.png"} className="img-footer"></img>
+        <img
+          src={process.env.PUBLIC_URL + "/images/fixed/Frame 18.png"}
+          className="img-footer"
+        ></img>
         <button className="contact-button">XEM CỬA HÀNG CỦA CHÚNG TÔI</button>
       </div>
       <div className="footer-navigation">
