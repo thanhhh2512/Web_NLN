@@ -74,8 +74,6 @@ function OrderBody() {
         if (deleteResponse || deleteResponse.success) {
           // Xoá thành công, chuyển hướng đến trang cart
           navigate("/cart");
-          // Sau khi đặt hàng thành công, cập nhật số lượng sản phẩm trong kho
-          updateProductQuantity();
         } else {
           // Xoá không thành công, xử lý theo cách thích hợp (ví dụ: hiển thị thông báo lỗi)
           console.error(
@@ -88,7 +86,6 @@ function OrderBody() {
       console.error("Error creating order:", error);
     }
   };
-
   console.log(cart);
   const deletePaidItemsFromCart = async () => {
     try {
@@ -110,27 +107,6 @@ function OrderBody() {
       return { success: false, error: error.message };
     }
   };
-  const updateProductQuantity = async () => {
-    try {
-      // Duyệt qua từng sản phẩm trong giỏ hàng
-      for (let item of cart) {
-        const productId = item.product._id;
-        const currentQuantity = item.product.quantity;
-        const orderedQuantity = item.quantity;
-
-        // Tính toán số lượng mới trong kho sau khi đặt hàng
-        const newQuantity = currentQuantity - orderedQuantity;
-
-        // Gửi yêu cầu cập nhật số lượng sản phẩm trong kho
-        await axios.put(`http://localhost:8080/api/products/${productId}`, {
-          quantity: newQuantity,
-        });
-      }
-    } catch (error) {
-      console.error("Error updating product quantity:", error);
-    }
-  };
-
   const totalBill = () => {
     return (
       cart.reduce(

@@ -156,8 +156,8 @@ export default function AddProduct() {
             type="text"
             id="quantityp"
             className=" input-form"
-            value={quantitypValue}
-            onChange={(e) => setquantitypValue(e.target.value)}
+            value={quantityValue}
+            onChange={(e) => setquantityValue(e.target.value)}
           ></input>
           <label className="label form-product" htmlFor="expiry">
             Hạn sử dụng
@@ -186,8 +186,8 @@ export default function AddProduct() {
             type="text"
             id="quantity-in-warehouse"
             className=" input-form"
-            value={quantityValue}
-            onChange={(e) => setquantityValue(e.target.value)}
+            value={quantitypValue}
+            onChange={(e) => setquantitypValue(e.target.value)}
           ></input>
 
           <div className="img-input">
@@ -212,7 +212,9 @@ export default function AddProduct() {
             )}
           </div>
           <div className="control-btn">
-          <Link to="/admin"><button className="cancel-btn">Huỷ bỏ</button></Link>
+            <Link to="/admin">
+              <button className="cancel-btn">Huỷ bỏ</button>
+            </Link>
             <button
               className="add-btn"
               type="button"

@@ -39,7 +39,7 @@ export default function DetailProductDescription({ product }) {
 
               <div className="info-attribute">
                 <p>{product.feature}</p>
-                <p>{product.quantity}</p>
+                <p>{product.quantityp}</p>
                 <p>{product.weight}</p>
               </div>
             </div>
