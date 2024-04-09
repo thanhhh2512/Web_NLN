@@ -224,4 +224,25 @@ module.exports = {
       return res.status(500).json({ error: "Internal server error" }); // Trả về lỗi 500 nếu có lỗi xảy ra
     }
   },
+
+  reduceQuantity: async (items) => {
+    console.log(items);
+    for (const item of items) {
+      const product = await Product.findById(item.product._id || item.product);
+
+      if (product.quantity < item.quantity) {
+        throw Error("Số lượng sản phẩm này không đủ");
+      }
+      product.quantity = product.quantity - item.quantity;
+      await product.save();
+    }
+  },
+
+  addQuantity: async (items) => {
+    for (const item of items) {
+      const product = await Product.findById(item.product._id || item.product);
+      product.quantity = product.quantity + item.quantity;
+      await product.save();
+    }
+  },
 };
