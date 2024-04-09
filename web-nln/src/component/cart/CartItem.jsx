@@ -67,8 +67,11 @@ function CartItem({ item, setCart }) {
       </div>
       <div className="quantity-item">
         <button
-          className="btn-pre"
-          onClick={(e) => setQuantity((prev) => prev - 1)}
+          onClick={(e) => {
+            if (quantity > 1) {
+              setQuantity((prev) => prev - 1);
+            }
+          }}
         >
           -
         </button>
@@ -82,7 +85,11 @@ function CartItem({ item, setCart }) {
         />
         <button
           className="btn-add"
-          onClick={(e) => setQuantity((prev) => prev + 1)}
+          onClick={(e) => {
+            if (quantity < item.product.quantity) {
+              setQuantity((prev) => prev + 1);
+            }
+          }}
         >
           +
         </button>

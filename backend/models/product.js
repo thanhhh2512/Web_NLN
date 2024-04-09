@@ -55,7 +55,7 @@ const productSchema = new mongoose.Schema({
   },
   feature: {
     type: String,
-    enum: ["Bột", "Viên", "Lỏng"],
+    enum: ["Bột", "Viên", "Nước", "Cây", "Củ"],
     required: true,
   },
   images: [
