@@ -16,8 +16,8 @@ export default function DetailProductBody() {
     axios.get("http://localhost:8080/api/products/" + ProductNo).then((res) => {
       setProduct(res.data.data);
     });
-  }, []);
-
+  }, [ProductNo]);
+  // console.log(product, ProductNo);
   return (
     <div className="detail-product-body">
       {product && (

@@ -245,4 +245,42 @@ module.exports = {
       await product.save();
     }
   },
+  searchProduct: async (req, res) => {
+    try {
+      // Extract query parameters from the request query string
+      const { name, description, type, feature, sort } = req.query;
+
+      // Construct the filter object based on the provided query parameters
+      const filter = {};
+
+      if (name) {
+        filter.name = { $regex: name, $options: 'i' };
+      }
+      if (description) {
+        filter.description = { $regex: description, $options: 'i' };
+      }
+      if (type) {
+        filter.type = { $regex: type, $options: 'i' };
+      }
+      if (feature) {
+        filter.feature = { $regex: feature, $options: 'i' };
+      }
+      let sortCriteria = {};
+      if (sort === 'asc') {
+        sortCriteria = { price: 1 }; // Ascending order
+      } else if (sort === 'desc') {
+        sortCriteria = { price: -1 }; // Descending order
+      }
+      // Find products based on the constructed filter
+
+      // Find products based on the constructed filter and sort criteria
+      const searchResults = await Product.find(filter).sort(sortCriteria);
+
+      // Return the search results
+      return res.status(200).json(searchResults);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Server Error' });
+    }
+  }
 };

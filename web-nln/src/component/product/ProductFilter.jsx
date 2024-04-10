@@ -4,6 +4,7 @@ import { ProductData } from "../../common/json/ProductData";
 import ProductItems from "./ProductItems";
 import { Link, useSearchParams, useParams } from "react-router-dom";
 import axios from "axios";
+import { getFormControlLabelUtilityClasses } from "@mui/material";
 
 const typeProduct = {
   "00001": "Hạt giống",
@@ -15,47 +16,108 @@ const typeProduct = {
 };
 
 export default function ProductFilter() {
-  const { id } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  const type = searchParams.get("type");
+  const feature = searchParams.get("feature");
+
   const [isOpenCharacteristic, setIsOpenCharacteristic] = useState(false);
   const [selectedCharacteristic, setSelectedCharacteristic] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const [isOpenPrice, setIsOpenPrice] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(null);
+  const [sort, setSort] = useState(null);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-  const [filteredProducts, setFilteredProducts] = useState(ProductData);
-  const [initialProducts, setInitialProducts] = useState([]);
 
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Cập nhật danh sách sản phẩm ban đầu mỗi khi ProductData thay đổi
-    setInitialProducts(ProductData);
-  }, [ProductData]);
+    // Construct the base URL
+    const baseUrl = `${process.env.REACT_APP_SERVER_URL}/products/search`;
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/productsa`, {
-        params: {
-          type: typeProduct[id],
-          search: searchParams.get("search"),
-          sort: searchParams.get("sort"),
-          characteristic: selectedCharacteristic,
-          price: selectedPrice,
-          product: selectedProduct,
-        },
+    // Construct query parameters
+    const queryParams = new URLSearchParams();
+    queryParams.append('type', type);
+    if (feature !== null) {
+      queryParams.append('feature', feature);
+    }
+    // if (sort !== null) {
+    //   queryParams.append('sort', sort);
+    // }
+    // Combine the base URL with the query parameters
+    const url = `${baseUrl}?${queryParams.toString()}`;
+
+    // Fetch products from the server
+    axios.get(url)
+      .then(response => {
+        if (response.status === 200) {
+          // If the request is successful, update the products state
+          setProducts(response.data);
+        }
       })
-      .then((response) => {
-        setProducts(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
+      .catch(error => {
+        console.error('Error fetching products:', error);
       });
-  }, [id]);
 
+
+    // if(sort===null&&feature===null)
+
+    return () => {
+      setSelectedCharacteristic(null);
+
+    }
+
+
+  }, [type, feature]);
+
+  // useEffect(() => {
+  //   // Lọc danh sách sản phẩm dựa trên selectedCharacteristic
+  //   if (selectedCharacteristic) {
+  //     const filtered = products.filter(product => product.feature === selectedCharacteristic);
+  //     setFilteredProducts(filtered);
+  //   } else {
+  //     // Nếu không có selectedCharacteristic, hiển thị tất cả sản phẩm
+  //     setFilteredProducts(products);
+  //   }
+
+
+  // }, [selectedCharacteristic,sort, products]);
+  useEffect(() => {
+    // Lọc danh sách sản phẩm dựa trên selectedCharacteristic
+    let filteredProducts = [...products];
+
+    if (selectedCharacteristic) {
+      filteredProducts = filteredProducts.filter(product => product.feature === selectedCharacteristic);
+    }
+
+    // Sắp xếp danh sách sản phẩm theo giá nếu sort được chọn
+    if (sort) {
+      filteredProducts.sort((a, b) => {
+        const priceA = parseFloat(a.price);
+        const priceB = parseFloat(b.price);
+
+        if (sort === 'asc') {
+          return priceA - priceB;
+        } else if (sort === 'desc') {
+          return priceB - priceA;
+        }
+        return 0;
+      });
+    }
+
+    // Cập nhật state với danh sách sản phẩm đã lọc và sắp xếp
+    setFilteredProducts(filteredProducts);
+  }, [selectedCharacteristic, sort, products]);
+
+  const handleSort = (e) => {
+    const sortOrder = e.target.getAttribute("value");
+
+    setSort(sortOrder);
+
+  }
   const resetFilter = () => {
-    setFilteredProducts(initialProducts);
+    setFilteredProducts(products);
     setSelectedProduct(null);
     setSelectedPrice(null); // Xoá trạng thái được chọn
   };
@@ -69,67 +131,70 @@ export default function ProductFilter() {
     setIsOpenPrice(!isOpenPrice);
     setIsOpenCharacteristic(false);
   };
-  const filterByCharacteristicAndPrice = (characteristic, priceRange) => {
-    const filtered = ProductData.filter((product) => {
-      const meetsCharacteristicCondition =
-        !characteristic || product.ProductCharacteristic === characteristic;
-      const meetsPriceCondition =
-        !priceRange || meetsPriceRange(product.ProductPrice, priceRange);
-      return meetsCharacteristicCondition && meetsPriceCondition;
-    });
-    setFilteredProducts(filtered);
-  };
+  // const filterByCharacteristicAndPrice = (characteristic, priceRange) => {
+  //   const filtered = ProductData.filter((product) => {
+  //     const meetsCharacteristicCondition =
+  //       !characteristic || product.ProductCharacteristic === characteristic;
+  //     const meetsPriceCondition =
+  //       !priceRange || meetsPriceRange(product.ProductPrice, priceRange);
+  //     return meetsCharacteristicCondition && meetsPriceCondition;
+  //   });
+  //   setFilteredProducts(filtered);
+  // };
 
-  const meetsPriceRange = (productPrice, priceRange) => {
-    const price = parseInt(productPrice.replace("vnd", "").trim());
+  // const meetsPriceRange = (productPrice, priceRange) => {
+  //   const price = parseInt(productPrice.replace("vnd", "").trim());
 
-    if (priceRange === "0 - 50.000") {
-      return price <= 50000;
-    } else if (priceRange === "50.000 - 100.000") {
-      return price > 50000 && price <= 100000;
-    } else if (priceRange === "> 100000") {
-      return price > 100000;
-    }
-    return false; // Trả về true nếu không có khoảng giá nào được chọn
-  };
+  //   if (priceRange === "0 - 50.000") {
+  //     return price <= 50000;
+  //   } else if (priceRange === "50.000 - 100.000") {
+  //     return price > 50000 && price <= 100000;
+  //   } else if (priceRange === "> 100000") {
+  //     return price > 100000;
+  //   }
+  //   return false; // Trả về true nếu không có khoảng giá nào được chọn
+  // };
 
   const selectCharacteristic = (characteristic) => {
     setSelectedCharacteristic(characteristic);
     setIsOpenCharacteristic(false);
-    filterByCharacteristicAndPrice(characteristic, selectedPrice);
+    const filtered = products.filter(product => product.feature === selectedCharacteristic);
+    setFilteredProducts(filtered);
+    // filterByCharacteristicAndPrice(characteristic, selectedPrice);
   };
 
-  const selectPrice = (priceRange) => {
-    setSelectedPrice(priceRange);
-    setIsOpenPrice(false);
-    filterByCharacteristicAndPrice(selectedCharacteristic, priceRange);
-  };
+  // const selectPrice = (priceRange) => {
+  //   setSelectedPrice(priceRange);
+  //   setIsOpenPrice(false);
+  //   filterByCharacteristicAndPrice(selectedCharacteristic, priceRange);
+  // };
 
   const handleTransitionEnd = () => {
     // Thực hiện các hành động mong muốn khi dropdown menu đã hoàn thành hiệu ứng transition và mở ra.
   };
 
-  const handleProductSelection = (product) => {
-    setSelectedProduct(product);
-  };
+  // const handleProductSelection = (product) => {
+  //   setSelectedProduct(product);
+  // };
 
-  const clearSelectedPrice = () => {
-    setSelectedPrice(null);
-    if (!selectedCharacteristic && !selectedPrice) {
-      setFilteredProducts(ProductData);
-    } else {
-      filterByCharacteristicAndPrice(selectedCharacteristic, null);
-    }
-  };
-  const clearSelectedProduct = () => {
-    setSelectedProduct(null);
-    if (!selectedPrice) {
-      setFilteredProducts(ProductData);
-    } else {
-      filterByCharacteristicAndPrice(null, selectedPrice);
-    }
-  };
-
+  // const clearSelectedPrice = () => {
+  //   setSelectedPrice(null);
+  //   if (!selectedCharacteristic && !selectedPrice) {
+  //     setFilteredProducts(ProductData);
+  //   } else {
+  //     filterByCharacteristicAndPrice(selectedCharacteristic, null);
+  //   }
+  // };
+  // const clearSelectedProduct = () => {
+  //   setSelectedProduct(null);
+  //   if (!selectedPrice) {
+  //     setFilteredProducts(ProductData);
+  //   } else {
+  //     filterByCharacteristicAndPrice(null, selectedPrice);
+  //   }
+  // };
+  const uniqueFeatures = [...new Set(products.map(product => product.feature))];
+  console.log(sort)
   return (
     <div className="ProductFilter">
       <div className="filter-container">
@@ -148,15 +213,15 @@ export default function ProductFilter() {
           </button>
           {isOpenCharacteristic && (
             <ul className="dropdown-menu">
-              {ProductData.map((product, index) => (
+              {uniqueFeatures.map((feature, index) => (
                 <li
                   key={index}
                   onClick={() => {
-                    selectCharacteristic(product.ProductCharacteristic);
-                    handleProductSelection(product);
+                    selectCharacteristic(feature);
+                    // handleProductSelection(product); // Bạn có thể không cần thiết nếu không cần chọn sản phẩm khi chọn tính năng
                   }}
                 >
-                  {product.ProductCharacteristic}
+                  {feature}
                 </li>
               ))}
             </ul>
@@ -171,11 +236,17 @@ export default function ProductFilter() {
           </button>
           {isOpenPrice && (
             <ul className="dropdown-menu1">
-              <li onClick={() => selectPrice("0 - 50.000")}>0 - 50.000đ</li>
-              <li onClick={() => selectPrice("50.000 - 100.000")}>
-                50.000đ - 100.000đ
+              <li
+                onClick={handleSort}
+                value="asc"
+              >Tăng dần</li>
+              <li
+                value="desc"
+                onClick={handleSort}
+              >
+                Giảm dần
               </li>
-              <li onClick={() => selectPrice("> 100000")}>{"> 100000đ"}</li>
+
             </ul>
           )}
         </div>
@@ -185,18 +256,22 @@ export default function ProductFilter() {
         <div className="show-by">
           <p>HIỂN THỊ THEO:</p>
         </div>
-        {selectedProduct && (
+        {selectedCharacteristic && (
           <div className="selected-product-container">
-            <p>{selectedProduct.ProductCharacteristic}</p>
-            <button className="clear-button" onClick={clearSelectedProduct}>
+            <p>{selectedCharacteristic}</p>
+            <button className="clear-button"
+            //  onClick={clearSelectedProduct}
+            >
               X
             </button>
           </div>
         )}
-        {selectedPrice && (
+        {sort && (
           <div className="selected-price-container">
-            <p>{selectedPrice}</p>
-            <button className="clear-button" onClick={clearSelectedPrice}>
+            <p>{sort === "asc" ? "Tăng dần" : "Giảm dần"}</p>
+            <button className="clear-button"
+            // onClick={clearSelectedPrice}
+            >
               X
             </button>
           </div>
@@ -216,19 +291,14 @@ export default function ProductFilter() {
         </div>
         <div className="product-container">
           {/* Chia danh sách sản phẩm thành các phần, mỗi phần chứa productsPerRow sản phẩm */}
-          {products.length > 0 &&
-            products.map((product) => (
-              <div key={product._id} className="product-row">
-                {/* Render mỗi phần như một hàng */}
-                <Link key={product._id} to={`/detail/${product._id}`}>
-                  <ProductItems
-                    product={product}
-                    // expanded={expanded}
-                    // toggleDescription={toggleDescription}
-                  />
-                </Link>
-              </div>
-            ))}
+          {filteredProducts.map((product) => (
+            <div key={product._id} className="product-row">
+              <Link to={`/detail/${product._id}`}>
+                <ProductItems product={product} />
+              </Link>
+            </div>
+          ))}
+
         </div>
         {/* {!expanded && (
           <button className="expand-btn" onClick={handleShowMore}>

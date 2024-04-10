@@ -16,6 +16,7 @@ import AdminPage from "./pages/Admin/AdminPage";
 import IntroductionPage from "./pages/home/IntroductionPage";
 import EditProduct from "./component/manage/products/EditProduct";
 import AddProduct from './component/manage/products/AddProduct';
+import ProductFilter from "./component/product/ProductFilter";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
           <Route path="/register" element={<RegisterOage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/product/:id" element={<ProductPage />} />
+
+          <Route path="/product/search" element={<ProductPage />} />
           <Route path="/detail/:ProductNo" element={<DetailProductPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/cart" element={<CartPage />} />
@@ -35,7 +38,7 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/admin/editProduct/:id" element={<EditProduct />} />
           <Route path="/orderdetail" element={<OrderSection />} />
-          <Route path="/admin/addProduct/:id" element={<AddProduct/>}/>
+          <Route path="/admin/addProduct/:id" element={<AddProduct />} />
         </Routes>
       </Router>
     </div>
