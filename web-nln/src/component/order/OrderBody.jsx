@@ -206,7 +206,7 @@ function OrderBody() {
     }
   };
   const totalBill = () => {
-    ``;
+    
     return (
       cart.reduce(
         (total, item) =>

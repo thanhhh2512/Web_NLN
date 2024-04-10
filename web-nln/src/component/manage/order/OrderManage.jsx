@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { format } from "date-fns";
-import numeral from 'numeral';
+
 
 export default function OrderManage() {
   const [orders, setOrders] = useState([]);
