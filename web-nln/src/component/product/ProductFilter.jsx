@@ -118,8 +118,8 @@ export default function ProductFilter() {
   }
   const resetFilter = () => {
     setFilteredProducts(products);
-    setSelectedProduct(null);
-    setSelectedPrice(null); // Xoá trạng thái được chọn
+    setSort(null);
+    setSelectedCharacteristic(null); // Xoá trạng thái được chọn
   };
 
   const toggleDropdownCharacteristic = () => {
