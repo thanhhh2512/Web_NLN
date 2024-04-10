@@ -7,6 +7,12 @@ import { useNavigate } from "react-router-dom";
 function OrderBody() {
   const user = JSON.parse(localStorage.getItem("user")) || { _id: "null" };
   const [cart, setCart] = useState([]);
+  const [paymentMethod, setPaymentMethod] = useState(
+    "Thanh toán khi nhận hàng"
+  );
+  const [deliveryOPtions, setDeliveryOPtions] = useState("Giao hàng nhanh");
+  const [cartItems, setCartItems] = useState([]);
+  const [orders, setOrders] = useState(null);
   const [orderData, setOrderData] = useState({
     address: user.address || "",
     paymentMethod: "Thanh toán khi nhận hàng" || "",
@@ -15,6 +21,51 @@ function OrderBody() {
     note: "",
     transport: "15.000",
   });
+  const [address, setAddress] = useState({
+    recipientName: "",
+    phoneNumber: "",
+    provinceCity: "",
+    district: "",
+    ward: "",
+    detailAddress: "",
+    isDefaultAddress: false,
+  });
+
+  const postData = () => {
+    const {
+      recipientName,
+      phoneNumber,
+      provinceCity,
+      district,
+      ward,
+      detailAddress,
+    } = address;
+
+    fetch(`${process.env.REACT_APP_IP}/v1/orders`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        paymentMethod: paymentMethod,
+        deliveryMethod: deliveryOPtions,
+        address: `${recipientName}; ${phoneNumber}; ${detailAddress}, ${ward}, ${district}, ${provinceCity}`,
+        items: cartItems,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setOrders(data?.data);
+        localStorage.setItem("orderId", data?.data?._id);
+      })
+      .catch((error) => {
+        console.log("error: " + error);
+        alert("Lỗi! Vui lòng thử lại");
+      });
+  };
+
   function formatNumber(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
@@ -46,12 +97,50 @@ function OrderBody() {
     }));
   };
 
+  const handleChangePaymentMethod = (e) => {
+    const { name, value } = e.target;
+
+    if (value === "cash") {
+      orderData.paymentMethod = "Thanh toan khi nhận hàng";
+    } else if (value === "onlinePayment") {
+      orderData.paymentMethod = "Thanh toán trực tuyến";
+    }
+
+    console.log(orderData.paymentMethod);
+
+    setOrderData((prevData) => ({
+      ...prevData,
+      [name]: value,
+      paymentMethod: orderData.paymentMethod,
+    }));
+  };
   const handleChangeAddressType = (e) => {
     setAddressType(e.target.value);
   };
 
+  const handleSubmitonline = () => {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/payment/create_payment_url`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: 1000 * localStorage.getItem("totalPrice"),
+        bankCode: "NCB",
+        language: "vn",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        window.open(data?.vnpUrl, "_self");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       const requestData = {
         items: cart,
@@ -86,7 +175,16 @@ function OrderBody() {
       console.error("Error creating order:", error);
     }
   };
-  console.log(cart);
+  // console.log(cart);
+  const submit = () => {
+    // onSubmit();
+    if (orderData.paymentMethod === "Thanh toán trực tuyến") {
+      handleSubmitonline();
+    } else {
+      handleSubmit();
+    }
+  };
+  // const onSubmit = () => {};
   const deletePaidItemsFromCart = async () => {
     try {
       // Lấy danh sách các sản phẩm trong giỏ hàng
@@ -108,6 +206,7 @@ function OrderBody() {
     }
   };
   const totalBill = () => {
+    ``;
     return (
       cart.reduce(
         (total, item) =>
@@ -164,6 +263,7 @@ function OrderBody() {
       </div>
     </div>
   ));
+  localStorage.setItem("totalPrice", summary);
 
   return (
     <main className="wrapper">
@@ -301,11 +401,21 @@ function OrderBody() {
           <input
             type="radio"
             name="paymentMethod"
-            id="payment"
+            id="cash"
             value="cash"
-            checked
-          ></input>
-          <label htmlFor="payment">Thanh toán khi nhận hàng</label>
+            onChange={handleChangePaymentMethod}
+            // checked
+          />
+          <label htmlFor="cash">Thanh toán khi nhận hàng</label>
+          <br />
+          <input
+            type="radio"
+            name="paymentMethod"
+            id="onlinePayment"
+            value="onlinePayment"
+            onChange={handleChangePaymentMethod}
+          />
+          <label htmlFor="onlinePayment">Thanh toán trực tuyến</label>
         </div>
         <div>
           <h2>Tóm tắt thanh toán</h2>
@@ -327,7 +437,7 @@ function OrderBody() {
       </div>
       <div className="check-out">
         <a href="#">
-          <button onClick={handleSubmit} className="btn-submit">
+          <button onClick={submit} className="btn-submit">
             {" "}
             Đặt hàng
           </button>
