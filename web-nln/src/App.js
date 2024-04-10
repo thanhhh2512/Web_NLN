@@ -35,7 +35,7 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/admin/editProduct/:id" element={<EditProduct />} />
           <Route path="/orderdetail" element={<OrderSection />} />
-          <Route path="/admin/addProduct/:id" element={<AddProduct/>}/>
+          {/* <Route path="/admin/addProduct/:id" element={<AddProduct/>}/> */}
         </Routes>
       </Router>
     </div>

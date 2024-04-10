@@ -37,7 +37,7 @@ export default function DetailProductSale({ product }) {
             <p>{product?.fastdescription}</p>
           </div>
           <div className="product-button">
-            <button className="add-btn" onClick={() => handleAddToCart()}>
+            <button className="add-product-btn" onClick={() => handleAddToCart()}>
               Thêm vào giỏ hàng
             </button>
             <button className="purchase-btn">Mua hàng</button>
