@@ -1,14 +1,13 @@
 .AdminPage{
-    /* display: flex;
-    flex-direction: row; */
-    /* max-height: 100%;
-    height: fit-content; */
+ 
+    height: 100%;
+    width: 100%;
    
 }
 .AdminPage .content-right{
     position: relative;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     
 }
 .AdminPage .sidebar-left{

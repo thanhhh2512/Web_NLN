@@ -6,6 +6,8 @@ export default function DetailProductDescription({ product }) {
 
   const toggleDescription = () => {
     setExpanded(!expanded);
+    console.log("Expanded:", expanded);
+console.log("Product Summary:", product?.ProductSummary);
   };
 
   const resetDescription = () => {
@@ -22,7 +24,7 @@ export default function DetailProductDescription({ product }) {
               <p>{product?.description}</p>
               {expanded && (
                 <>
-                  <p>{product?.ProductSummary}</p>
+                  <p>{product?.fastdescription}</p>
                 </>
               )}
             </div>
