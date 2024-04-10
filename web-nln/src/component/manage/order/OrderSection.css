@@ -3,6 +3,7 @@
     text-transform:uppercase ;
 }
 .wrapper{
+    width: fit-content;
     display: flex;
     flex-direction: column;
     margin: 25px 25px 10px 15px;

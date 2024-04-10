@@ -1,7 +1,8 @@
 .AddProduct{
-  display: flex;
+
   position: absolute;
   left: 15%;
+  width: 87%;
   /* justify-content: center; */
   
 }
@@ -74,6 +75,7 @@
 }
 .AddProduct .image-button:hover {
   box-shadow: 0 0 4px #babdca;
+  cursor: pointer;
 }
 
 .upload-input {
@@ -98,16 +100,20 @@
   line-height: normal;
   width: 375px;
   height: 60px;
-  background-color: rgba(254, 254, 254, 0.995);
-  border: 1px solid rgb(240, 235, 235);
+  background-color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  box-shadow: -6px -6px 10px #f9f9f9, 6px 6px 10px #00000026;
 }
 .AddProduct .cancel-btn:hover{
-    box-shadow: 0 0 5px rgb(205, 191, 191);
-    background-color: white;
+  box-shadow: -2px -2px 2px #f9f9f9, 2px 2px 2px #00000026;
+  cursor: pointer;
+    
 }
 .add-btn:hover{
-    box-shadow: 0 0 5px rgb(205, 191, 191);
-    background-color: white;
+  box-shadow: -2px -2px 2px #f9f9f9, 2px 2px 2px #00000026;
+  cursor: pointer;
+    
 }
 .uploaded-image{
   width: 40%;

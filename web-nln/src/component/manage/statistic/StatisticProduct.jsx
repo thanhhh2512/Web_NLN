@@ -103,7 +103,7 @@ function StatisticProduct() {
                 const daysRemaining = differenceInDays(item.exp, new Date());
                 let expirationStatus;
                 if (daysRemaining > 12) {
-                    expirationStatus = "Còn hạn sử dụng";
+                    expirationStatus = "Còn hạn";
                 } else if (daysRemaining <= 12 && daysRemaining >= 0) {
                     expirationStatus = "Sắp hết hạn";
                 } else {
@@ -131,7 +131,7 @@ function StatisticProduct() {
                             <p>Trạng thái: {expirationStatus}</p>
                         </div>
                         <div className='control-manage'>
-                        <Link to={{ pathname: `/admin/addProduct/${item._id}` }}style={{ width: 'auto', display: 'inline-block' }}><i class="fa-solid fa-circle-plus"></i></Link>
+                        {/* <Link to={{ pathname: `/admin/addProduct/${item._id}` }}style={{ width: 'auto', display: 'inline-block' }}><i class="fa-solid fa-circle-plus"></i></Link> */}
                             <Link to={{ pathname: `/admin/editProduct/${item._id}` }}><i className="fa-solid fa-edit"></i></Link>
                             <p><i className="fa-solid fa-trash" onClick={() => deleteProduct(item._id)}></i></p>
                             

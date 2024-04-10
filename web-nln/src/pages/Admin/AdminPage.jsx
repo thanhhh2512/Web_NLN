@@ -57,7 +57,7 @@ function AdminPage() {
 
       {/* <OrderManage sendIndexToParent={selectSideBarIndex}/> */}
 
-      <div className="content-right">{content}</div>
+      {content}
 
       {/* <ManageProductPage sendIndexToParent={selectSideBarIndex}/> */}
       {/* {<EditProduct/>}

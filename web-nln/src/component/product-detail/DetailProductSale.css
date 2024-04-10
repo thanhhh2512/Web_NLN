@@ -76,7 +76,7 @@ img {
   width: 25%;
   margin-top: 14px;
 }
-.detail-productsale-container .add-btn {
+.detail-productsale-container .add-product-btn {
   width: 304px;
   height: 55px;
   margin-bottom: 20px;
@@ -103,12 +103,12 @@ img {
   line-height: normal;
   background-color: white;
 }
-.detail-productsale-container .add-btn:hover{
+.detail-productsale-container .add-product-btn:hover{
   background-color: #897358;
   color: white;
   cursor: pointer;
 }
-.detail-productsale-container .add-btn:active{
+.detail-productsale-container .add-product-btn:active{
   background-color: #897358;
   color: white;
   cursor: pointer;
