@@ -9,12 +9,12 @@ const oderRouter = require("./routes/order.route");
 const productRouter = require("./routes/product.router");
 const productTypeRouter = require("./routes/productType.route");
 const cartItemRouter = require("./routes/cartItem.route");
-
+const paymentRouter = require("./routes/payment.route");
 const app = express();
 
-app.use(cors())
+app.use(cors());
 app.use(bodyParser.json());
-
+app.use("/api/payment", paymentRouter);
 app.use("/api", userRouter);
 app.use("/api", cartRouter);
 app.use("/api", oderRouter);
