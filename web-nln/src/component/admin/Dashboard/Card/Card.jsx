@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Card.css";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -35,16 +35,16 @@ function CompactCard({ param, setExpanded }) {
       onClick={setExpanded}
     >
       <div className="radialBar">
-        <CircularProgressbar
+        {/* <CircularProgressbar
           value={param.barValue}
           text={`${param.barValue}%`}
-        />
+        /> */}
         <span>{param.title}</span>
       </div>
       <div className="detail">
         <Png />
         <span>{param.value}</span>
-        <span>24 giờ trước</span>
+        <span>Theo tháng hiện tại</span>
       </div>
     </motion.div>
   );
@@ -52,6 +52,19 @@ function CompactCard({ param, setExpanded }) {
 
 // Expanded Card
 function ExpandedCard({ param, setExpanded }) {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    // Generate categories for the current month
+    const currentDate = new Date();
+    const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+    const newCategories = Array.from({ length: daysInMonth }, (_, index) => {
+      const day = index + 1;
+      return `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}T00:00:00.000Z`;
+    });
+    setCategories(newCategories);
+  }, []);
+
   const data = {
     options: {
       chart: {
@@ -90,15 +103,7 @@ function ExpandedCard({ param, setExpanded }) {
       },
       xaxis: {
         type: "datetime",
-        categories: [
-          "2018-09-19T00:00:00.000Z",
-          "2018-09-19T01:30:00.000Z",
-          "2018-09-19T02:30:00.000Z",
-          "2018-09-19T03:30:00.000Z",
-          "2018-09-19T04:30:00.000Z",
-          "2018-09-19T05:30:00.000Z",
-          "2018-09-19T06:30:00.000Z",
-        ],
+        categories: categories,
       },
     },
   };
@@ -119,7 +124,7 @@ function ExpandedCard({ param, setExpanded }) {
       <div className="chartContainer">
         <Chart options={data.options} series={param.series} type="area" />
       </div>
-      <span>24 giờ trước</span>
+      <span>Theo tháng hiện tại</span>
     </motion.div>
   );
 }
