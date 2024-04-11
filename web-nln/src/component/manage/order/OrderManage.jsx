@@ -59,10 +59,10 @@ export default function OrderManage() {
               {status === 1
                 ? "Đã xác nhận"
                 : status === 2
-                ? "Đã giao hàng"
-                : status === 3
-                ? "Đã gửi hàng"
-                : "Chưa được xác nhận"}
+                  ? "Đã giao hàng"
+                  : status === 3
+                    ? "Đã gửi hàng"
+                    : "Chưa được xác nhận"}
             </button>
           ))}
         </div>
@@ -97,19 +97,19 @@ export default function OrderManage() {
                       item.status === 1
                         ? "confirmed"
                         : item.status === 2
-                        ? "delivery"
-                        : item.status === 3
-                        ? "received"
-                        : "default"
+                          ? "delivery"
+                          : item.status === 3
+                            ? "received"
+                            : "default"
                     }
                   >
                     {item.status === 1
                       ? "Đã xác nhận"
                       : item.status === 2
-                      ? "Đã giao hàng"
-                      : item.status === 3
-                      ? "Đã gửi hàng"
-                      : "Chưa được xác nhận"}
+                        ? "Đã giao hàng"
+                        : item.status === 3
+                          ? "Đã gửi hàng"
+                          : "Chưa được xác nhận"}
                   </td>
                   <td>{Number.parseFloat(item.total).toFixed(3) + " vnd"}</td>
                   <td><Link to={`/orderdetail?orderId=${item._id}`}><i className="fa-solid fa-pen-to-square"></i></Link></td>
