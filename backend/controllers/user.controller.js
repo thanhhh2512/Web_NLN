@@ -2,6 +2,7 @@ const User = require("../models/user");
 
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const Order = require("../models/order");
 
 function generateAccessToken(username) {
   return jwt.sign({ username: username }, process.env.ACCESS_TOKEN_SECRET, {
@@ -97,6 +98,7 @@ exports.login = async (req, res, next) => {
     console.log(req.body);
 
     const user = await User.findOne({ username: username });
+    const orders = await Order.find({ user: user._id });
 
     if (!user) {
       return res.status(400).json({ message: "Tài khoản chưa đăng ký." });
@@ -119,6 +121,7 @@ exports.login = async (req, res, next) => {
         ...user._doc,
         password: "",
       },
+      orders: orders
     });
   } catch (e) {
     console.log(e);
@@ -164,7 +167,23 @@ exports.getUser = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+exports.updateUserById = async (req, res) => {
+  try {
+    const { uid } = req.query;
 
+    const updatedData = req.body; // This should contain the updated fields for the user
+
+    const user = await User.findOneAndUpdate({ _id: uid }, updatedData, { new: true });
+
+    return res.status(200).json({
+      message: "User updated successfully",
+      data: user
+    });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(500).json({ error: error.message });
+  }
+}
 exports.updateUser = async (req, res) => {
   try {
     const userId = req.body.user;
@@ -177,5 +196,31 @@ exports.updateUser = async (req, res) => {
   } catch {
     console.error(error);
     return res.status(500).json({ error: error.message });
+  }
+};
+
+exports.changePassword = async (req, res) => {
+  try {
+    const { username, oldPassword, newPassword } = req.body;
+
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(400).json({ message: "Tài khoản không tồn tại." });
+    }
+
+    // Kiểm tra mật khẩu cũ
+    if (oldPassword !== user.password) {
+      return res.status(401).json({ message: "Mật khẩu cũ không chính xác." });
+    }
+
+    // Cập nhật mật khẩu mới
+    user.password = newPassword;
+    await user.save();
+
+    return res.status(200).json({ message: "Mật khẩu đã được thay đổi thành công." });
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ message: "Thay đổi mật khẩu thất bại." });
   }
 };

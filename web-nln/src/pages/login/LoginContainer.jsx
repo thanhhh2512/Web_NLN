@@ -16,8 +16,11 @@ function LoginContainer() {
         password: passwordValue,
       })
       .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-        if (res.data.user.isAdmin) {
+        const userData = res.data.user;
+        const orders = res.data.orders; // Giả sử res.data.orders chứa danh sách các đơn hàng từ phản hồi API
+        userData.orders = orders; // Đặt danh sách đơn hàng vào trong đối tượng người dùng
+        localStorage.setItem("user", JSON.stringify(userData));
+        if (userData.isAdmin) {
           navigate("/admin");
         } else {
           navigate("/");

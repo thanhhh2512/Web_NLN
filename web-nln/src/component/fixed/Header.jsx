@@ -16,7 +16,11 @@ export default function Header() {
   const [searchFocused, setSearchFocused] = useState(false);
   const [noDataFound, setNoDataFound] = useState(false); // State để theo dõi có dữ liệu tìm kiếm hay không
   const navigate = useNavigate();
+  const [isOpenAccount, setIsOpenAccount] = useState(false);
 
+  const toggleMenu = () => {
+    setIsOpenAccount(!isOpenAccount);
+  };
   useEffect(() => {
     // Lấy tất cả sản phẩm từ server và lưu vào state
     async function fetchProducts() {
@@ -65,16 +69,23 @@ export default function Header() {
       setSearchFocused(false);
     }
   };
+  const user = JSON.parse(localStorage.getItem("user")) ?? null;
+  // const handleClick = () => {
+  //   const user = localStorage.getItem("user");
 
-  const handleClick = () => {
-    const user = localStorage.getItem("user");
+  //   if (!user) {
+  //     return navigate("/loginpage");
+  //   }
 
-    if (!user) {
-      return navigate("/loginpage");
-    }
+  //   return navigate("/account");
+  // };
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+  }
+  if (!user) {
+    return navigate("/loginpage");
+  }
 
-    return navigate("/account");
-  };
 
   return (
     <>
@@ -165,9 +176,31 @@ export default function Header() {
           <Link to="/cart">
             <i className="fa-solid fa-cart-shopping tools-icon"></i>
           </Link>
-          <button onClick={handleClick}>
-            <i className="fa-solid fa-user tools-icon"></i>
-          </button>
+          <div className="dropdown-menu-toggle">
+            <button onClick={toggleMenu}><i className="fa-solid fa-user tools-icon"></i></button>
+            {isOpenAccount && (
+              <div className={`dropdown-menu-toggle-content ${isOpenAccount ? 'd-block' : 'd-none'}`} style={{
+                // backgroundColor: isOpenAccount && "#f1f1f1f1"
+              }} >
+                <ul>
+                  {user ? <>
+                    <li>
+                      <Link to={"/account"}>Tài khoản</Link>
+                    </li>
+                    <li>
+                      <Link onClick={handleLogout}>Đăng xuất</Link>
+                    </li>
+                  </> : <>
+                    <li>
+                      <Link to={"/login"}>Đăng nhập</Link>
+                    </li>
+                  </>}
+
+
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <Outlet></Outlet>
