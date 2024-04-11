@@ -14,7 +14,7 @@ function ProductTitle() {
   // if (!product) {
   //   return <div style={{ textAlign: "center" }}>Sản phẩm không tồn tại</div>;
   // }
-  console.log(title.imagePath[0]);
+  //console.log(title.imagePath[0]);
   return (
     <div className="ProductTitle">
       <div className="img-left">
