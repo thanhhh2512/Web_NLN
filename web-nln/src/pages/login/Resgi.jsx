@@ -1,6 +1,5 @@
 import "./Ressgi.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import aixos from "axios";
 
 /**
@@ -41,6 +40,7 @@ function RegisterContainer() {
       })
       .then((res) => {
         alert(res.data.message);
+        window.location.href = "/loginpage";
       })
       .catch((error) => {
         alert(error.response.data.error);

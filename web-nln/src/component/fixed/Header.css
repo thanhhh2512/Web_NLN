@@ -139,6 +139,10 @@
   display: inline-block;
 }
 
+.dropdown-menu-toggle button {
+  background-color: transparent;
+  border: none;
+}
 .dropdown-menu-toggle-content {
   display: none;
   position: absolute;
@@ -171,4 +175,12 @@
 
 .d-none {
   display: none;
+}
+.main-tools-container i{
+  color: #7F6E59;
+  font-size: 16px;
+}
+.main-tools-container i:hover{
+  cursor: pointer;
+  transform: scale(1.10);
 }

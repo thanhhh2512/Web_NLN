@@ -81,6 +81,8 @@ export default function Header() {
   // };
   const handleLogout = () => {
     localStorage.removeItem("user");
+    alert("Đăng xuất thành công");
+    navigate("/loginpage");
   }
   if (!user) {
     return navigate("/loginpage");

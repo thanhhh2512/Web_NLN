@@ -29,7 +29,13 @@ const handleDropdownToggle = (index) => {
     sendIndexToParent(index);
   }
 };
+const user = JSON.parse(localStorage.getItem("user")) ?? null;
 
+const handleLogout = () => {
+  localStorage.removeItem("user");
+  window.location.href = "/loginpage";
+  alert("Đăng xuất thành công");
+}
 const handleDropDown = (i) => {
   // Trong trường hợp này, không cần kiểm tra selected === i vì nó đã được kiểm tra trong handleDropdownToggle
   setSelected(-1); // Đóng dropdown khi một option được chọn
@@ -73,7 +79,7 @@ const handleDropDown = (i) => {
               )}
             </div>
           ))}
-          <div className="menuItems">
+          <div className="menuItems" onClick={handleLogout}>
             <UilSignOutAlt />
           </div>
         </div>

@@ -35,7 +35,8 @@ console.log("Product Summary:", product?.ProductSummary);
               <div className="attribute">
                 <p>Đặc tính:</p>
                 <p>Số lượng:</p>
-                <p>Khối lượng</p>
+                <p>Khối lượng:</p>
+                <p>Giá:</p>
                 {expanded && <></>}
               </div>
 
@@ -43,6 +44,7 @@ console.log("Product Summary:", product?.ProductSummary);
                 <p>{product.feature}</p>
                 <p>{product.quantityp}</p>
                 <p>{product.weight}</p>
+                <p>{product.price} VND</p>
               </div>
             </div>
           </div>
