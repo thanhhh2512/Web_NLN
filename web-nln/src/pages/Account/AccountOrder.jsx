@@ -4,18 +4,21 @@ import { OrderData } from "../../common/json/OrderData";
 import { Link } from "react-router-dom";
 import axios from "axios";
 function AccountOrder() {
-  //https://fakestoreapi.com/products/
-  const [ordersData, setOrderData] = useState(OrderData);
+  const userData = localStorage.getItem('user');
+  const user = userData ? JSON.parse(userData) : {};
+  const orders = user?.orders ?? []
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCollapsible = () => {
     setIsOpen(!isOpen);
   };
-
+  console.log(orders)
   return (
+
     <>
-      <div className="text-b-lg">ĐƠN HÀNG CỦA BẠN</div>
-      {ordersData && ordersData.length < 1 ? (
+      <div className="text-b-lg">ĐƠN HÀNG CỦA BẠN </div>
+      {orders && orders.length < 1 ? (
         <div className="body-container">
           <div
             className="text-b-sm text-center"
@@ -44,37 +47,37 @@ function AccountOrder() {
         </div>
       ) : (
         <div className="list-order-body">
-          {ordersData &&
-            ordersData.map((item, id) => {
+          {orders &&
+            orders.map((item, idx) => {
               return (
-                <div class="flex-column order-list-item" key={id}>
+                <div class="flex-column order-list-item" key={item._id}>
                   <div className="d-flex sm-flex-column">
-                    <div class="flex-item">#{item.id}</div>
-                    <div class="flex-item flex-grow-2">{item.orderDate}</div>
+                    <div class="flex-item">#{item._id}</div>
+                    <div class="flex-item flex-grow-2">{new Date(item.createdAt).toLocaleDateString()}</div>
                   </div>
                   <hr className="hr" />
                   {isOpen ? (
                     <div className="list-product-container">
-                      {item.products.map((data, idx) => (
-                        <div className={`foot-list-product`} key={idx}>
-                          <div className="flex-item">{data.ProductName}</div>
+                      {item.items.map((data, _idx) => (
+                        <div className={`foot-list-product`} key={_idx}>
+                          <div className="flex-item">{data.product.name}</div>
                           <div className="flex-item">
                             SL{" : "}
-                            {data.Quantity}
+                            {data.quantity}
                           </div>
                           <div className="flex-item">
-                            <u>{data.ProductPrice}</u>
+                            <u>{Number(data.product.price) + " " + "VND"}</u>
                           </div>
                         </div>
                       ))}
                     </div>
                   ) : (
                     <div className="d-flex sm-flex-column">
-                      {item.products.map((data, idx) => {
+                      {item.items.map((data, idx) => {
                         return (
                           <span className="">
-                            {data.ProductName}{" "}
-                            {idx === item.products.length - 1 ? "..." : ","}
+                            {data.product.name}{" "}
+                            {idx === item.items.length - 1 ? "..." : ","}
                           </span>
                         );
                       })}
@@ -86,7 +89,10 @@ function AccountOrder() {
                       <b>Phí giao hàng</b>
                     </div>
                     <div class="flex-item flex-grow-2">
-                      <u> {item.total + " " + "VND"}</u>
+
+                      {item.deliveryMethod === "Giao hàng tiết kiệm" ?
+                        <u> {Number(15).toFixed(3) + " " + "VND"}</u>
+                        : <u> {Number(30).toFixed(3) + " " + "VND"}</u>}
                     </div>
                   </div>
 
@@ -95,7 +101,7 @@ function AccountOrder() {
                       <b>Tổng đơn hàng</b>
                     </div>
                     <div class="flex-item flex-grow-2">
-                      <u> {item.total + " " + "VND"}</u>
+                      <u> {Number(item.total).toFixed(3) + " " + "VND"}</u>
                     </div>
                   </div>
                   <hr className="hr" />

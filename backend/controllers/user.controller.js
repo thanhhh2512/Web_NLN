@@ -98,7 +98,7 @@ exports.login = async (req, res, next) => {
     console.log(req.body);
 
     const user = await User.findOne({ username: username });
-    const orders = await Order.find({ user: user._id });
+    const orders = await Order.find({ user: user._id }).populate("user").populate("items.product");
 
     if (!user) {
       return res.status(400).json({ message: "Tài khoản chưa đăng ký." });
