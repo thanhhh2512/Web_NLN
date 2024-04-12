@@ -71,7 +71,7 @@ function LoginContainer() {
                   MẬT KHẨU
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   className="login-input-field"
                   name="password"
                   id="password"

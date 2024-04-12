@@ -15,12 +15,12 @@ label {
 }
 
 .account-form-info input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-input[type="password"],
-select,
-textarea {
+.account-form-info input[type="email"],
+.account-form-info input[type="tel"],
+.account-form-info input[type="date"],
+.account-form-info input[type="password"],
+.account-form-info select,
+.account-form-info textarea {
 
     width: 100%;
     padding: 10px;
