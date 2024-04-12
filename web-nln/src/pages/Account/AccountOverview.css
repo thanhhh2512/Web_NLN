@@ -26,7 +26,7 @@
     float: left;
     font-weight: bold;
 
-    text-align: right;
+    text-align: left;
 
 }
 
@@ -48,4 +48,8 @@
         text-align: left;
         float: none;
     }
+}
+.list-item{
+    display: flex;
+    flex-direction: row;
 }

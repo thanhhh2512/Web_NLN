@@ -92,7 +92,6 @@
 
 .Header .main-tools-container {
   display: flex;
-  margin-left: 50px;
   justify-content: space-evenly;
   align-items: center;
 }
@@ -100,6 +99,16 @@
 .search-container {
   position: relative;
 
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  position: relative;
+  
 }
 
 .dropdown-menu-search {

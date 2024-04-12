@@ -68,6 +68,7 @@ export default function Header() {
     if (!searchTerm) {
       setSearchFocused(false);
     }
+    
   };
   const user = JSON.parse(localStorage.getItem("user")) ?? null;
   // const handleClick = () => {
@@ -126,7 +127,7 @@ export default function Header() {
             <div className={`search-container ${searchTerm ? 'focused' : ''}`}>
               <input
                 type="text"
-                placeholder="Tìm kiếm..."
+                placeholder="Tìm kiếm"
                 value={searchTerm}
                 onChange={handleChange}
                 onFocus={handleFocus}

@@ -123,3 +123,15 @@ img {
   color: white;
   cursor: pointer;
 }
+.detail-layout .detail-container .price{
+  color: var(--Sort, #000000);
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  
+}

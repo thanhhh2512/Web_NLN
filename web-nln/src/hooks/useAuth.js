@@ -4,14 +4,20 @@ export const useAuth = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isNavigateLogin, setIsNavigateLogin] = useState(false);
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("user"));
+    
     console.log(token);
     if (token) {
       setIsLogin(true);
       setUser(token);
+      
+    }
+    if (token?.isAdmin) {
+      setIsAdmin(true);
     }
   }, []);
 

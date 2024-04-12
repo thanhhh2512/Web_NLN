@@ -25,7 +25,7 @@ export default function DetailProductBody() {
           <DetailProductSale product={product} />
           <DetailProductDescription product={product} />
           <DetailProductPolicy />
-          {/* <DetailProductRecommend/> */}
+          {/* <DetailProductRecommend product={product} /> */}
         </>
       )}
     </div>

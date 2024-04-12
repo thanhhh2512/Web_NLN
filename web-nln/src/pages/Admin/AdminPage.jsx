@@ -15,11 +15,16 @@ function AdminPage() {
   const [selectSideBarIndex, setSelectSideBarIndex] = useState(0);
   const [selectDropDownIndex, setSelectDropDownIndex] = useState(0);
   const navigate = useNavigate();
-  const { user } = useAuth();
   const handleSidebarIndex = (index, i) => {
     setSelectSideBarIndex(index);
     setSelectDropDownIndex(i);
   };
+  const {user} = useAuth();
+
+  // if (!user.isAdmin) {
+  //   console.log(user);
+  //   return navigate("/loginpage");
+  // }
   let content = null;
   switch (selectSideBarIndex) {
     case 0:
