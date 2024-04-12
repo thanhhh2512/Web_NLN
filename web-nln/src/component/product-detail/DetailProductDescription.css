@@ -59,6 +59,9 @@
   line-height: normal;
   
 }
+ .expanded .description-right{
+  animation: fadeInUp 0.6s ease;
+}
 .attribute-product {
   display: flex;
   flex-direction: row;

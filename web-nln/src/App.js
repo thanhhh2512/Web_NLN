@@ -16,7 +16,7 @@ import AdminPage from "./pages/Admin/AdminPage";
 import IntroductionPage from "./pages/home/IntroductionPage";
 import EditProduct from "./component/manage/products/EditProduct";
 import AddProduct from './component/manage/products/AddProduct';
-import ProductFilter from "./component/product/ProductFilter";
+
 
 function App() {
   return (

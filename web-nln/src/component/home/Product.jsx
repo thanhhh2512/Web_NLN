@@ -1,6 +1,6 @@
 import "./Product.css";
 import { TypeofProductData } from "../../common/json/TypeofProductData";
-import { Link } from "react-router-dom";
+
 export default function Product() {
   const handleImageClick = (e, productId) => {
     e.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
@@ -13,17 +13,20 @@ export default function Product() {
         <h1>Sản phẩm</h1>
       </div>
       <div className="container-img">
-
-        {TypeofProductData.map((product) => (
-          <div
-            key={product.id}
-            onClick={(e) => handleImageClick(e, product.id)}
-          >
-            <img src={product.imagePath[0]} alt={`Product ${product.id}`} />
-          </div>
-        ))}
-
+  {TypeofProductData.map((product) => (
+    <div
+      key={product.id}
+      onClick={(e) => handleImageClick(e, product.id)}
+      className="image-container"
+    >
+      <img src={product.imagePath[0]} alt={`Product ${product.id}`} />
+      <div className="product-name-overlay">
+        <div className="product-name">{product.title}</div>
       </div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 }

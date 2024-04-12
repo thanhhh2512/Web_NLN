@@ -30,3 +30,24 @@
   width: 100%;
   height: auto;
 }
+
+.image-container {
+  position: relative;
+  margin: 10px;
+}
+
+.product-name-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 9%;
+  right: 0;
+  text-align: center;
+  color: white;
+  padding: 5px;
+}
+
+.product-name {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 500;
+}

@@ -179,22 +179,16 @@ export default function ProductFilter() {
   //   setSelectedProduct(product);
   // };
 
-  // const clearSelectedPrice = () => {
-  //   setSelectedPrice(null);
-  //   if (!selectedCharacteristic && !selectedPrice) {
-  //     setFilteredProducts(ProductData);
-  //   } else {
-  //     filterByCharacteristicAndPrice(selectedCharacteristic, null);
-  //   }
-  // };
-  // const clearSelectedProduct = () => {
-  //   setSelectedProduct(null);
-  //   if (!selectedPrice) {
-  //     setFilteredProducts(ProductData);
-  //   } else {
-  //     filterByCharacteristicAndPrice(null, selectedPrice);
-  //   }
-  // };
+  const clearSelectedProduct = () => {
+    setSelectedCharacteristic(null);
+    setFilteredProducts(products); // Cập nhật lại danh sách sản phẩm khi xóa giá trị được chọn
+  };
+  
+  const clearSelectedPrice = () => {
+    setSort(null);
+    setFilteredProducts(products); // Cập nhật lại danh sách sản phẩm khi xóa giá trị được chọn
+  };
+  
   const uniqueFeatures = [...new Set(products.map(product => product.feature))];
   console.log(sort)
   return (
@@ -262,7 +256,7 @@ export default function ProductFilter() {
           <div className="selected-product-container">
             <p>{selectedCharacteristic}</p>
             <button className="clear-button"
-            //  onClick={clearSelectedProduct}
+             onClick={clearSelectedProduct}
             >
               X
             </button>
@@ -272,7 +266,7 @@ export default function ProductFilter() {
           <div className="selected-price-container">
             <p>{sort === "asc" ? "Tăng dần" : "Giảm dần"}</p>
             <button className="clear-button"
-            // onClick={clearSelectedPrice}
+            onClick={clearSelectedPrice}
             >
               X
             </button>

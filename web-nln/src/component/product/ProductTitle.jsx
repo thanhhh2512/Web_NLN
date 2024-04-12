@@ -1,9 +1,9 @@
-import { useParams, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import { TypeofProductData } from "../../common/json/TypeofProductData";
 import './ProductTitle.css'
 
 function ProductTitle() {
-  let { id } = useParams();
+  // let { id } = useParams();
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
