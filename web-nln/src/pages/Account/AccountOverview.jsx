@@ -34,7 +34,7 @@ function AccountOverview() {
                         !isExcludedField(key) && (
                             <div key={index} className="row-list">
                                 <span className="key">{key}:</span>
-                                <span className="value">{user[key]}</span>
+                                <span className="value">{key === 'birthday' ? (new Date(user[key]).toLocaleDateString()) : user[key]}</span>
                             </div>
                         )
                     ))}
@@ -48,7 +48,7 @@ function AccountOverview() {
                         {orders.map((order, index) => (
                             <div key={index}>
                                 <hr />
-                                <li  className="list-item">
+                                <li className="list-item">
                                     <div>
                                         <span><strong>Ngày tạo:</strong> {new Date(order.createdAt).toLocaleDateString()}</span><br />
                                         <span><strong>Trạng thái:</strong> {getStatusString(order.status)}</span><br />
