@@ -13,7 +13,7 @@ const ProductItem = ({ product }) => {
         <div className="product-description">{product.type}</div>
       </div>
       <div className="product-bot">
-        <div className="product-price">{product.price}</div>
+        <div className="product-price">{product.price} VND</div>
       </div>
     </div>
   );
