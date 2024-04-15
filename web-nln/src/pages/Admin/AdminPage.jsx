@@ -47,12 +47,12 @@ function AdminPage() {
       break;
   }
 
-  // useEffect(() => {
-  //   console.log(user);
-  //   if (!user || !user?.isAdmin) {
-  //     // navigate(-1);
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    console.log(user);
+    if (!user || !user?.isAdmin) {
+      // navigate(-1);
+    }
+  }, [user]);
 
   return (
     <div className="AdminPage">
