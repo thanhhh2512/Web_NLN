@@ -27,7 +27,7 @@ function LoginContainer() {
         }
       })
       .catch((error) => {
-        alert(error.response.data.error);
+        alert("Password hoặc Tên Tài Khoản không hợp lệ");
         console.error(error);
       });
   };
