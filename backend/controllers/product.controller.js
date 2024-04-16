@@ -228,13 +228,27 @@ module.exports = {
   reduceQuantity: async (items) => {
     console.log(items);
     for (const item of items) {
-      const product = await Product.findById(item.product._id || item.product);
+      try {
+        const product = await Product.findById(
+          item.product._id || item.product
+        );
 
-      if (product.quantity < item.quantity) {
-        throw Error("Số lượng sản phẩm này không đủ");
+        if (!product) {
+          throw new Error("Không tìm thấy sản phẩm");
+        }
+
+        if (product.quantity < item.quantity) {
+          throw new Error("Số lượng sản phẩm này không đủ");
+        }
+
+        product.quantity -= item.quantity; // Trừ đi số lượng
+        product.saleCount += item.quantity; // Tăng giá trị của salecount
+
+        await product.save(); // Lưu lại sản phẩm sau khi cập nhật
+      } catch (error) {
+        console.error(error);
+        // Xử lý lỗi ở đây
       }
-      product.quantity = product.quantity - item.quantity;
-      await product.save();
     }
   },
 
@@ -254,21 +268,21 @@ module.exports = {
       const filter = {};
 
       if (name) {
-        filter.name = { $regex: name, $options: 'i' };
+        filter.name = { $regex: name, $options: "i" };
       }
       if (description) {
-        filter.description = { $regex: description, $options: 'i' };
+        filter.description = { $regex: description, $options: "i" };
       }
       if (type) {
-        filter.type = { $regex: type, $options: 'i' };
+        filter.type = { $regex: type, $options: "i" };
       }
       if (feature) {
-        filter.feature = { $regex: feature, $options: 'i' };
+        filter.feature = { $regex: feature, $options: "i" };
       }
       let sortCriteria = {};
-      if (sort === 'asc') {
+      if (sort === "asc") {
         sortCriteria = { price: 1 }; // Ascending order
-      } else if (sort === 'desc') {
+      } else if (sort === "desc") {
         sortCriteria = { price: -1 }; // Descending order
       }
       // Find products based on the constructed filter
@@ -280,7 +294,7 @@ module.exports = {
       return res.status(200).json(searchResults);
     } catch (err) {
       console.error(err);
-      return res.status(500).json({ message: 'Server Error' });
+      return res.status(500).json({ message: "Server Error" });
     }
-  }
+  },
 };
