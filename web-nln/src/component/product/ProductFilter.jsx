@@ -114,6 +114,7 @@ export default function ProductFilter() {
     const sortOrder = e.target.getAttribute("value");
 
     setSort(sortOrder);
+    setIsOpenPrice(false);
 
   }
   const resetFilter = () => {
