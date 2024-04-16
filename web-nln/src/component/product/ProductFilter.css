@@ -25,7 +25,7 @@
 .dropdown-menu,
 .dropdown-menu1,
 .dropdown-menu1 li:hover .dropdown-menu1 li:hover {
-  z-index: 2; /* Đặt z-index cao hơn cho dropdown-menu, dropdown-menu1 và phần hover */
+  z-index: 2; 
 }
 .reset-all{
   display: flex;
