@@ -25,6 +25,8 @@ export default function EditProduct() {
   const serverUrl = process.env.REACT_APP_SERVER;
   const [product, setProduct] = useState({});
 
+  // Hàm chuyển đổi ngày thành định dạng "yyyy-MM-dd"
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImage(file);
@@ -56,6 +58,25 @@ export default function EditProduct() {
         setfastdescriptionValue(res.data.data.fastdescription);
         setfeatureValue(res.data.data.feature);
         setImageUrl(res.data.data.images[0].path);
+        function formatDate(dateString) {
+          const date = new Date(dateString);
+          const year = date.getFullYear();
+          let month = date.getMonth() + 1;
+          let day = date.getDate();
+
+          // Thêm số 0 vào trước tháng và ngày nếu cần thiết
+          if (month < 10) {
+            month = "0" + month;
+          }
+          if (day < 10) {
+            day = "0" + day;
+          }
+
+          return `${year}-${month}-${day}`;
+        }
+
+        // Gán giá trị cho expValue sau khi chuyển đổi định dạng
+        setexpValue(formatDate(res.data.data.exp));
       })
       .catch((err) => {
         window.location.href = "/admin";

@@ -95,7 +95,7 @@ function ProductsBody() {
                 </div>
                 <div className="saled">
                   <p>Đã bán:</p>
-                  <p>5</p>
+                  <p>{item.saleCount}</p>
                 </div>
                 <div className="stored">
                   <p>Còn lại:</p>
