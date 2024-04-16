@@ -35,6 +35,9 @@
   position: relative;
   margin: 10px;
 }
+.image-container:hover{
+  cursor: pointer;
+}
 
 .product-name-overlay {
   position: absolute;
