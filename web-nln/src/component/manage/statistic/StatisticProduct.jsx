@@ -12,26 +12,7 @@ function StatisticProduct() {
   const serverApi = process.env.REACT_APP_SERVER_URL;
   const serverUrl = process.env.REACT_APP_SERVER;
 
-  useEffect(() => {
-    setProducts(
-      allProducts.filter((item) => {
-        const daysRemaining = differenceInDays(item.exp, new Date());
-        if (fillter === "") return item;
-        else {
-          if (fillter === "Bán chạy") {
-            return item.saleCount > 5;
-          } else if (fillter === "Sắp hết hạn") {
-            console.log(daysRemaining);
-            return daysRemaining <= 12 && daysRemaining >= 0;
-          } else if (fillter === "Hết hạn") {
-            return daysRemaining < 0;
-          } else if (fillter === "Sắp hết hàng") {
-            return parseInt(item.quantityp) <= 5;
-          }
-        }
-      })
-    );
-  }, [fillter]);
+
 
   async function fetchData() {
     const data = await axios
@@ -65,6 +46,29 @@ function StatisticProduct() {
   useEffect(() => {
     fetchData();
   }, []);
+  useEffect(() => {
+    setProducts(
+      allProducts.filter((item) => {
+        console.log("test:   " + item.quantity);
+        const daysRemaining = differenceInDays(item.exp, new Date());
+        if (fillter === "") return item;
+        else {
+          if (fillter === "Bán chạy") {
+            return item.saleCount > 5;
+          } else if (fillter === "Sắp hết hạn") {
+            console.log(daysRemaining);
+            return daysRemaining <= 12 && daysRemaining >= 0;
+          } else if (fillter === "Hết hạn") {
+            return daysRemaining < 0;
+          } else if (fillter === "Sắp hết hàng") {
+            return item.quantity > 0 && item.quantity <= 5;
+          } else if (fillter === "Hết hàng") {
+            return item.quantity <= 0;
+          }
+        }
+      })
+    );
+  }, [fillter]);
 
   return (
     <div className="wrapper-statistic">
