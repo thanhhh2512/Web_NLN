@@ -141,11 +141,18 @@ function OrderSection() {
       </div>
       <div className="check-out-btn">
 
+        {/* {status === 1
+          ? "Đã xác nhận"
+          : status === 2
+            ? "Đã giao hàng"
+            : status === 3
+              ? "Đã gửi hàng"
+              : "Chưa được xác nhận"} */}
 
-        <Link to={"/admin"}><button className="btn-confirm"> Đã xác nhận</button></Link>
-        <Link to={"/admin"}><button className="btn-delivery"> Đã giao hàng</button></Link>
-        <Link to={"/admin"}><button className="btn-recieve"> Đã gửi hàng</button></Link>
-        <Link to={"/admin"}><button className="btn-default"> Chưa được xác nhận</button></Link>
+        <Link to={"/admin"}><button className={`btn-confirm ${order && order.status === 1 ? 'btn-confirm-hover' : ''}`}> Đã xác nhận</button></Link>
+        <Link to={"/admin"}><button className={`btn-delivery ${order && order.status === 2 ? 'btn-delivery-hover' : ''}`}> Đã giao hàng</button></Link>
+        <Link to={"/admin"}><button className={`btn-recieve ${order && order.status === 3 ? 'btn-recieve-hover' : ''}`}> Đã gửi hàng</button></Link>
+        <Link to={"/admin"}><button className={`btn-default ${order && order.status === 4 ? 'btn-default-hover' : ''}`}> Chưa được xác nhận</button></Link>
 
 
       </div>
