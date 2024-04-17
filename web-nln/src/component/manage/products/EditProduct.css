@@ -89,8 +89,10 @@
     line-height: normal;
     width: 375px;
     height: 60px;
-    background-color: rgba(254, 254, 254, 0.995);
-    border: 1px solid rgb(240, 235, 235);
+    background-color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    box-shadow: -6px -6px 10px #f9f9f9, 6px 6px 10px #00000026;
   }
   .cancel-btn:hover{
       box-shadow: 0 0 5px rgb(205, 191, 191);
