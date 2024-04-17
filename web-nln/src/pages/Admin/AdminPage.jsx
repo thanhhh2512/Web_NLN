@@ -47,15 +47,15 @@ function AdminPage() {
       break;
   }
 
-  // useEffect(() => {
-  //   console.log(user);
-  //   if (!user || !user?.isAdmin) {
-  //     // navigate(-1);
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    console.log(user);
+    if (!user || !user?.isAdmin) {
+      // navigate(-1);
+    }
+  }, [user]);
 
   return (
-    <div className="AdminPage">
+    <div className="AdminPage"style={{animation: "fadeInUp 0.6s ease"}}>
       <div className="sidebar-left">
         <Sidebar sendIndexToParent={handleSidebarIndex} />
       </div>

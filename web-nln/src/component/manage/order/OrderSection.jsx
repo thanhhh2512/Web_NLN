@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import React, { Component, useRef } from "react";
 import { CartData } from "../../../common/json/CartData";
 import "../../cart/Cart.css";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -11,7 +11,7 @@ import { useReactToPrint } from "react-to-print";
 
 function OrderSection() {
   const [order, setOrder] = useState(null);
-
+  const navigate = useNavigate();
   const [summary, setSummary] = useState();
 
   const location = useLocation();
@@ -70,6 +70,21 @@ function OrderSection() {
 
   // Handle transport change
 
+  const handleUpdate = (status) => {
+    axios({
+      method: "PUT",
+      url: `${process.env.REACT_APP_SERVER_URL}/orderdetail?orderId=${order._id}`,
+      data: {
+        status: status,
+      },
+    }).then((response) => {
+      const data = response.data;
+      if (response.status === 200) {
+        setOrder(data);
+        navigate("/admin");
+      }
+    });
+  };
   // Render order items
   var listOrder = null;
   if (order && order.items) {
@@ -172,18 +187,42 @@ function OrderSection() {
         </div>
       </div>
       <div className="check-out-btn">
-        <Link to={"/admin"}>
-          <button className="btn-confirm"> Đã xác nhận</button>
-        </Link>
-        <Link to={"/admin"}>
-          <button className="btn-delivery"> Đã giao hàng</button>
-        </Link>
-        <Link to={"/admin"}>
-          <button className="btn-recieve"> Đã gửi hàng</button>
-        </Link>
-        <Link to={"/admin"}>
-          <button className="btn-default"> Chưa được xác nhận</button>
-        </Link>
+        <button
+          onClick={() => handleUpdate(1)}
+          className={`btn-confirm ${
+            order && order.status === 1 ? "btn-confirm-hover" : ""
+          }`}
+        >
+          {" "}
+          Đã xác nhận
+        </button>
+        <button
+          onClick={() => handleUpdate(2)}
+          className={`btn-delivery ${
+            order && order.status === 2 ? "btn-delivery-hover" : ""
+          }`}
+        >
+          {" "}
+          Đã giao hàng
+        </button>
+        <button
+          onClick={() => handleUpdate(3)}
+          className={`btn-recieve ${
+            order && order.status === 3 ? "btn-recieve-hover" : ""
+          }`}
+        >
+          {" "}
+          Đã gửi hàng
+        </button>
+        <button
+          onClick={() => handleUpdate(4)}
+          className={`btn-default ${
+            order && order.status === 4 ? "btn-default-hover" : ""
+          }`}
+        >
+          {" "}
+          Chưa được xác nhận
+        </button>
       </div>
       <button onClick={handlePrint}>Xuất PDF</button>
     </main>

@@ -8,7 +8,7 @@ export default function DetailProductPage() {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="ProductPage">
+    <div className="DetailProductPage" style={{"max-width": "100%", animation: "fadeInUp 0.6s ease"}}>
       <Header />
       <DetailProductBody />
       <Footer />

@@ -266,7 +266,7 @@ function OrderBody() {
   localStorage.setItem("totalPrice", summary);
 
   return (
-    <main className="wrapper">
+    <main className="wrapper-order">
       <div className="title-page">
         <h1>Đơn hàng của bạn</h1>
       </div>

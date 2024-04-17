@@ -82,14 +82,14 @@ exports.getOrderById = async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 };
-
 exports.updateOrderById = async (req, res) => {
   try {
-    const orderId = req.query.orderId; // Sử dụng req.query.id để lấy orderId từ query parameters
-    const updatedData = req.body; // Sử dụng req.body để lấy dữ liệu cập nhật từ body của yêu cầu
-    const options = { new: true };
+    const orderId = req.query.orderId;
+    const updatedData = req.body;
 
-    const data = await Order.findByIdAndUpdate(orderId, updatedData, options);
+    // Cập nhật đơn hàng
+    let data = await Order.findByIdAndUpdate(orderId, updatedData, { new: true }).populate("user")
+      .populate("items.product");
 
     if (!data) {
       return res.status(404).json({ error: "Order not found" });
