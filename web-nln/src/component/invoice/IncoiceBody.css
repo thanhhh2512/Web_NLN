@@ -1,0 +1,22 @@
+.btn-continue-order,
+.btn-print{
+    color: var(--text, #FFF);
+
+text-align: center;
+font-family: Roboto;
+font-size: 24px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+width: 500px;
+height: 69.125px;
+background-color: #7F6E59;
+}
+.btn-continue-order:hover,
+.btn-print:hover{
+    cursor: pointer;
+    background-color: #5c4e3e;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transform: scale(1.05);
+
+}

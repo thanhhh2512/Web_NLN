@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CartData } from "../../common/json/CartData";
+// import { CartData } from "../../common/json/CartData";
 import "../cart/Cart.css";
 import "./Order.css";
 import axios from "axios";
@@ -105,9 +105,6 @@ function OrderBody() {
     } else if (value === "onlinePayment") {
       orderData.paymentMethod = "Thanh toán trực tuyến";
     }
-
-    console.log(orderData.paymentMethod);
-
     setOrderData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -183,6 +180,7 @@ function OrderBody() {
     } else {
       handleSubmit();
     }
+
   };
   // const onSubmit = () => {};
   const deletePaidItemsFromCart = async () => {
@@ -440,7 +438,7 @@ function OrderBody() {
         </div>
       </div>
       <div className="check-out">
-        <a href="#">
+        <a href="/invoice">
           <button onClick={submit} className="btn-submit">
             {" "}
             Đặt hàng
@@ -450,5 +448,4 @@ function OrderBody() {
     </main>
   );
 }
-
 export default OrderBody;
