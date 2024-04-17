@@ -21,7 +21,6 @@ function CartBody() {
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(cart);
   const deleteFromCart = (productId) => {
     axios
       .delete("http://localhost:8080/api/carts/" + productId)
