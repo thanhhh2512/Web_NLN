@@ -18,6 +18,7 @@ function OrderSection() {
     const fetchOrder = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/api/orderDetail?orderId=${orderId}`);
+        
 
         const data = await response.data;
         setOrder(data);
