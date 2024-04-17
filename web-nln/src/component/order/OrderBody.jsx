@@ -160,6 +160,7 @@ function OrderBody() {
         if (deleteResponse || deleteResponse.success) {
           // Xoá thành công, chuyển hướng đến trang cart
           navigate("/invoice?orderId=" + response.data._id);
+          alert("Chúc mùng bạn đã đặt hàng thành công!!!");
         } else {
           // Xoá không thành công, xử lý theo cách thích hợp (ví dụ: hiển thị thông báo lỗi)
           console.error(
@@ -180,7 +181,6 @@ function OrderBody() {
     } else {
       handleSubmit();
     }
-
   };
   // const onSubmit = () => {};
   const deletePaidItemsFromCart = async () => {
@@ -204,11 +204,6 @@ function OrderBody() {
     }
   };
   const totalBill = () => {
-
-    
-
-  
-
     return (
       cart.reduce(
         (total, item) =>
@@ -439,10 +434,10 @@ function OrderBody() {
       </div>
       <div className="check-out">
         {/* <a href="/invoice"> */}
-          <button onClick={submit} className="btn-submit">
-            {" "}
-            Đặt hàng
-          </button>
+        <button onClick={submit} className="btn-submit">
+          {" "}
+          Đặt hàng
+        </button>
         {/* </a> */}
       </div>
     </main>

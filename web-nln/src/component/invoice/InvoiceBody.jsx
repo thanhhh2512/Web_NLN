@@ -1,50 +1,52 @@
-
 import { useEffect, useState } from "react";
 // import { CartData } from "../../../common/json/CartData";
 import "../cart/Cart.css";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import './IncoiceBody.css'
+import "./IncoiceBody.css";
 
 function InvoiceBody() {
   const [order, setOrder] = useState(null);
+  const [hasAlerted, setHasAlerted] = useState(false);
   const navigate = useNavigate();
   const [summary, setSummary] = useState();
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const orderId = searchParams.get('orderId');
+  const orderId = searchParams.get("orderId");
 
   useEffect(() => {
-    alert("Chúc Mừng bạn đã đặt hàng thành công!!!")
-    console.log(orderId);
-    console.log('test'+ searchParams);
+    window.scrollTo(0, 0); // Cuộn trang lên đầu
+  }, [orderId]);
+  useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/orderDetail?orderId=${orderId}`);
-        
+        const response = await axios.get(
+          `http://localhost:8080/api/orderDetail?orderId=${orderId}`
+        );
+
         const data = await response.data;
         setOrder(data);
-        setShowSuccessMessage(true);
-        
-
       } catch (error) {
         console.error(error);
       }
     };
-
-
     fetchOrder();
-
+    
   }, [orderId]);
+  
 
   useEffect(() => {
     if (!order) return;
 
     // Calculate total summary
     const totalBill = order.items.reduce((total, item) => {
-      return total + (Number.parseInt(item.product.price) * Number.parseFloat(item.quantity)) / 1000;
+      return (
+        total +
+        (Number.parseInt(item.product.price) *
+          Number.parseFloat(item.quantity)) /
+          1000
+      );
     }, 0);
 
     const total = order.total;
@@ -56,57 +58,65 @@ function InvoiceBody() {
       order.items.forEach((item) => {
         tmp =
           tmp +
-          Number.parseInt(item.product.price) * Number.parseFloat(item.quantity);
+          Number.parseInt(item.product.price) *
+            Number.parseFloat(item.quantity);
       });
     return tmp / 1000 + ".000";
   };
 
   // Handle transport change
   const handleNavigate = () => {
-
-    navigate('/product/search?type=Hạt%20giống');
-  }
+    navigate("/product/search?type=Hạt%20giống");
+  };
 
   const handleUpdate = (status) => {
     axios({
-      method: 'PUT',
+      method: "PUT",
       url: `${process.env.REACT_APP_SERVER_URL}/orderdetail?orderId=${order._id}`,
       data: {
-        status: status
-      }
+        status: status,
+      },
     }).then((response) => {
       const data = response.data;
       if (response.status === 200) {
         setOrder(data);
-        navigate('/admin');
+        navigate("/admin");
       }
-
-    })
-  }
+    });
+  };
   // Render order items
   var listOrder = null;
   if (order && order.items) {
     listOrder = order.items.map((item) => (
       <div className="item in-order-section" key={item._id}>
-
         <div className="item-detail">
           {/* <img src={`http://localhost:8080${item.product.images[0].path}`} alt={item.product.name} /> */}
           {item.product.name}
         </div>
         <div className="quantity-item">
-          <input className="q-order" value={item.quantity} type="number" readOnly />
+          <input
+            className="q-order"
+            value={item.quantity}
+            type="number"
+            readOnly
+          />
         </div>
         <div className="price-item">
           {(Number.parseInt(item.product.price) / 1000).toFixed(3)} vnd
         </div>
         <div className="total">
-          {((Number.parseInt(item.product.price) * Number.parseInt(item.quantity)) / 1000).toFixed(3)} vnd
+          {(
+            (Number.parseInt(item.product.price) *
+              Number.parseInt(item.quantity)) /
+            1000
+          ).toFixed(3)}{" "}
+          vnd
         </div>
       </div>
     ));
   }
-  console.log(listOrder)
-  console.log(order)
+  console.log(listOrder);
+  console.log(order);
   return (
     <main className="wrapper">
       <div className="title-page">
@@ -126,7 +136,12 @@ function InvoiceBody() {
         </div>
         <div className="delivery-fee">
           <div className="fee">Phí vận chuyển</div>
-          <div>{order && order.deliveryMethod === "Giao hàng tiết kiệm" ? "15.000" : "30.000"} vnd</div>
+          <div>
+            {order && order.deliveryMethod === "Giao hàng tiết kiệm"
+              ? "15.000"
+              : "30.000"}{" "}
+            vnd
+          </div>
         </div>
         <div className="total">
           <div className="bill"> Tổng đơn hàng</div>
@@ -166,9 +181,13 @@ function InvoiceBody() {
           </div>
         </div>
       </div>
-      <div className="check-out-btn" style={{ display: 'flex', 'grid-template-columns': 'repeat(2, auto)' }}>
-
-        <button className="btn-continue-order" onClick={handleNavigate}>Tiếp tục mua hàng</button>
+      <div
+        className="check-out-btn"
+        style={{ display: "flex", "grid-template-columns": "repeat(2, auto)" }}
+      >
+        <button className="btn-continue-order" onClick={handleNavigate}>
+          Tiếp tục mua hàng
+        </button>
         <button className="btn-print">In hoá đơn</button>
       </div>
     </main>

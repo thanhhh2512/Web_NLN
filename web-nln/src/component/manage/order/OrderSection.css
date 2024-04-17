@@ -34,7 +34,7 @@
     display: grid;
     grid-template-columns: 460px 150px 130px auto;
     gap: 103px;
-    text-align: center;
+    /* text-align: center; */
     /* border-bottom: 1px solid var(--Text, #000); */
 }
 
@@ -44,8 +44,11 @@
 }
 
 .item {
+    display: grid;
+    grid-template-columns: 400px 140px 150px auto;
+    gap: 103px;
+    text-align: center;
     border-bottom: 1px solid #8E8E8E;
-    justify-content: space-around;
 }
 
 .in-order {
@@ -61,7 +64,7 @@
 .quantity-item input.q-order {
     border: none;
     font-size: 20px;
-    text-align: center;
+    text-align: end;
     width: 130px;
 }
 
