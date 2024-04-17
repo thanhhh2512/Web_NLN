@@ -17,13 +17,17 @@ function InvoiceBody() {
   const orderId = searchParams.get('orderId');
 
   useEffect(() => {
+    alert("Chúc Mừng bạn đã đặt hàng thành công!!!")
+    console.log(orderId);
+    console.log('test'+ searchParams);
     const fetchOrder = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/api/orderDetail?orderId=${orderId}`);
-
+        
         const data = await response.data;
         setOrder(data);
         setShowSuccessMessage(true);
+        
 
       } catch (error) {
         console.error(error);
@@ -105,13 +109,8 @@ function InvoiceBody() {
   console.log(order)
   return (
     <main className="wrapper">
-        {showSuccessMessage && (
-      <div className="success-message">
-        Chúc mừng Bạn đã Mua hàng thành công
-      </div>
-    )}
       <div className="title-page">
-        <h1>Hoá đơn #{orderId}</h1>
+        <h1>Hoá đơn mua hàng</h1>
       </div>
       <section className="order-detail">
         <div className="header-table">

@@ -159,7 +159,7 @@ function OrderBody() {
         const deleteResponse = await deletePaidItemsFromCart();
         if (deleteResponse || deleteResponse.success) {
           // Xoá thành công, chuyển hướng đến trang cart
-          navigate("/cart");
+          navigate("/invoice?orderId=" + response.data._id);
         } else {
           // Xoá không thành công, xử lý theo cách thích hợp (ví dụ: hiển thị thông báo lỗi)
           console.error(
@@ -438,12 +438,12 @@ function OrderBody() {
         </div>
       </div>
       <div className="check-out">
-        <a href="/invoice">
+        {/* <a href="/invoice"> */}
           <button onClick={submit} className="btn-submit">
             {" "}
             Đặt hàng
           </button>
-        </a>
+        {/* </a> */}
       </div>
     </main>
   );
