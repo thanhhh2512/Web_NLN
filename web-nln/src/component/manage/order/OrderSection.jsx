@@ -1,9 +1,13 @@
 import "./OrderSection.css";
 import { useEffect, useState } from "react";
+import React, { Component, useRef } from "react";
 import { CartData } from "../../../common/json/CartData";
 import "../../cart/Cart.css";
 import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import { useReactToPrint } from "react-to-print";
 
 function OrderSection() {
   const [order, setOrder] = useState(null);
@@ -12,12 +16,14 @@ function OrderSection() {
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const orderId = searchParams.get('orderId');
+  const orderId = searchParams.get("orderId");
 
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/orderDetail?orderId=${orderId}`);
+        const response = await axios.get(
+          `http://localhost:8080/api/orderDetail?orderId=${orderId}`
+        );
 
         const data = await response.data;
         setOrder(data);
@@ -26,9 +32,7 @@ function OrderSection() {
       }
     };
 
-
     fetchOrder();
-
   }, [orderId]);
 
   useEffect(() => {
@@ -36,7 +40,12 @@ function OrderSection() {
 
     // Calculate total summary
     const totalBill = order.items.reduce((total, item) => {
-      return total + (Number.parseInt(item.product.price) * Number.parseFloat(item.quantity)) / 1000;
+      return (
+        total +
+        (Number.parseInt(item.product.price) *
+          Number.parseFloat(item.quantity)) /
+          1000
+      );
     }, 0);
 
     const total = order.total;
@@ -48,40 +57,58 @@ function OrderSection() {
       order.items.forEach((item) => {
         tmp =
           tmp +
-          Number.parseInt(item.product.price) * Number.parseFloat(item.quantity);
+          Number.parseInt(item.product.price) *
+            Number.parseFloat(item.quantity);
       });
     return tmp / 1000 + ".000";
   };
+  const componentRef = useRef();
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   // Handle transport change
-
 
   // Render order items
   var listOrder = null;
   if (order && order.items) {
     listOrder = order.items.map((item) => (
       <div className="item in-order-section" key={item._id}>
-
         <div className="item-detail">
-          <img src={`http://localhost:8080${item.product.images[0].path}`} alt={item.product.name} />
+          <img
+            src={`http://localhost:8080${item.product.images[0].path}`}
+            alt={item.product.name}
+          />
           {item.product.name}
         </div>
         <div className="quantity-item">
-          <input className="q-order" value={item.quantity} type="number" readOnly />
+          <input
+            className="q-order"
+            value={item.quantity}
+            type="number"
+            readOnly
+          />
         </div>
         <div className="price-item">
           {(Number.parseInt(item.product.price) / 1000).toFixed(3)} vnd
         </div>
         <div className="total">
-          {((Number.parseInt(item.product.price) * Number.parseInt(item.quantity)) / 1000).toFixed(3)} vnd
+          {(
+            (Number.parseInt(item.product.price) *
+              Number.parseInt(item.quantity)) /
+            1000
+          ).toFixed(3)}{" "}
+          vnd
         </div>
       </div>
     ));
   }
-  console.log(listOrder)
-  console.log(order)
+
+  console.log(listOrder);
+  console.log(order);
   return (
-    <main className="wrapper">
+    <main className="wrapper" ref={componentRef}>
       <div className="title-page">
         <h1>Chi tiết đơn hàng #{orderId}</h1>
       </div>
@@ -99,7 +126,12 @@ function OrderSection() {
         </div>
         <div className="delivery-fee">
           <div className="fee">Phí vận chuyển</div>
-          <div>{order && order.deliveryMethod === "Giao hàng tiết kiệm" ? "15.000" : "30.000"} vnd</div>
+          <div>
+            {order && order.deliveryMethod === "Giao hàng tiết kiệm"
+              ? "15.000"
+              : "30.000"}{" "}
+            vnd
+          </div>
         </div>
         <div className="total">
           <div className="bill"> Tổng đơn hàng</div>
@@ -140,15 +172,20 @@ function OrderSection() {
         </div>
       </div>
       <div className="check-out-btn">
-
-
-        <Link to={"/admin"}><button className="btn-confirm"> Đã xác nhận</button></Link>
-        <Link to={"/admin"}><button className="btn-delivery"> Đã giao hàng</button></Link>
-        <Link to={"/admin"}><button className="btn-recieve"> Đã gửi hàng</button></Link>
-        <Link to={"/admin"}><button className="btn-default"> Chưa được xác nhận</button></Link>
-
-
+        <Link to={"/admin"}>
+          <button className="btn-confirm"> Đã xác nhận</button>
+        </Link>
+        <Link to={"/admin"}>
+          <button className="btn-delivery"> Đã giao hàng</button>
+        </Link>
+        <Link to={"/admin"}>
+          <button className="btn-recieve"> Đã gửi hàng</button>
+        </Link>
+        <Link to={"/admin"}>
+          <button className="btn-default"> Chưa được xác nhận</button>
+        </Link>
       </div>
+      <button onClick={handlePrint}>Xuất PDF</button>
     </main>
   );
 }

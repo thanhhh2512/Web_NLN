@@ -180,6 +180,7 @@ function OrderBody() {
     // onSubmit();
     if (orderData.paymentMethod === "Thanh toán trực tuyến") {
       handleSubmitonline();
+      handleSubmit();
     } else {
       handleSubmit();
     }
@@ -206,11 +207,6 @@ function OrderBody() {
     }
   };
   const totalBill = () => {
-
-    
-
-  
-
     return (
       cart.reduce(
         (total, item) =>
