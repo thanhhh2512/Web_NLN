@@ -47,7 +47,7 @@ function CartItem({ item, setCart }) {
   }, [quantity, item.quantity]);
 
   return (
-    <div className="item">
+    <div className="item-cart">
       <div className="img-item">
         <img
           src={"http://localhost:8080" + item.product.images[0].path}
@@ -96,7 +96,7 @@ function CartItem({ item, setCart }) {
       </div>
       <div className="price-item">
         <p>
-          <span className="label">Giá</span>
+          <span className="label">Giá:</span>
           <span>{formatPrice(item.product.price)}</span>
         </p>
         <div className="remove-item" onClick={handleDelete}>

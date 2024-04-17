@@ -40,11 +40,11 @@
   justify-content: space-around;
   margin-top: 47px;
 }
-.item {
+.item-cart {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   border-top: 0.5px solid var(--Thanh-k, #6c6c6c);
   border-bottom: 0.5px solid var(--Thanh-k, #6c6c6c);
 }
@@ -78,9 +78,10 @@
   /* padding-inline: 15px 1px; */
 }
 .price-item {
+  gap: 10px;
   display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+
+  align-items: center;
   padding: 5px;
 }
 .type-product,
