@@ -85,12 +85,17 @@ router.get("/vnpay_return", function (req, res, next) {
   let signed = hmac.update(new Buffer(signData, "utf-8")).digest("hex");
 
   if (secureHash === signed) {
-    //Kiem tra xem du lieu trong db co hop le hay khong va thong bao ket qua
-
-    // res.send({status: 'success', code: vnp_Params['vnp_ResponseCode']});
-    res.redirect(`${process.env.CLIENT_ROOT}/checkout/success`);
+    // Assume orderId is available in the request query
+    let orderId = req.query.orderId;
+    if (orderId) {
+      // Redirect to the invoice page with orderId
+      res.redirect(`${process.env.CLIENT_ROOT}/invoice?orderId=${orderId}`);
+    } else {
+      // Handle case where orderId is not available
+      res.send({ status: "error", message: "Order ID is missing" });
+    }
   } else {
-    res.send({ status: "success", code: "97" });
+    res.send({ status: "error", code: "97" });
   }
 });
 

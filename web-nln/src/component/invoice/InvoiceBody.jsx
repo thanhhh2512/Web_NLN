@@ -64,6 +64,12 @@ function InvoiceBody() {
       });
     return tmp / 1000 + ".000";
   };
+  useEffect(() => {
+    if (order && order.paymentStatus === "success" && !hasAlerted) {
+      navigate("/your/success/page");
+      setHasAlerted(true);
+    }
+  }, [order, hasAlerted, navigate]);
 
   // Handle transport change
   const handleNavigate = () => {
@@ -170,15 +176,21 @@ function InvoiceBody() {
             {" "}
             <p>Tổng giá sản phẩm:</p>
             <p>Phí vận chuyển:</p>
-            <p><strong>Tổng đơn hàng:</strong></p>
+            <p>
+              <strong>Tổng đơn hàng:</strong>
+            </p>
           </div>
           <div className="detail-total">
             <p>{totalBill()} vnd</p>
-            <p>{order && order.deliveryMethod === "Giao hàng tiết kiệm"
+            <p>
+              {order && order.deliveryMethod === "Giao hàng tiết kiệm"
                 ? "15.000"
                 : "30.000"}{" "}
-              vnd</p>
-            <p><strong>{summary} vnd</strong></p>
+              vnd
+            </p>
+            <p>
+              <strong>{summary} vnd</strong>
+            </p>
           </div>
           {/* <div className="total-price">
             <div className="form-custom"> Tổng giá sản phẩm</div>
