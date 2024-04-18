@@ -12,7 +12,7 @@ function InvoiceBody() {
   const navigate = useNavigate();
   const [summary, setSummary] = useState();
   const refBill = useRef();
-
+  const [hasAlerted, setHasAlerted] = useState(false);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const orderId = searchParams.get("orderId");
