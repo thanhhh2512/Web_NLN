@@ -178,6 +178,7 @@ function OrderBody() {
     // onSubmit();
     if (orderData.paymentMethod === "Thanh toán trực tuyến") {
       handleSubmitonline();
+      handleSubmit();
     } else {
       handleSubmit();
     }
