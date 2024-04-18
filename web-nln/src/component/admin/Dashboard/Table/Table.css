@@ -24,6 +24,7 @@ th {
 
 .Details {
   color: #00b5ff !important;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1200px) {

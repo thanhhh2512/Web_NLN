@@ -123,7 +123,7 @@ function OrderSection() {
   console.log(listOrder);
   console.log(order);
   return (
-    <main className="wrapper" ref={componentRef}>
+    <main className="wrapper-ordersection" ref={componentRef}>
       <div className="title-page">
         <h1>Chi tiết đơn hàng #{orderId}</h1>
       </div>
@@ -135,22 +135,27 @@ function OrderSection() {
           <p className="header-total">Tổng cộng</p>
         </div>
         <div className="item-List">{listOrder && listOrder}</div>
-        <div className="total-price">
-          <div className="form-custom"> Tổng giá sản phẩm</div>
-          <div>{totalBill()} vnd</div>
-        </div>
-        <div className="delivery-fee">
-          <div className="fee">Phí vận chuyển</div>
-          <div>
-            {order && order.deliveryMethod === "Giao hàng tiết kiệm"
-              ? "15.000"
-              : "30.000"}{" "}
-            vnd
+        <div className="invoice-total">
+          <div className="title-total">
+            {" "}
+            <p>Tổng giá sản phẩm:</p>
+            <p>Phí vận chuyển:</p>
+            <p>
+              <strong>Tổng đơn hàng:</strong>
+            </p>
           </div>
-        </div>
-        <div className="total">
-          <div className="bill"> Tổng đơn hàng</div>
-          <div>{summary} vnd</div>
+          <div className="detail-total">
+            <p>{totalBill()} vnd</p>
+            <p>
+              {order && order.deliveryMethod === "Giao hàng tiết kiệm"
+                ? "15.000"
+                : "30.000"}{" "}
+              vnd
+            </p>
+            <p>
+              <strong>{summary} vnd</strong>
+            </p>
+          </div>
         </div>
       </section>
       <div className="inf-show">
@@ -224,7 +229,7 @@ function OrderSection() {
           Chưa được xác nhận
         </button>
       </div>
-      <button onClick={handlePrint}>Xuất PDF</button>
+      <button className="btn-print" onClick={handlePrint}>Xuất PDF</button>
     </main>
   );
 }

@@ -27,6 +27,9 @@ function CartBody() {
       })
       .catch((err) => console.log(err));
   };
+  const handleBack = () => {
+    window.history.back();
+  }
 
   return (
     <div className="cart-form-warraper">
@@ -62,7 +65,7 @@ function CartBody() {
             <Link to={"/order"}>
               <button className="btn-submit">THANH TOÁN</button>
             </Link>
-            <button className="btn-continue">TIẾP TỤC MUA HÀNG</button>
+            <button className="btn-continue" onClick={handleBack}>TIẾP TỤC MUA HÀNG</button>
           </div>
         </div>
       </div>

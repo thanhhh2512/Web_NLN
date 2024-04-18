@@ -43,6 +43,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-transform: uppercase;
 }
 
 /* Phần danh sách sản phẩm */
@@ -90,11 +91,11 @@
   border: none;
 }
 
-.wrapper-invoice .in-order {
+/* .wrapper-invoice .in-order {
   display: grid;
   grid-template-columns: 420px 150px 130px 240px;
   gap: 90px;
-}
+} */
 
 .wrapper-invoice .quantity-item {
   padding: 0;
@@ -148,44 +149,6 @@
     margin-top: 10px;
 }
 
-.wrapper-invoice .total-price div {
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.wrapper-invoice .delivery-fee {
-    gap: 120px;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-}
-
-.wrapper-invoice .delivery-fee div {
-    margin-left: 0;
-    margin-right: 0;
-
-}
-
-.wrapper-invoice .fee {
-    text-transform: uppercase;
-}
-
-.wrapper-invoice .total {
-    gap: 120px;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-}
-
-.wrapper-invoice .total div {
-    margin-left: 0;
-    margin-right: 0;
-    font-weight: 650;
-} */
-
-.wrapper-invoice .bill {
-  text-transform: uppercase;
-}
 
 /* Phần địa chỉ giao hàng */
 .wrapper-invoice .address-form,
