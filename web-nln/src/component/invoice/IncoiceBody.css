@@ -25,7 +25,7 @@
 }
 
 .wrapper-invoice {
-  width: -moz-fit-content;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin: 25px 25px 10px 15px;
@@ -47,8 +47,8 @@
 
 /* Phần danh sách sản phẩm */
 .wrapper-invoice .order-detail {
-  margin: 48px;
-  padding: 20px;
+  margin: 0 40px 0 0;
+  padding: 0 15px 0 0;
   border: none;
   border-radius: 5px;
 }
@@ -61,24 +61,31 @@
 .wrapper-invoice .header-table,
 .wrapper-invoice .in-order {
   display: grid;
-  grid-template-columns: 460px 150px 130px auto;
-  gap: 103px;
+  grid-template-columns: 25% 25% 10% auto;
+  gap: 100px;
   /* text-align: center; */
   border-bottom: 1px solid #8e8e8e;
 }
-.wrapper-invoice .head-table {
+.wrapper-invoice .price-item {
+  display: block;
+  text-align: center;
+  /* gap: 10px; */
+  /* display: flex; */
+  /* align-items: center; */
+  padding: 5px;
 }
 
 .wrapper-invoice .header-total,
 .wrapper-invoice .total {
   text-align: center;
+  display: block;
 }
 
 .wrapper-invoice .item {
   margin-top: 10px;
   display: grid;
-  grid-template-columns: 400px 140px 150px auto;
-  gap: 103px;
+  grid-template-columns: 25% 25% 25% auto;
+  gap: 40px;
   text-align: center;
   border: none;
 }
