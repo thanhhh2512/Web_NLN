@@ -1,3 +1,5 @@
+import { id } from "date-fns/locale";
+
 export const TypeofStatisticData = [
     {
       id: "00000",
@@ -15,4 +17,8 @@ export const TypeofStatisticData = [
       id: "00003",
       title: "Sắp hết hàng"
     },
+    {
+      id: "00004",
+      title: "Hết hàng"
+    }
   ];

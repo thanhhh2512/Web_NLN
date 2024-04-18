@@ -10,18 +10,15 @@ import CartItem from "./CartItem";
 function CartBody() {
   const [cart, setCart] = useState([]);
 
-  const user = JSON.parse(localStorage.getItem("user")) || { _id: 'null' };
+  const user = JSON.parse(localStorage.getItem("user")) || { _id: "null" };
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/carts?user=" + user._id)
       .then((res) => {
-
         setCart(res.data.data.items);
-
       })
       .catch((err) => console.log(err));
   }, []);
-  console.log(cart);
   const deleteFromCart = (productId) => {
     axios
       .delete("http://localhost:8080/api/carts/" + productId)
@@ -39,11 +36,9 @@ function CartBody() {
       <div className="detail-cart">
         <div className="salelist">
           <section className="list-items">
-
             {cart.map((item) => (
               <CartItem key={item._id} item={item} setCart={setCart} />
             ))}
-
           </section>
         </div>
         <div className="container-review">

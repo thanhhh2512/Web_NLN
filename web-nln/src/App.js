@@ -16,6 +16,8 @@ import AdminPage from "./pages/Admin/AdminPage";
 import IntroductionPage from "./pages/home/IntroductionPage";
 import EditProduct from "./component/manage/products/EditProduct";
 import AddProduct from './component/manage/products/AddProduct';
+import PaymentMethod from "./component/order/PaymentMenthod";
+import InvoicePage from "./pages/Invoice/InvoicePage";
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route path="/register" element={<RegisterOage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/payment" element={<PaymentMethod />} />
+          <Route path="/invoice" element={<InvoicePage />} />
 
           <Route path="/product/search" element={<ProductPage />} />
           <Route path="/detail/:ProductNo" element={<DetailProductPage />} />

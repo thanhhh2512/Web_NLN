@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { CartData } from "../../common/json/CartData";
+// import { CartData } from "../../common/json/CartData";
 import "../cart/Cart.css";
 import "./Order.css";
 import axios from "axios";
@@ -105,9 +105,6 @@ function OrderBody() {
     } else if (value === "onlinePayment") {
       orderData.paymentMethod = "Thanh toán trực tuyến";
     }
-
-    console.log(orderData.paymentMethod);
-
     setOrderData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -162,7 +159,8 @@ function OrderBody() {
         const deleteResponse = await deletePaidItemsFromCart();
         if (deleteResponse || deleteResponse.success) {
           // Xoá thành công, chuyển hướng đến trang cart
-          navigate("/cart");
+          navigate("/invoice?orderId=" + response.data._id);
+          alert("Chúc mùng bạn đã đặt hàng thành công!!!");
         } else {
           // Xoá không thành công, xử lý theo cách thích hợp (ví dụ: hiển thị thông báo lỗi)
           console.error(
@@ -436,15 +434,14 @@ function OrderBody() {
         </div>
       </div>
       <div className="check-out">
-        <a href="#">
-          <button onClick={submit} className="btn-submit">
-            {" "}
-            Đặt hàng
-          </button>
-        </a>
+        {/* <a href="/invoice"> */}
+        <button onClick={submit} className="btn-submit">
+          {" "}
+          Đặt hàng
+        </button>
+        {/* </a> */}
       </div>
     </main>
   );
 }
-
 export default OrderBody;
