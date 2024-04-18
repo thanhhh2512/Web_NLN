@@ -32,7 +32,11 @@ export const PrintBill = React.forwardRef(function PrintBill(
     ));
   }
   return (
+<<<<<<< HEAD
     <main className="wrapper-invoice" ref={ref} style={{ width: "100%" }}>
+=======
+    <main className="wrapper-invoice" ref={ref} style={{ width: "21.59cm" }}>
+>>>>>>> 365ddbb4b9639e7e9c68ca76778d6086f2f6ce82
       <div className="title-page">
         <h1>Hoá đơn mua hàng</h1>
       </div>

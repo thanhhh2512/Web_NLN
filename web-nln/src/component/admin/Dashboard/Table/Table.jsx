@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import "./Table.css";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const makeStyle=(status)=>{
@@ -103,7 +104,7 @@ export default function BasicTable() {
                   <TableCell align="left">
                     <span className="status" style={makeStyle(order.status)}>{order.status === 1 ? "Đã xác nhận" : order.status === 2 ? "Đã giao hàng" : order.status === 3 ? "Đã gửi hàng" : "Chưa được xác nhận"}</span>
                   </TableCell>
-                  <TableCell align="left" className="Details">Details</TableCell>
+                  <TableCell align="left" className="Details"><Link to={`/orderdetail?orderId=${order._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>Details</Link></TableCell>
                   </TableRow>
               ))}
             </TableBody>
