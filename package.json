@@ -5,5 +5,8 @@
     "html2pdf.js": "^0.10.1",
     "numeral": "^2.0.6",
     "react-to-print": "^2.15.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.79"
   }
 }

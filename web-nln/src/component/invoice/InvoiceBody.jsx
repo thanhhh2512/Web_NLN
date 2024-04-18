@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 // import { CartData } from "../../../common/json/CartData";
 import "../cart/Cart.css";
-import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./IncoiceBody.css";
+import "./InvoiceBody.css";
 import { PrintBill } from "../print";
 import { useReactToPrint } from "react-to-print";
 
 function InvoiceBody() {
   const [order, setOrder] = useState(null);
-  const [hasAlerted, setHasAlerted] = useState(false);
   const navigate = useNavigate();
   const [summary, setSummary] = useState();
   const refBill = useRef();
@@ -49,7 +48,6 @@ function InvoiceBody() {
           1000
       );
     }, 0);
-
     const total = order.total;
     setSummary(total.toFixed(3)); // Format to 3 decimal places
   }, [order]);
@@ -119,6 +117,7 @@ function InvoiceBody() {
   const handlePrint = useReactToPrint({
     content: () => refBill.current,
   });
+
   return (
     <main className="wrapper-invoice">
       <div className="title-page">
@@ -170,15 +169,21 @@ function InvoiceBody() {
             {" "}
             <p>Tổng giá sản phẩm:</p>
             <p>Phí vận chuyển:</p>
-            <p><strong>Tổng đơn hàng:</strong></p>
+            <p>
+              <strong>Tổng đơn hàng:</strong>
+            </p>
           </div>
           <div className="detail-total">
             <p>{totalBill()} vnd</p>
-            <p>{order && order.deliveryMethod === "Giao hàng tiết kiệm"
+            <p>
+              {order && order.deliveryMethod === "Giao hàng tiết kiệm"
                 ? "15.000"
                 : "30.000"}{" "}
-              vnd</p>
-            <p><strong>{summary} vnd</strong></p>
+              vnd
+            </p>
+            <p>
+              <strong>{summary} vnd</strong>
+            </p>
           </div>
           {/* <div className="total-price">
             <div className="form-custom"> Tổng giá sản phẩm</div>
@@ -207,7 +212,6 @@ function InvoiceBody() {
           In hoá đơn
         </button>
       </div>
-
       {order && (
         <div style={{ display: "none" }}>
           <PrintBill

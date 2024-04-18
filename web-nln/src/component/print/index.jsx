@@ -32,39 +32,13 @@ export const PrintBill = React.forwardRef(function PrintBill(
     ));
   }
   return (
-    <main className="wrapper" ref={ref} style={{ width: "21.59cm" }}>
+    <main className="wrapper-invoice" ref={ref} style={{ width: "21.59cm" }}>
       <div className="title-page">
         <h1>Hoá đơn mua hàng</h1>
       </div>
-      <section className="order-detail">
-        <div className="header-table">
-          <p>Tóm tắt đơn hàng</p>
-          <p>Số lượng</p>
-          <p>Giá</p>
-          <p className="header-total">Tổng cộng</p>
-        </div>
-        <div className="item-List">{listOrder && listOrder}</div>
-        <div className="total-price">
-          <div className="form-custom"> Tổng giá sản phẩm</div>
-          <div>{totalBill()} vnd</div>
-        </div>
-        <div className="delivery-fee">
-          <div className="fee">Phí vận chuyển</div>
-          <div>
-            {order && order.deliveryMethod === "Giao hàng tiết kiệm"
-              ? "15.000"
-              : "30.000"}{" "}
-            vnd
-          </div>
-        </div>
-        <div className="total">
-          <div className="bill"> Tổng đơn hàng</div>
-          <div>{summary} vnd</div>
-        </div>
-      </section>
       <div className="inf-show">
         <div className="choose-receiver">
-          <h2>Thông tin giao hàng</h2>
+          {/* <h2>Thông tin giao hàng</h2> */}
           <div className="address">
             <div className="address-title">
               <p>Tên người nhận:</p>
@@ -95,6 +69,51 @@ export const PrintBill = React.forwardRef(function PrintBill(
           </div>
         </div>
       </div>
+      <section className="order-detail">
+        <div className="header-table">
+          <p>Tên sản phẩm</p>
+          <p>Số lượng</p>
+          <p>Giá</p>
+          <p className="header-total">Tổng cộng</p>
+        </div>
+        <div className="item-List">{listOrder && listOrder}</div>
+        <div className="invoice-total">
+          <div className="title-total">
+            {" "}
+            <p>Tổng giá sản phẩm:</p>
+            <p>Phí vận chuyển:</p>
+            <p>
+              <strong>Tổng đơn hàng:</strong>
+            </p>
+          </div>
+          <div className="detail-total">
+            <p>{totalBill()} vnd</p>
+            <p>
+              {order && order.deliveryMethod === "Giao hàng tiết kiệm"
+                ? "15.000"
+                : "30.000"}{" "}
+              vnd
+            </p>
+            <p>
+              <strong>{summary} vnd</strong>
+            </p>
+          </div>
+          {/* <div className="total-price">
+            <div className="form-custom"> Tổng giá sản phẩm</div>
+            <div>{totalBill()} vnd</div>
+          </div>
+          <div className="delivery-fee">
+            <div className="fee">Phí vận chuyển</div>
+            <div>
+              
+            </div>
+          </div>
+          <div className="total">
+            <div className="bill"> Tổng đơn hàng</div>
+            <div></div>
+          </div> */}
+        </div>
+      </section>
     </main>
   );
 });
