@@ -1,11 +1,40 @@
+import React from "react";
+
 export const PrintBill = React.forwardRef(function PrintBill(
-  { bill, products },
+  { order, summary, totalBill },
   ref
 ) {
+  let listOrder = null;
+  if (order && order.items) {
+    listOrder = order.items.map((item) => (
+      <div className="item in-order-section" key={item._id}>
+        <div className="item-detail">{item.product.name}</div>
+        <div className="quantity-item">
+          <input
+            className="q-order"
+            value={item.quantity}
+            type="number"
+            readOnly
+          />
+        </div>
+        <div className="price-item">
+          {(Number.parseInt(item.product.price) / 1000).toFixed(3)} vnd
+        </div>
+        <div className="total">
+          {(
+            (Number.parseInt(item.product.price) *
+              Number.parseInt(item.quantity)) /
+            1000
+          ).toFixed(3)}{" "}
+          vnd
+        </div>
+      </div>
+    ));
+  }
   return (
-    <main className="wrapper" ref={ref}>
+    <main className="wrapper" ref={ref} style={{ width: "21.59cm" }}>
       <div className="title-page">
-        <h1>Chi tiết đơn hàng #{orderId}</h1>
+        <h1>Hoá đơn mua hàng</h1>
       </div>
       <section className="order-detail">
         <div className="header-table">
@@ -66,21 +95,6 @@ export const PrintBill = React.forwardRef(function PrintBill(
           </div>
         </div>
       </div>
-      <div className="check-out-btn">
-        <Link to={"/admin"}>
-          <button className="btn-confirm"> Đã xác nhận</button>
-        </Link>
-        <Link to={"/admin"}>
-          <button className="btn-delivery"> Đã giao hàng</button>
-        </Link>
-        <Link to={"/admin"}>
-          <button className="btn-recieve"> Đã gửi hàng</button>
-        </Link>
-        <Link to={"/admin"}>
-          <button className="btn-default"> Chưa được xác nhận</button>
-        </Link>
-      </div>
-      <button onClick={handlePrint}>Xuất PDF</button>
     </main>
   );
 });

@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import { CartData } from "../../../common/json/CartData";
 import "../cart/Cart.css";
 import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./IncoiceBody.css";
+import { PrintBill } from "../print";
+import { useReactToPrint } from "react-to-print";
 
 function InvoiceBody() {
   const [order, setOrder] = useState(null);
   const [hasAlerted, setHasAlerted] = useState(false);
   const navigate = useNavigate();
   const [summary, setSummary] = useState();
+  const refBill = useRef();
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -32,9 +35,7 @@ function InvoiceBody() {
       }
     };
     fetchOrder();
-    
   }, [orderId]);
-  
 
   useEffect(() => {
     if (!order) return;
@@ -85,14 +86,11 @@ function InvoiceBody() {
     });
   };
   // Render order items
-  var listOrder = null;
+  let listOrder = null;
   if (order && order.items) {
     listOrder = order.items.map((item) => (
       <div className="item in-order-section" key={item._id}>
-        <div className="item-detail">
-          {/* <img src={`http://localhost:8080${item.product.images[0].path}`} alt={item.product.name} /> */}
-          {item.product.name}
-        </div>
+        <div className="item-detail">{item.product.name}</div>
         <div className="quantity-item">
           <input
             className="q-order"
@@ -115,8 +113,12 @@ function InvoiceBody() {
       </div>
     ));
   }
-  console.log(listOrder);
-  console.log(order);
+  // console.log(listOrder);
+  // console.log(order);
+
+  const handlePrint = useReactToPrint({
+    content: () => refBill.current,
+  });
   return (
     <main className="wrapper">
       <div className="title-page">
@@ -188,8 +190,21 @@ function InvoiceBody() {
         <button className="btn-continue-order" onClick={handleNavigate}>
           Tiếp tục mua hàng
         </button>
-        <button className="btn-print">In hoá đơn</button>
+        <button className="btn-print" onClick={handlePrint}>
+          In hoá đơn
+        </button>
       </div>
+
+      {order && (
+        <div style={{ display: "none" }}>
+          <PrintBill
+            order={order}
+            summary={summary}
+            totalBill={totalBill}
+            ref={refBill}
+          />
+        </div>
+      )}
     </main>
   );
 }
