@@ -88,7 +88,10 @@ exports.updateOrderById = async (req, res) => {
     const updatedData = req.body;
 
     // Cập nhật đơn hàng
-    let data = await Order.findByIdAndUpdate(orderId, updatedData, { new: true }).populate("user")
+    let data = await Order.findByIdAndUpdate(orderId, updatedData, {
+      new: true,
+    })
+      .populate("user")
       .populate("items.product");
 
     if (!data) {
