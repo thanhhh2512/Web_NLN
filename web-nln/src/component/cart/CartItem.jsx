@@ -15,7 +15,9 @@ function CartItem({ item, setCart }) {
       })
       .catch((err) => console.log(err));
   };
-
+  console.log("test:  "+item.quantity);
+  console.log("test2:  "+quantity);
+  console.log("test3:  "+item._id);
   useEffect(() => {
     let intervalId;
     if (quantity !== item.quantity) {
@@ -46,6 +48,7 @@ function CartItem({ item, setCart }) {
     return () => clearInterval(intervalId);
   }, [quantity, item.quantity]);
 
+
   return (
     <div className="item-cart">
       <div className="img-item">
@@ -59,8 +62,12 @@ function CartItem({ item, setCart }) {
         <div className="more-infor">
           <div>
             <p className="type-product">
-              <span className="label">Loại sản phẩm</span>
+              <span className="label">Loại sản phẩm:</span>
               <span className="pref-item">{item.product.type}</span>
+            </p>
+            <p className="quantity-product">
+              <span className="label">Số lượng sản phẩm còn lại:</span>
+              <span className="pref-item">{item.product.quantity}</span>
             </p>
           </div>
         </div>
@@ -69,8 +76,11 @@ function CartItem({ item, setCart }) {
         <button
           onClick={(e) => {
             if (quantity > 1) {
+              if(item.product.quantity >0){
+                
               setQuantity((prev) => prev - 1);
             }
+          }
           }}
         >
           -
@@ -91,8 +101,9 @@ function CartItem({ item, setCart }) {
             }
           }}
         >
-          +
+          + 
         </button>
+        
       </div>
       <div className="price-item">
         <p>

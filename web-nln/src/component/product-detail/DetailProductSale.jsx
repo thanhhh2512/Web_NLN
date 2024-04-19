@@ -4,10 +4,16 @@ import axios from "axios";
 
 import Image from "../Image/Image";
 import { useAuth } from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function DetailProductSale({ product }) {
   const { setIsNavigateLogin, user, isLogin } = useAuth();
+  const navigate = useNavigate();
   const handleAddToCart = () => {
+    if (product.quantity === 0) {
+      alert("Sản phẩm này đã hết hàng.");
+      return;
+    }
     if (!isLogin) {
       setIsNavigateLogin(true);
       return;
@@ -22,6 +28,9 @@ export default function DetailProductSale({ product }) {
       .catch((err) => console.log(err));
     alert("Thêm sản phẩm vào giỏ hàng thành công");
   };
+  const handleAddCartButton = () => {
+    navigate("/cart");
+  }
   return (
     <div className="detail-productsale-container">
       <div className="image-layout">
@@ -41,7 +50,7 @@ export default function DetailProductSale({ product }) {
             <button className="add-product-btn" onClick={() => handleAddToCart()}>
               Thêm vào giỏ hàng
             </button>
-            <button className="purchase-btn">Mua hàng</button>
+            <button onClick={handleAddCartButton} className="purchase-btn">Mua hàng</button>
           </div>
         </div>
       </div>

@@ -34,7 +34,7 @@ console.log("Product Summary:", product?.ProductSummary);
             <div className="attribute-product">
               <div className="attribute">
                 <p>Đặc tính:</p>
-                <p>Số lượng:</p>
+                <p>Số lượng đóng gói:</p>
                 <p>Khối lượng:</p>
                 <p>Giá:</p>
                 {expanded && <></>}
