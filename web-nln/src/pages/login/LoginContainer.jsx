@@ -25,9 +25,15 @@ function LoginContainer() {
         } else {
           navigate("/");
         }
+        
       })
       .catch((error) => {
-        alert("Password hoặc Tên Tài Khoản không hợp lệ");
+        if (usernameValue === "" || passwordValue === "") {
+          alert("Vui lòng nhập đầy đủ thông tin");
+        } else {
+          alert("Password hoặc Tên Tài Khoản không hợp lệ");
+        }
+        
         console.error(error);
       });
   };
