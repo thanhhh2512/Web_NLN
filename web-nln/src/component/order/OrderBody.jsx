@@ -101,7 +101,7 @@ function OrderBody() {
     const { name, value } = e.target;
 
     if (value === "cash") {
-      orderData.paymentMethod = "Thanh toan khi nhận hàng";
+      orderData.paymentMethod = "Thanh toán khi nhận hàng";
     } else if (value === "onlinePayment") {
       orderData.paymentMethod = "Thanh toán trực tuyến";
     }

@@ -1,4 +1,5 @@
 const ProductItem = ({ product }) => {
+  const formattedPrice = product.price.toLocaleString("vi-VN");
   console.log(product.images);
   return (
     <div className="ProductItems">
@@ -13,7 +14,7 @@ const ProductItem = ({ product }) => {
         <div className="product-description">{product.type}</div>
       </div>
       <div className="product-bot">
-        <div className="product-price">{product.price} VND</div>
+        <div className="product-price">{formattedPrice} VND</div>
       </div>
     </div>
   );

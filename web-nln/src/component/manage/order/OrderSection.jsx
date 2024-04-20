@@ -8,12 +8,13 @@ import axios from "axios";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useReactToPrint } from "react-to-print";
-
+import { PrintBill } from "../../print";
 function OrderSection() {
   const [order, setOrder] = useState(null);
   const navigate = useNavigate();
   const [summary, setSummary] = useState();
 
+  const refBill = useRef();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const orderId = searchParams.get("orderId");
@@ -65,7 +66,7 @@ function OrderSection() {
   const componentRef = useRef();
 
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    content: () => refBill.current,
   });
 
   // Handle transport change
@@ -229,7 +230,19 @@ function OrderSection() {
           Chưa được xác nhận
         </button>
       </div>
-      <button className="btn-print" onClick={handlePrint}>Xuất PDF</button>
+      <button className="btn-print" onClick={handlePrint}>
+        Xuất PDF
+      </button>
+      {order && (
+        <div style={{ display: "none" }}>
+          <PrintBill
+            order={order}
+            summary={summary}
+            totalBill={totalBill}
+            ref={refBill}
+          />
+        </div>
+      )}
     </main>
   );
 }
