@@ -62,7 +62,7 @@ router.post("/create_payment_url", function (req, res, next) {
 
   res.json({ vnpUrl });
 });
-
+router.post("/create_payment_url", function (req, res, next) {});
 router.get("/vnpay_return", function (req, res, next) {
   let vnp_Params = req.query;
 
@@ -89,7 +89,7 @@ router.get("/vnpay_return", function (req, res, next) {
     let orderId = req.query.orderId;
     if (orderId) {
       // Redirect to the invoice page with orderId
-      res.redirect(`${process.env.CLIENT_ROOT}/invoice?orderId=${orderId}`);
+      res.redirect(`${process.env.CLIENT_ROOT}/checkout/success`);
     } else {
       // Handle case where orderId is not available
       res.send({ status: "error", message: "Order ID is missing" });

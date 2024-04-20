@@ -34,7 +34,7 @@
   display: grid;
   grid-template-columns: 441px 184px 133px auto;
   gap: 103px;
-  /* border-bottom: 1px solid var(--Text, #000); */
+  border-bottom: 1px solid var(--Text, #828080);
   text-align: center;
 }
 /* .head-total, .total{
@@ -75,8 +75,9 @@
   margin: 5px;
 }
 .total-bill {
+  margin-right: 50px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   margin-top: 10px;
 }
 .total-bill div {
@@ -114,7 +115,7 @@
 .address-form input {
   border: 0.5px solid var(--Text, #000);
   background: var(--text, #fff);
-  height: 25px;
+  height: 35px;
   margin-left: 20px;
   margin-bottom: 10px;
 }

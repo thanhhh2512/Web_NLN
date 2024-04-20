@@ -29,7 +29,7 @@ function CartBody() {
   };
   const handleBack = () => {
     window.history.back();
-  }
+  };
 
   return (
     <div className="cart-form-warraper">
@@ -62,10 +62,18 @@ function CartBody() {
           </div>
           <div className="line"></div>
           <div className="check-out">
-            <Link to={"/order"}>
-              <button className="btn-submit">THANH TOÁN</button>
-            </Link>
-            <button className="btn-continue" onClick={handleBack}>TIẾP TỤC MUA HÀNG</button>
+            {cart.length > 0 ? (
+              <Link to="/order">
+                <button className="btn-submit">THANH TOÁN</button>
+              </Link>
+            ) : (
+              <button className="btn-submit" disabled>
+                THANH TOÁN
+              </button>
+            )}
+            <button className="btn-continue" onClick={handleBack}>
+              TIẾP TỤC MUA HÀNG
+            </button>
           </div>
         </div>
       </div>

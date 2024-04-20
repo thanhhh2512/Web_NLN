@@ -120,6 +120,7 @@
   margin: 5px;
 }
 .wrapper-invoice .invoice-total {
+  margin-right: 54px;
   margin-top: 10px;
   display: flex;
   flex-direction: row;

@@ -104,7 +104,7 @@ function InvoiceBody() {
           />
         </div>
         <div className="price-item">
-          {(Number.parseInt(item.product.price) / 1000).toFixed(3)} vnd
+          {(Number.parseInt(item.product.price) / 1000).toFixed(3)} VND
         </div>
         <div className="total">
           {(
@@ -112,7 +112,7 @@ function InvoiceBody() {
               Number.parseInt(item.quantity)) /
             1000
           ).toFixed(3)}{" "}
-          vnd
+          VND
         </div>
       </div>
     ));
