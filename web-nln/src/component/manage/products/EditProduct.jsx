@@ -111,7 +111,7 @@ export default function EditProduct() {
         },
       })
       .then((res) => {
-        alert("thanh cong");
+        alert("Cập nhật sản phẩm thành công");
         window.location.href = "/admin";
       })
       .catch((err) => {

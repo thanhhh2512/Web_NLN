@@ -28,6 +28,7 @@ function AccountInfor() {
             console.log(dataExcludePassword)
             // Save the merged user data back to localStorage
             localStorage.setItem('user', JSON.stringify(dataExcludePassword));
+            alert("Cập nhật thông tin thành công")
 
             // Handle any other logic after successful update
         }).catch((error) => {
@@ -65,13 +66,13 @@ function AccountInfor() {
                                 <Field type="email" id="email" name="email" className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="phone">Phone Number:</label>
+                                <label htmlFor="phone">Số điện thoại:</label>
                                 <Field type="tel" id="phone" name="phone" className="form-control" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="gender">Gender:</label>
+                                <label htmlFor="gender">Giới tính:</label>
                                 <Field as="select" id="gender" name="gender" className="form-control">
-                                    <option value="">Select Gender</option>
+                                    <option value="">Chọn giới tính</option>
                                     {optionGender.map((item, id) => {
                                         return <option key={id} value={item}>{item}</option>
                                     })}
@@ -80,11 +81,11 @@ function AccountInfor() {
                                 </Field>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="birthday">Date of Birth:</label>
+                                <label htmlFor="birthday">Ngày sinh:</label>
                                 <Field type="date" id="birthday" name="birthday" className="form-control" />
                             </div>
                             <button type="submit" disabled={formikProps.isSubmitting}>
-                                {formikProps.isSubmitting ? "Lưu thay đổi ..." : "Lưu thay đổi"}
+                                {formikProps.isSubmitting ? "Đang thay đổi ..." : "Lưu thay đổi"}
                             </button>
                         </Form>
                     )}
