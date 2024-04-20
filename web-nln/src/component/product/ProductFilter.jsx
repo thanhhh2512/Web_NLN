@@ -29,7 +29,6 @@ export default function ProductFilter() {
   const [sort, setSort] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
-
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -38,9 +37,9 @@ export default function ProductFilter() {
 
     // Construct query parameters
     const queryParams = new URLSearchParams();
-    queryParams.append('type', type);
+    queryParams.append("type", type);
     if (feature !== null) {
-      queryParams.append('feature', feature);
+      queryParams.append("feature", feature);
     }
     // if (sort !== null) {
     //   queryParams.append('sort', sort);
@@ -49,27 +48,27 @@ export default function ProductFilter() {
     const url = `${baseUrl}?${queryParams.toString()}`;
 
     // Fetch products from the server
-    axios.get(url)
-      .then(response => {
+    axios
+      .get(url)
+      .then((response) => {
         if (response.status === 200) {
           // If the request is successful, update the products state
           setProducts(response.data);
         }
       })
-      .catch(error => {
-        console.error('Error fetching products:', error);
+      .catch((error) => {
+        console.error("Error fetching products:", error);
       });
-
 
     // if(sort===null&&feature===null)
 
     return () => {
       setSelectedCharacteristic(null);
-
-    }
-
-
+    };
   }, [type, feature]);
+  function formatNumber(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 
   // useEffect(() => {
   //   // Lọc danh sách sản phẩm dựa trên selectedCharacteristic
@@ -81,14 +80,15 @@ export default function ProductFilter() {
   //     setFilteredProducts(products);
   //   }
 
-
   // }, [selectedCharacteristic,sort, products]);
   useEffect(() => {
     // Lọc danh sách sản phẩm dựa trên selectedCharacteristic
     let filteredProducts = [...products];
 
     if (selectedCharacteristic) {
-      filteredProducts = filteredProducts.filter(product => product.feature === selectedCharacteristic);
+      filteredProducts = filteredProducts.filter(
+        (product) => product.feature === selectedCharacteristic
+      );
     }
 
     // Sắp xếp danh sách sản phẩm theo giá nếu sort được chọn
@@ -97,9 +97,9 @@ export default function ProductFilter() {
         const priceA = parseFloat(a.price);
         const priceB = parseFloat(b.price);
 
-        if (sort === 'asc') {
+        if (sort === "asc") {
           return priceA - priceB;
-        } else if (sort === 'desc') {
+        } else if (sort === "desc") {
           return priceB - priceA;
         }
         return 0;
@@ -115,14 +115,12 @@ export default function ProductFilter() {
 
     setSort(sortOrder);
     setIsOpenPrice(false);
-
-  }
+  };
   const resetFilter = () => {
     setFilteredProducts(products);
 
     setSort(null);
     setSelectedCharacteristic(null); // Xoá trạng thái được chọn
-
   };
 
   const toggleDropdownCharacteristic = () => {
@@ -161,7 +159,9 @@ export default function ProductFilter() {
   const selectCharacteristic = (characteristic) => {
     setSelectedCharacteristic(characteristic);
     setIsOpenCharacteristic(false);
-    const filtered = products.filter(product => product.feature === selectedCharacteristic);
+    const filtered = products.filter(
+      (product) => product.feature === selectedCharacteristic
+    );
     setFilteredProducts(filtered);
     // filterByCharacteristicAndPrice(characteristic, selectedPrice);
   };
@@ -184,14 +184,16 @@ export default function ProductFilter() {
     setSelectedCharacteristic(null);
     setFilteredProducts(products); // Cập nhật lại danh sách sản phẩm khi xóa giá trị được chọn
   };
-  
+
   const clearSelectedPrice = () => {
     setSort(null);
     setFilteredProducts(products); // Cập nhật lại danh sách sản phẩm khi xóa giá trị được chọn
   };
-  
-  const uniqueFeatures = [...new Set(products.map(product => product.feature))];
-  console.log(sort)
+
+  const uniqueFeatures = [
+    ...new Set(products.map((product) => product.feature)),
+  ];
+  console.log(sort);
   return (
     <div className="ProductFilter">
       <div className="filter-container">
@@ -233,17 +235,12 @@ export default function ProductFilter() {
           </button>
           {isOpenPrice && (
             <ul className="dropdown-menu1">
-              <li
-                onClick={handleSort}
-                value="asc"
-              >Tăng dần</li>
-              <li
-                value="desc"
-                onClick={handleSort}
-              >
+              <li onClick={handleSort} value="asc">
+                Tăng dần
+              </li>
+              <li value="desc" onClick={handleSort}>
                 Giảm dần
               </li>
-
             </ul>
           )}
         </div>
@@ -256,9 +253,7 @@ export default function ProductFilter() {
         {selectedCharacteristic && (
           <div className="selected-product-container">
             <p>{selectedCharacteristic}</p>
-            <button className="clear-button"
-             onClick={clearSelectedProduct}
-            >
+            <button className="clear-button" onClick={clearSelectedProduct}>
               X
             </button>
           </div>
@@ -266,9 +261,7 @@ export default function ProductFilter() {
         {sort && (
           <div className="selected-price-container">
             <p>{sort === "asc" ? "Tăng dần" : "Giảm dần"}</p>
-            <button className="clear-button"
-            onClick={clearSelectedPrice}
-            >
+            <button className="clear-button" onClick={clearSelectedPrice}>
               X
             </button>
           </div>
@@ -295,7 +288,6 @@ export default function ProductFilter() {
               </Link>
             </div>
           ))}
-
         </div>
         {/* {!expanded && (
           <button className="expand-btn" onClick={handleShowMore}>

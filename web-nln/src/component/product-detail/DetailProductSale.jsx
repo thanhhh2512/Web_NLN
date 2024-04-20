@@ -30,7 +30,8 @@ export default function DetailProductSale({ product }) {
   };
   const handleAddCartButton = () => {
     navigate("/cart");
-  }
+  };
+  const formattedPrice = product.price.toLocaleString("vi-VN");
   return (
     <div className="detail-productsale-container">
       <div className="image-layout">
@@ -45,12 +46,20 @@ export default function DetailProductSale({ product }) {
           <div className="info">
             <p>{product?.fastdescription}</p>
           </div>
-          <div className="price"><p>Giá:</p><p>{product.price}VND</p> </div>
+          <div className="price">
+            <p>Giá:</p>
+            <p>{formattedPrice}VND</p>{" "}
+          </div>
           <div className="product-button">
-            <button className="add-product-btn" onClick={() => handleAddToCart()}>
+            <button
+              className="add-product-btn"
+              onClick={() => handleAddToCart()}
+            >
               Thêm vào giỏ hàng
             </button>
-            <button onClick={handleAddCartButton} className="purchase-btn">Mua hàng</button>
+            <button onClick={handleAddCartButton} className="purchase-btn">
+              Mua hàng
+            </button>
           </div>
         </div>
       </div>
