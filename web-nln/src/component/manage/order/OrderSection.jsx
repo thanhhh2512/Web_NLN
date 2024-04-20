@@ -83,6 +83,7 @@ function OrderSection() {
         setOrder(data);
         navigate("/admin");
       }
+      console.log(data);
     });
   };
   // Render order items
